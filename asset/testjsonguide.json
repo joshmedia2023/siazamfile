@@ -1,0 +1,164 @@
+{
+	"Ads": [{
+		"select_main_ads": "ADMOB",
+		"select_backup_ads": "APPLOVIN-M",
+		"main_ads_banner": "ca-app-pub-3940256099942544/6300978111",
+		"main_ads_intertitial": "ca-app-pub-3940256099942544/1033173712",
+		"native_for_admob": "ca-app-pub-3940256099942544/2247696110",
+		"backup_ads_banner": "db4d5e8718b97d78",
+		"backup_ads_intertitial": "518cd97722c60b52",
+		"interval_intertitial": 3,
+		"initialize_sdk": "107355779",
+		"initialize_sdk_backup_ads": "",
+		"high_paying_keyword_1": "",
+		"high_paying_keyword_2": "",
+		"high_paying_keyword_3": "",
+		"high_paying_keyword_4": "",
+		"high_paying_keyword_5": "",
+		"status_app": "0",
+		"link_redirect": "https://"
+	}],
+
+	"Categories": [{
+			"id": 1,
+			"name_category": "Kemanusiaan",
+			"image": "https://awghostrider24.github.io/Adsid/sample/kemanusiaan.png"
+		},
+		{
+			"id": 2,
+			"name_category": "Pendidikan",
+			"image": "https://awghostrider24.github.io/Adsid/sample/pendidikan.png"
+		},
+		{
+			"id": 3,
+			"name_category": "Ekonomi",
+			"image": "https://awghostrider24.github.io/Adsid/sample/ekonomi.png"
+		},
+		{
+			"id": 4,
+			"name_category": "Dakwah & Advokasi",
+			"image": "https://awghostrider24.github.io/Adsid/sample/dakwahadv.png"
+		},
+		{
+			"id": 5,
+			"name_category": "Kesehatan",
+			"image": "https://awghostrider24.github.io/Adsid/sample/kesehatan.png"
+		}
+
+	],
+	"Tasharuf": [{
+        "id": 1,
+        "nama": "agus",
+        "alamat": "Katongan,RT 01/00,Kel.Bendo,Kec.Sukodono,Kab.Sragen",
+        "usaha": "zchicken",
+	"image": "https://awghostrider24.github.io/Adsid/sample/ekonomi.png",
+        "nominal": "Rp 2,000,000"
+    },
+    {
+        "id": 2,
+        "nama": "anwar",
+        "alamat": "kalijambe",
+        "usaha": "pentol",
+	"image": "https://awghostrider24.github.io/Adsid/sample/ekonomi.png",
+        "nominal": "Rp 1,000,001"
+    },
+    {
+        "id": 3,
+        "nama": "ratih",
+        "alamat": "kedawung",
+        "usaha": "sayur",
+	"image": "https://awghostrider24.github.io/Adsid/sample/ekonomi.png",
+        "nominal": "Rp 5,000,002"
+    },
+    {
+        "id": 4,
+        "nama": "anto",
+        "alamat": "Ngrampal",
+        "usaha": "Bakso",
+	"image": "https://awghostrider24.github.io/Adsid/sample/ekonomi.png",
+        "nominal": "Rp 7,000,003"
+    },
+    {
+        "id": 5,
+        "nama": "Seby",
+        "alamat": "Teguhan",
+        "usaha": "Warmindo",
+	"image": "https://awghostrider24.github.io/Adsid/sample/ekonomi.png",
+        "nominal": "Rp 1,000,004"
+    },
+    {
+        "id": 6,
+        "nama": "Ira",
+        "alamat": "Singopadu",
+        "usaha": "Es The Jumbo",
+	"image": "https://awghostrider24.github.io/Adsid/sample/ekonomi.png",
+        "nominal": "Rp 2,000,005"
+    },
+	{
+        "id": 7,
+        "nama": "Vivi Anggraini",
+        "alamat": "Kalijambe",
+        "usaha": "Nasi Goreng Pedas",
+	"image": "https://awghostrider24.github.io/Adsid/sample/ekonomi.png",
+        "nominal": "Rp 6,000,005"
+    },
+		{
+        "id": 8,
+        "nama": "Dewi Nuraini",
+        "alamat": "Bogor Berseri Kota Hujan",
+        "usaha": "Nasi Goreng Kriuk",
+	"image": "https://awghostrider24.github.io/Adsid/sample/ekonomi.png",
+        "nominal": "Rp 2,000,005"
+    },{
+        "id":9,
+        "nama": "Dewi Purwantiningsih",
+        "alamat": "Sragen belakang RSUD Sragen",
+        "usaha": "Mi Ayam Subur makmur",
+	"image": "https://awghostrider24.github.io/Adsid/sample/ekonomi.png",
+        "nominal": "Rp 3,000,005"
+    }
+
+	],
+	"Data": [{
+			"id": 1,
+			"name_category": "Ekonomi",
+			"title": "Lumbung Pangan",
+			"image": "https://awghostrider24.github.io/Adsid/sample/ekonomi.png",
+			"description": "Pemberdayaan Ekonomi Petani",
+			"link": "https://awghostrider24.github.io/Adsid/sample/gttptt.html"
+		},
+		{
+			"id": 2,
+			"name_category": "Kemanusiaan",
+			"title": "Bhakti Cinta Lansia",
+			"image": "https://awghostrider24.github.io/Adsid/sample/kemanusiaan.png",
+			"description": "Wujud Kepedulian terhadap Lansia",
+			"link": "https://awghostrider24.github.io/Adsid/sample/gttptt.html"
+		},
+		{
+			"id": 3,
+			"name_category": "Kesehatan",
+			"title": "Bantuan Pengobatan",
+			"image": "https://scontent.fsoc16-1.fna.fbcdn.net/v/t39.30808-6/367015300_604313645191324_6934686521655444905_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeHgpV4c7TDWFiuyb7_7Dvf-hjSYuhcWAkeGNJi6FxYCRw4_iUx4jPA4UupP4uKJMrv2b5M1ATW-S1a3d-ZVjX8D&_nc_ohc=JSqDV5_WqN8Q7kNvwGri1n3&_nc_oc=Adm1LECNMk_Q2KbovyUeT57YFfYi4HDClBBYRpCC8mg6UKoZpGFHPJJCekThFlG5RrM&_nc_zt=23&_nc_ht=scontent.fsoc16-1.fna&_nc_gid=CHI_9BXYEO700DzelFxCZg&oh=00_AfE9j36kr5P9SCIUEfw6EqWBzlQPRyuRKvfI3-pIKwl0nQ&oe=680A92B5",
+			"description": "Bantuan pengobatan untuk Mustahik",
+			"link": "https://awghostrider24.github.io/Adsid/sample/gttptt.html"
+		},
+		{
+			"id": 4,
+			"name_category": "Dakwah & Advokasi",
+			"title": "Insentif untuk GTT/PTT dan Kyai/Ustadz",
+			"image": "https://awghostrider24.github.io/Adsid/sample/dakwahadv.png",
+			"description": "Pemberian honor untuk guru tidak tetap dan ustadz",
+			"link": "https://awghostrider24.github.io/Adsid/sample/gttptt.html"
+		},
+		{
+			"id": 5,
+			"name_category": "Pendidikan",
+			"title": "Bantuan Pendidikan anak Yatim Piatu",
+			"image": "https://awghostrider24.github.io/Adsid/sample/pendidikan.png",
+			"description": "isi konten yang akan di jadikan guide",
+			"link": "https://awghostrider24.github.io/Adsid/sample/gttptt.html"
+		}
+
+	]
+}
