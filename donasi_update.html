@@ -1,228 +1,272 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Update Donasi BAZNAS</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Update Donasi - Bencana Aceh, Sumut, Sumbar</title>
+  <!-- Swiper for photo slider -->
+  <link rel="stylesheet" href="https://unpkg.com/swiper@9/swiper-bundle.min.css" />
+  <style>
+    :root{--bg:#f9fafb;--card:#ffffff;--accent:#0b8f47;--accent2:#ffc928;--muted:#6b7280;--glass:rgba(0,0,0,0.05)}
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial;color:#e6eef6;background:linear-gradient(180deg,#f3f7f5 0%, #e9f4eb 100%);-webkit-font-smoothing:antialiased}
+    .container{max-width:980px;margin:28px auto;padding:16px}
 
-<!-- Font -->
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
+    header{display:flex;gap:12px;align-items:center;margin-bottom:18px}
+    .title{flex:1}
+    h1{margin:0;font-size:20px;letter-spacing:-0.2px}
+    p.lead{margin:4px 0 0;color:var(--muted);font-size:13px}
 
-<style>
-    body {
-        font-family: 'Poppins', sans-serif;
-        margin: 0;
-        background: #f3f7f0;
-        color: #1a1a1a;
-    }
+    .card{background:rgba(255,255,255,0.8);border-radius:14px;padding:14px;box-shadow:0 4px 14px rgba(0,0,0,0.08);backdrop-filter:blur(4px);border:1px solid rgba(0,0,0,0.05)}
 
-    header {
-        background: linear-gradient(135deg, #026937, #f9d300);
-        color: white;
-        padding: 25px 20px;
-        text-align: center;
-        font-size: 22px;
-        font-weight: bold;
-    }
+    /* Progress */
+    .progress-wrap{margin-top:12px}
+    .progress-labels{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+    .goal{font-size:13px;color:var(--muted)}
+    .total{font-weight:700}
+    .progress-bar{height:18px;background:var(--glass);border-radius:999px;overflow:hidden;position:relative}
+    .progress-fill{height:100%;width:0%;background:linear-gradient(90deg,var(--accent),var(--accent2));border-radius:999px;display:flex;align-items:center;justify-content:flex-end;padding-right:8px;color:#05202a;font-weight:700;transition:width 1.2s cubic-bezier(.2,.9,.3,1)}
+    .progress-fill .percent{font-size:12px}
 
-    .container {
-        padding: 20px;
-        max-width: 600px;
-        margin: auto;
-    }
+    /* Donor list */
+    .donor-list{margin-top:16px;display:grid;gap:8px}
+    .donor-item{display:flex;justify-content:space-between;align-items:center;padding:10px;border-radius:10px;background:rgba(255,255,255,0.01);border:1px solid rgba(255,255,255,0.02)}
+    .donor-item .name{font-weight:600}
+    .donor-item .amount{font-weight:700}
+    .muted{color:var(--muted);font-size:13px}
 
-    /* Progress Card */
-    .progress-card {
-        background: white;
-        border-radius: 12px;
-        padding: 20px;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        margin-bottom: 25px;
-    }
+    /* slider */
+    .slider-area{margin-top:18px}
+    .swiper{width:100%;height:120px}
+    .swiper-slide{display:flex;align-items:center;justify-content:center}
+    .donor-photo{width:84px;height:84px;border-radius:10px;object-fit:cover;box-shadow:0 6px 18px rgba(2,6,23,0.6);border:1px solid rgba(255,255,255,0.03)}
 
-    .progress-label {
-        font-weight: bold;
-        margin-bottom: 10px;
-    }
+    /* animations */
+    .fade-up{opacity:0;transform:translateY(12px);transition:all 500ms cubic-bezier(.2,.9,.3,1)}
+    .fade-up.inview{opacity:1;transform:none}
 
-    .progress-bar {
-        width: 100%;
-        height: 18px;
-        background: #d7eadf;
-        border-radius: 20px;
-        overflow: hidden;
-    }
+    /* mobile responsiveness */
+    @media(min-width:720px){h1{font-size:22px}.swiper{height:160px}.donor-photo{width:110px;height:110px}}
 
-    .progress-fill {
-        height: 18px;
-        background: #026937;
-        width: 0%;
-        transition: width 1.2s ease-in-out;
-    }
-
-    .total-donasi {
-        margin-top: 8px;
-        font-size: 15px;
-        font-weight: 600;
-        color: #026937;
-        text-align: right;
-    }
-
-    /* Donatur List */
-    .donatur-card {
-        background: white;
-        border-radius: 12px;
-        padding: 20px;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        margin-bottom: 25px;
-    }
-
-    .donatur-item {
-        display: flex;
-        justify-content: space-between;
-        padding: 10px 0;
-        border-bottom: 1px solid #efefef;
-    }
-
-    .donatur-item:last-child {
-        border-bottom: none;
-    }
-
-    /* Slider */
-    .slider {
-        width: 100%;
-        overflow: hidden;
-        border-radius: 12px;
-        margin-top: 20px;
-        height: 200px;
-        position: relative;
-    }
-
-    .slider img {
-        width: 100%;
-        height: 200px;
-        object-fit: cover;
-        display: none;
-    }
-
-    .slider img.active {
-        display: block;
-        animation: fade 1s ease-in-out;
-    }
-
-    @keyframes fade {
-        from { opacity: 0; }
-        to { opacity: 1; }
-    }
-
-</style>
+    /* small helper */
+    .hint{font-size:12px;color:var(--muted);margin-top:8px}
+  </style>
 </head>
 <body>
-
-<header>Update Donasi BAZNAS – Aceh, Sumut, Sumbar</header>
-
-<div class="container">
-
-    <!-- Progress Donasi -->
-    <div class="progress-card">
-        <div class="progress-label">Total Donasi Terkumpul</div>
-
-        <div class="progress-bar">
-            <div class="progress-fill" id="progressFill"></div>
+  <div class="container">
+    <div class="card">
+      <header>
+        <div class="title">
+          <h1>Update Donasi — Bencana Aceh, Sumatera Utara & Sumatera Barat</h1>
+          <p class="lead">Realtime tracker donasi. Data diambil dari Google Sheets dan foto dari Google Drive.</p>
         </div>
+        <div style="text-align:right">
+          <div class="muted">Terakhir diperbarui:</div>
+          <div id="updatedAt" class="muted">—</div>
+        </div>
+      </header>
 
-        <div class="total-donasi" id="totalDonasi">Rp 0</div>
+      <section class="progress-wrap fade-up" id="progressSection">
+        <div class="progress-labels">
+          <div>
+            <div class="goal">Target Donasi</div>
+            <div id="goalAmount" class="muted">—</div>
+          </div>
+          <div>
+            <div class="goal">Terkumpul</div>
+            <div id="totalAmount" class="total">—</div>
+          </div>
+        </div>
+        <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100">
+          <div class="progress-fill" id="progressFill"><span class="percent" id="percentLabel">0%</span></div>
+        </div>
+        <div class="hint">Progress bar menunjukkan persentase dari target.</div>
+      </section>
+
+      <section class="donor-list fade-up" id="donorList">
+        <!-- donor items injected here -->
+      </section>
+
+      <section class="slider-area fade-up">
+        <h3 style="margin:10px 0 8px">Foto Donatur</h3>
+        <div class="swiper">
+          <div class="swiper-wrapper" id="swiperWrapper">
+            <!-- slides injected here -->
+          </div>
+          <!-- pagination -->
+          <div class="swiper-pagination"></div>
+        </div>
+      </section>
+
     </div>
+  </div>
 
-    <!-- Donatur -->
-    <div class="donatur-card">
-        <h3 style="margin-top:0; color:#026937;">Daftar Donatur</h3>
-        <div id="donaturList"></div>
-    </div>
+  <script src="https://unpkg.com/swiper@9/swiper-bundle.min.js"></script>
+  <script>
+    /********************************************
+     * PENTING: UBAH KONFIG DI BAWAH INI
+     * - SPREADSHEET_ID: ID Google Sheets Anda
+     * - SHEET_NAME: Nama sheet (opsional). Jika kosong, akan gunakan sheet pertama
+     * - GOAL_AMOUNT: target donasi (angka, tanpa pemisah)
+     *
+     * Format minimal Sheet (kolom header):
+     * donor_name,amount,photo_url
+     * - amount: angka (contoh: 150000)
+     * - photo_url: gunakan link Drive yang diubah jadi: https://drive.google.com/uc?export=view&id=FILE_ID
+     *
+     * Contoh URL CSV publik (digunakan di bawah):
+     * https://docs.google.com/spreadsheets/d/SPREADSHEET_ID/gviz/tq?tqx=out:csv&sheet=SHEET_NAME
+     ********************************************/
 
-    <!-- Slider Foto -->
-    <div class="slider" id="fotoSlider">
-        <!-- Foto otomatis masuk via JS -->
-    </div>
+    const CONFIG = {
+      SPREADSHEET_ID: '174nwxIbq3bIgCP-l2wcVU4HSkV_1aTTonyDHW4k7gIg',
+      SHEET_NAME: '', // kosong = sheet default
+      GOAL_AMOUNT: 50000000 // contoh: 50.000.000
+    }
 
-</div>
+    // util: format currency rupiah
+    function formatRupiah(number){
+      if(number==null) return '-';
+      return 'Rp ' + Number(number).toLocaleString('id-ID');
+    }
 
-<script>
-// URL CSV Google Sheet milik Anda
-const CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRG0tlowgCqkCOUUZayH4Myis8MUPNHWMJyl-3-xzoDOAkZbrwgxEdLSJ2EBVVIVjIK96LqWEjm4JnV/pub?gid=0&single=true&output=csv";
+    // fetch CSV from published sheet
+    async function fetchSheetCsv(spreadsheetId, sheetName){
+      const sheetParam = sheetName ? '&sheet=' + encodeURIComponent(sheetName) : '';
+      const url = `https://docs.google.com/spreadsheets/d/${spreadsheetId}/gviz/tq?tqx=out:csv${sheetParam}`;
+      const res = await fetch(url);
+      if(!res.ok) throw new Error('Gagal mengambil data dari Google Sheets');
+      const text = await res.text();
+      return parseCsv(text);
+    }
 
-// Google Drive folder foto donatur (jika ada)
-const fotoDonatur = [
-    // Tambahkan link foto drive (direct view link)
-];
-
-function parseCSV(text) {
-    const rows = text.trim().split("\n").map(r => r.split(","));
-    const header = rows.shift();
-    return rows.map(r => {
-        let obj = {};
-        r.forEach((val, i) => {
-            obj[header[i].trim()] = val.trim();
-        });
+    // simple CSV parser that returns array of objects using first row as header
+    function parseCsv(csvText){
+      const rows = csvText.trim().split(/\r?\n/);
+      if(rows.length<2) return [];
+      const headers = rows[0].split(',').map(h => h.trim());
+      return rows.slice(1).map(r => {
+        // allow commas inside quotes (basic)
+        const cols = r.match(/(?:"([^"]*)")|([^,]+)/g).map(c=>c.replace(/^"|"$/g,''));
+        const obj = {};
+        headers.forEach((h,i)=>obj[h]=cols[i] ? cols[i].trim() : '');
         return obj;
-    });
-}
+      });
+    }
 
-function formatRupiah(angka) {
-    return "Rp " + Number(angka).toLocaleString("id-ID");
-}
+    // render
+    async function init(){
+      const updatedAtEl = document.getElementById('updatedAt');
+      const goalEl = document.getElementById('goalAmount');
+      const totalEl = document.getElementById('totalAmount');
+      const fill = document.getElementById('progressFill');
+      const percentLabel = document.getElementById('percentLabel');
+      const donorList = document.getElementById('donorList');
+      const swiperWrapper = document.getElementById('swiperWrapper');
 
-fetch(CSV_URL)
-    .then(res => res.text())
-    .then(csv => {
-        const data = parseCSV(csv);
-        const donaturList = document.getElementById("donaturList");
-        let total = 0;
+      goalEl.textContent = formatRupiah(CONFIG.GOAL_AMOUNT);
 
-        data.forEach(d => {
-            let nominal = Number(d.Nominal.replace(/[^0-9]/g, "")) || 0;
-            total += nominal;
+      try{
+        if(!CONFIG.SPREADSHEET_ID || CONFIG.SPREADSHEET_ID.includes('MASUKKAN')){
+          throw new Error('SPREADSHEET_ID belum diatur. Silakan edit file HTML dan masukkan ID spreadsheet Anda.');
+        }
 
-            // tampilkan ke list
-            const item = document.createElement("div");
-            item.className = "donatur-item";
-            item.innerHTML = `
-                <span>${d.Donatur}</span>
-                <span>${formatRupiah(nominal)}</span>
-            `;
-            donaturList.appendChild(item);
+        const rows = await fetchSheetCsv(CONFIG.SPREADSHEET_ID, CONFIG.SHEET_NAME);
+
+        // normalize keys: lower-case and trim
+        const normalized = rows.map(r => {
+          const obj = {};
+          Object.keys(r).forEach(k => obj[k.trim().toLowerCase()] = r[k]);
+          return obj;
         });
 
-        // update total
-        document.getElementById("totalDonasi").innerText = formatRupiah(total);
+        // compute totals
+        let total = 0;
+        const donors = normalized.map(r => {
+          const name = r['donor_name'] || r['name'] || r['nama'] || 'Anonim';
+          const raw = r['amount'] || r['nominal'] || r['jumlah'] || '0';
+          const amount = Number(String(raw).replace(/[^0-9\-\.]/g,'')) || 0;
+          const photo = r['photo_url'] || r['photo'] || r['gambar'] || '';
+          total += amount;
+          return {name,amount,photo};
+        }).sort((a,b)=>b.amount - a.amount);
 
-        // progress (misal target 50jt)
-        const target = 50000000;
-        const persen = Math.min((total / target) * 100, 100);
-        document.getElementById("progressFill").style.width = persen + "%";
-    });
+        // update UI
+        totalEl.textContent = formatRupiah(total);
+        const percent = Math.min(100, Math.round((total / CONFIG.GOAL_AMOUNT) * 100));
+        // animate fill
+        requestAnimationFrame(()=>{
+          fill.style.width = percent + '%';
+          percentLabel.textContent = percent + '%';
+        });
 
-// Slider Foto
-const slider = document.getElementById("fotoSlider");
+        // donors list (top 50)
+        donorList.innerHTML = '';
+        donors.slice(0,50).forEach(d => {
+          const item = document.createElement('div');
+          item.className = 'donor-item';
+          item.innerHTML = `<div><div class=\"name\">${escapeHtml(d.name)}</div><div class=\"muted\">${d.photo ? 'Dengan foto' : 'Tanpa foto'}</div></div><div class=\"amount\">${formatRupiah(d.amount)}</div>`;
+          donorList.appendChild(item);
+        });
 
-fotoDonatur.forEach((url, i) => {
-    const img = document.createElement("img");
-    img.src = url;
-    if (i === 0) img.classList.add("active");
-    slider.appendChild(img);
-});
+        // photos for slider (only donors with photo)
+        swiperWrapper.innerHTML = '';
+        const photos = donors.filter(d=>d.photo).slice(0,20);
+        if(photos.length===0){
+          swiperWrapper.innerHTML = `<div class="swiper-slide"><div class="muted">Belum ada foto donatur. Tambahkan kolom photo_url di Google Sheets.</div></div>`;
+        } else {
+          photos.forEach(p => {
+            const slide = document.createElement('div');
+            slide.className = 'swiper-slide';
+            slide.innerHTML = `<img loading=\"lazy\" class=\"donor-photo\" src=\"${escapeHtml(p.photo)}\" alt=\"Foto ${escapeHtml(p.name)}\" title=\"${escapeHtml(p.name)}\"/>`;
+            swiperWrapper.appendChild(slide);
+          });
+        }
 
-// Auto slide
-let index = 0;
-setInterval(() => {
-    const images = document.querySelectorAll("#fotoSlider img");
-    if (images.length === 0) return;
+        // set updatedAt
+        updatedAtEl.textContent = new Date().toLocaleString('id-ID');
 
-    images[index].classList.remove("active");
-    index = (index + 1) % images.length;
-    images[index].classList.add("active");
-}, 3000);
-</script>
+        // init swiper
+        initSwiper();
+        initInView();
 
+      }catch(err){
+        console.error(err);
+        document.getElementById('donorList').innerHTML = `<div class=\"muted\">Gagal memuat data: ${escapeHtml(err.message)}</div>`;
+      }
+    }
+
+    function escapeHtml(s){
+      return String(s||'').replace(/[&<>\"']/g, c=>({ '&':'&amp;','<':'&lt;','>':'&gt;','\"':'&quot;',"'":'&#39;' })[c]);
+    }
+
+    function initSwiper(){
+      const swiper = new Swiper('.swiper', {
+        slidesPerView: 'auto',
+        spaceBetween: 12,
+        centeredSlides: true,
+        loop: true,
+        autoplay: { delay: 2400, disableOnInteraction: false },
+        pagination: { el: '.swiper-pagination', clickable: true }
+      });
+    }
+
+    // reveal animations when in view
+    function initInView(){
+      const obs = new IntersectionObserver(entries=>{
+        entries.forEach(en=>{
+          if(en.isIntersecting){
+            en.target.classList.add('inview');
+            obs.unobserve(en.target);
+          }
+        });
+      },{threshold:0.15});
+
+      document.querySelectorAll('.fade-up').forEach(el=>obs.observe(el));
+    }
+
+    // start
+    init();
+  </script>
 </body>
 </html>
