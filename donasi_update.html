@@ -94,19 +94,36 @@
     </div>
   </div>
 
-  <script src="https://unpkg.com/swiper@9/swiper-bundle.min.js"></script>
+ <script src="https://unpkg.com/swiper@9/swiper-bundle.min.js"></script>
   <script>
+    /********************************************
+     * PENTING: UBAH KONFIG DI BAWAH INI
+     * - SPREADSHEET_ID: ID Google Sheets Anda
+     * - SHEET_NAME: Nama sheet (opsional). Jika kosong, akan gunakan sheet pertama
+     * - GOAL_AMOUNT: target donasi (angka, tanpa pemisah)
+     *
+     * Format minimal Sheet (kolom header):
+     * donor_name,amount,photo_url
+     * - amount: angka (contoh: 150000)
+     * - photo_url: gunakan link Drive yang diubah jadi: https://drive.google.com/uc?export=view&id=FILE_ID
+     *
+     * Contoh URL CSV publik (digunakan di bawah):
+     * https://docs.google.com/spreadsheets/d/SPREADSHEET_ID/gviz/tq?tqx=out:csv&sheet=SHEET_NAME
+     ********************************************/
+
     const CONFIG = {
       SPREADSHEET_ID: '174nwxIbq3bIgCP-l2wcVU4HSkV_1aTTonyDHW4k7gIg',
-      SHEET_NAME: 'sheet1',
-      GOAL_AMOUNT: 14000000
+      SHEET_NAME: '', // kosong = sheet default
+      GOAL_AMOUNT: 50000000 // contoh: 50.000.000
     }
 
+    // util: format currency rupiah
     function formatRupiah(number){
       if(number==null) return '-';
       return 'Rp ' + Number(number).toLocaleString('id-ID');
     }
 
+    // fetch CSV from published sheet
     async function fetchSheetCsv(spreadsheetId, sheetName){
       const sheetParam = sheetName ? '&sheet=' + encodeURIComponent(sheetName) : '';
       const url = `https://docs.google.com/spreadsheets/d/${spreadsheetId}/gviz/tq?tqx=out:csv${sheetParam}`;
@@ -116,13 +133,13 @@
       return parseCsv(text);
     }
 
+    // simple CSV parser that returns array of objects using first row as header
     function parseCsv(csvText){
-      const rows = csvText.trim().split(/
-?
-/);
+      const rows = csvText.trim().split(/\r?\n/);
       if(rows.length<2) return [];
       const headers = rows[0].split(',').map(h => h.trim());
       return rows.slice(1).map(r => {
+        // allow commas inside quotes (basic)
         const cols = r.match(/(?:"([^"]*)")|([^,]+)/g).map(c=>c.replace(/^"|"$/g,''));
         const obj = {};
         headers.forEach((h,i)=>obj[h]=cols[i] ? cols[i].trim() : '');
@@ -130,6 +147,7 @@
       });
     }
 
+    // render
     async function init(){
       const updatedAtEl = document.getElementById('updatedAt');
       const goalEl = document.getElementById('goalAmount');
@@ -142,6 +160,106 @@
       goalEl.textContent = formatRupiah(CONFIG.GOAL_AMOUNT);
 
       try{
-        if(!CONFIG.SPREADSHEET_ID){ throw new Error('SPREADSHEET_ID belum diatur.'); }
+        if(!CONFIG.SPREADSHEET_ID || CONFIG.SPREADSHEET_ID.includes('MASUKKAN')){
+          throw new Error('SPREADSHEET_ID belum diatur. Silakan edit file HTML dan masukkan ID spreadsheet Anda.');
+        }
 
-        const rows = await fetchSheetCsv(CONFIG.SPREADSHEET
+        const rows = await fetchSheetCsv(CONFIG.SPREADSHEET_ID, CONFIG.SHEET_NAME);
+
+        // normalize keys: lower-case and trim
+        const normalized = rows.map(r => {
+          const obj = {};
+          Object.keys(r).forEach(k => obj[k.trim().toLowerCase()] = r[k]);
+          return obj;
+        });
+
+        // compute totals
+        let total = 0;
+        const donors = normalized.map(r => {
+          const name = r['donor_name'] || r['name'] || r['nama'] || 'Anonim';
+          const raw = r['amount'] || r['nominal'] || r['jumlah'] || '0';
+          const amount = Number(String(raw).replace(/[^0-9\-\.]/g,'')) || 0;
+          const photo = r['photo_url'] || r['photo'] || r['gambar'] || '';
+          total += amount;
+          return {name,amount,photo};
+        }).sort((a,b)=>b.amount - a.amount);
+
+        // update UI
+        totalEl.textContent = formatRupiah(total);
+        const percent = Math.min(100, Math.round((total / CONFIG.GOAL_AMOUNT) * 100));
+        // animate fill
+        requestAnimationFrame(()=>{
+          fill.style.width = percent + '%';
+          percentLabel.textContent = percent + '%';
+        });
+
+        // donors list (top 50)
+        donorList.innerHTML = '';
+        donors.slice(0,50).forEach(d => {
+          const item = document.createElement('div');
+          item.className = 'donor-item';
+          item.innerHTML = `<div><div class=\"name\">${escapeHtml(d.name)}</div><div class=\"muted\">${d.photo ? 'Dengan foto' : 'Tanpa foto'}</div></div><div class=\"amount\">${formatRupiah(d.amount)}</div>`;
+          donorList.appendChild(item);
+        });
+
+        // photos for slider (only donors with photo)
+        swiperWrapper.innerHTML = '';
+        const photos = donors.filter(d=>d.photo).slice(0,20);
+        if(photos.length===0){
+          swiperWrapper.innerHTML = `<div class="swiper-slide"><div class="muted">Belum ada foto donatur. Tambahkan kolom photo_url di Google Sheets.</div></div>`;
+        } else {
+          photos.forEach(p => {
+            const slide = document.createElement('div');
+            slide.className = 'swiper-slide';
+            slide.innerHTML = `<img loading=\"lazy\" class=\"donor-photo\" src=\"${escapeHtml(p.photo)}\" alt=\"Foto ${escapeHtml(p.name)}\" title=\"${escapeHtml(p.name)}\"/>`;
+            swiperWrapper.appendChild(slide);
+          });
+        }
+
+        // set updatedAt
+        updatedAtEl.textContent = new Date().toLocaleString('id-ID');
+
+        // init swiper
+        initSwiper();
+        initInView();
+
+      }catch(err){
+        console.error(err);
+        document.getElementById('donorList').innerHTML = `<div class=\"muted\">Gagal memuat data: ${escapeHtml(err.message)}</div>`;
+      }
+    }
+
+    function escapeHtml(s){
+      return String(s||'').replace(/[&<>\"']/g, c=>({ '&':'&amp;','<':'&lt;','>':'&gt;','\"':'&quot;',"'":'&#39;' })[c]);
+    }
+
+    function initSwiper(){
+      const swiper = new Swiper('.swiper', {
+        slidesPerView: 'auto',
+        spaceBetween: 12,
+        centeredSlides: true,
+        loop: true,
+        autoplay: { delay: 2400, disableOnInteraction: false },
+        pagination: { el: '.swiper-pagination', clickable: true }
+      });
+    }
+
+    // reveal animations when in view
+    function initInView(){
+      const obs = new IntersectionObserver(entries=>{
+        entries.forEach(en=>{
+          if(en.isIntersecting){
+            en.target.classList.add('inview');
+            obs.unobserve(en.target);
+          }
+        });
+      },{threshold:0.15});
+
+      document.querySelectorAll('.fade-up').forEach(el=>obs.observe(el));
+    }
+
+    // start
+    init();
+  </script>
+</body>
+</html>
