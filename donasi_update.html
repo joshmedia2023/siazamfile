@@ -1,264 +1,121 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Update Donasi - Bencana Aceh, Sumut, Sumbar</title>
-  <link rel="stylesheet" href="https://unpkg.com/swiper@9/swiper-bundle.min.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Donasi</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
   <style>
-    :root{--bg:#f9fafb;--card:#ffffff;--accent:#0b8f47;--accent2:#ffc928;--muted:#4b5563;--glass:rgba(0,0,0,0.05)}
-    *{box-sizing:border-box}
-    body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial;color:#111827;background:linear-gradient(180deg,#f3f7f5 0%, #e9f4eb 100%);-webkit-font-smoothing:antialiased}
-    .container{max-width:980px;margin:28px auto;padding:16px}
-
-    header{display:flex;gap:12px;align-items:center;margin-bottom:18px;color:#111827}
-    .title{flex:1;color:#111827}
-    h1{margin:0;font-size:20px;letter-spacing:-0.2px;color:#111827}
-    p.lead{margin:4px 0 0;color:var(--muted);font-size:13px}
-
-    .card{background:rgba(255,255,255,0.92);border-radius:14px;padding:14px;box-shadow:0 4px 14px rgba(0,0,0,0.08);backdrop-filter:blur(4px);border:1px solid rgba(0,0,0,0.05);color:#111827}
-
-    /* Progress */
-    .progress-wrap{margin-top:12px;color:#111827}
-    .progress-labels{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;color:#111827}
-    .goal{font-size:13px;color:var(--muted)}
-    .total{font-weight:700;color:#111827}
-    .progress-bar{height:18px;background:var(--glass);border-radius:999px;overflow:hidden;position:relative}
-    .progress-fill{height:100%;width:0%;background:linear-gradient(90deg,var(--accent),var(--accent2));border-radius:999px;display:flex;align-items:center;justify-content:flex-end;padding-right:8px;color:#05202a;font-weight:700;transition:width 1.2s cubic-bezier(.2,.9,.3,1)}
-    .progress-fill .percent{font-size:12px}
-
-    /* Donor list */
-    .donor-list{margin-top:16px;display:grid;gap:8px;color:#111827}
-    .donor-item{display:flex;justify-content:space-between;align-items:center;padding:10px;border-radius:10px;background:rgba(255,255,255,0.4);border:1px solid rgba(0,0,0,0.05);color:#111827}
-    .donor-item .name{font-weight:600;color:#111827}
-    .donor-item .amount{font-weight:700;color:#111827}
-    .muted{color:var(--muted);font-size:13px}
-
-    /* slider */
-    .slider-area{margin-top:18px;color:#111827}
-    .swiper{width:100%;height:120px}
-    .swiper-slide{display:flex;align-items:center;justify-content:center}
-    .donor-photo{width:84px;height:84px;border-radius:10px;object-fit:cover;box-shadow:0 6px 18px rgba(2,6,23,0.6);border:1px solid rgba(255,255,255,0.03)}
-
-    /* animations */
-    .fade-up{opacity:0;transform:translateY(12px);transition:all 500ms cubic-bezier(.2,.9,.3,1)}
-    .fade-up.inview{opacity:1;transform:none}
-
-    @media(min-width:720px){h1{font-size:22px}.swiper{height:160px}.donor-photo{width:110px;height:110px}}
-
-    .hint{font-size:12px;color:var(--muted);margin-top:8px}
+    body { font-family: Arial, sans-serif; padding: 20px; background: #f5f5f5; }
+    .container { max-width: 800px; margin: auto; }
+    .progress-bar { background: #ddd; border-radius: 8px; overflow: hidden; height: 24px; }
+    #progressFill { background: #4caf50; height: 100%; width: 0; transition: 1s; }
+    .donor-item { display: flex; justify-content: space-between; padding: 10px; background: #fff; margin-top: 8px; border-radius: 6px; }
+    .donor-photo { width: 100%; height: 200px; object-fit: cover; border-radius: 8px; }
   </style>
 </head>
 <body>
   <div class="container">
-    <div class="card">
-      <header>
-        <div class="title">
-          <h1>Update Donasi — Bencana Aceh, Sumatera Utara & Sumatera Barat</h1>
-          <p class="lead">Realtime tracker donasi. Data diambil dari Google Sheets dan foto dari Google Drive.</p>
-        </div>
-        <div style="text-align:right">
-          <div class="muted">Terakhir diperbarui:</div>
-          <div id="updatedAt" class="muted">—</div>
-        </div>
-      </header>
+    <h2>Progress Donasi</h2>
+    <p>Target: <span id="goalAmount"></span></p>
+    <p>Terkumpul: <span id="totalAmount"></span></p>
 
-      <section class="progress-wrap fade-up" id="progressSection">
-        <div class="progress-labels">
-          <div>
-            <div class="goal">Target Donasi</div>
-            <div id="goalAmount" class="muted">—</div>
-          </div>
-          <div>
-            <div class="goal">Terkumpul</div>
-            <div id="totalAmount" class="total">—</div>
-          </div>
-        </div>
-        <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100">
-          <div class="progress-fill" id="progressFill"><span class="percent" id="percentLabel">0%</span></div>
-        </div>
-        <div class="hint">Progress bar menunjukkan persentase dari target.</div>
-      </section>
-
-      <section class="donor-list fade-up" id="donorList">
-      </section>
-
-      <section class="slider-area fade-up">
-        <h3 style="margin:10px 0 8px">Foto Donatur</h3>
-        <div class="swiper">
-          <div class="swiper-wrapper" id="swiperWrapper"></div>
-          <div class="swiper-pagination"></div>
-        </div>
-      </section>
-
+    <div class="progress-bar">
+      <div id="progressFill"></div>
     </div>
+    <p><strong id="percentLabel"></strong></p>
+
+    <h3>Foto Donatur</h3>
+    <div class="swiper">
+      <div class="swiper-wrapper" id="swiperWrapper"></div>
+      <div class="swiper-pagination"></div>
+    </div>
+
+    <h3>Daftar Donatur</h3>
+    <div id="donorList"></div>
+
+    <p>Diperbarui: <span id="updatedAt"></span></p>
   </div>
 
- <script src="https://unpkg.com/swiper@9/swiper-bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+
   <script>
-    /********************************************
-     * PENTING: UBAH KONFIG DI BAWAH INI
-     * - SPREADSHEET_ID: ID Google Sheets Anda
-     * - SHEET_NAME: Nama sheet (opsional). Jika kosong, akan gunakan sheet pertama
-     * - GOAL_AMOUNT: target donasi (angka, tanpa pemisah)
-     *
-     * Format minimal Sheet (kolom header):
-     * donor_name,amount,photo_url
-     * - amount: angka (contoh: 150000)
-     * - photo_url: gunakan link Drive yang diubah jadi: https://drive.google.com/uc?export=view&id=FILE_ID
-     *
-     * Contoh URL CSV publik (digunakan di bawah):
-     * https://docs.google.com/spreadsheets/d/SPREADSHEET_ID/gviz/tq?tqx=out:csv&sheet=SHEET_NAME
-     ********************************************/
-
     const CONFIG = {
-      SPREADSHEET_ID: '174nwxIbq3bIgCP-l2wcVU4HSkV_1aTTonyDHW4k7gIg',
-      SHEET_NAME: '', // kosong = sheet default
-      GOAL_AMOUNT: 50000000 // contoh: 50.000.000
-    }
+      CSV_URL: "https://docs.google.com/spreadsheets/d/e/2PACX-1vRG0tlowgCqkCOUUZayH4Myis8MUPNHWMJyl-3-xzoDOAkZbrwgxEdLSJ2EBVVIVjIK96LqWEjm4JnV/pub?gid=0&single=true&output=csv",
+      GOAL_AMOUNT: 50000000
+    };
 
-    // util: format currency rupiah
-    function formatRupiah(number){
-      if(number==null) return '-';
-      return 'Rp ' + Number(number).toLocaleString('id-ID');
-    }
+    function formatRupiah(n){ return "Rp " + Number(n).toLocaleString("id-ID"); }
 
-    // fetch CSV from published sheet
-    async function fetchSheetCsv(spreadsheetId, sheetName){
-      const sheetParam = sheetName ? '&sheet=' + encodeURIComponent(sheetName) : '';
-      const url = `https://docs.google.com/spreadsheets/d/${spreadsheetId}/gviz/tq?tqx=out:csv${sheetParam}`;
-      const res = await fetch(url);
-      if(!res.ok) throw new Error('Gagal mengambil data dari Google Sheets');
+    async function fetchSheetCsv(){
+      const res = await fetch(CONFIG.CSV_URL);
       const text = await res.text();
       return parseCsv(text);
     }
 
-    // simple CSV parser that returns array of objects using first row as header
-    function parseCsv(csvText){
-      const rows = csvText.trim().split(/\r?\n/);
-      if(rows.length<2) return [];
-      const headers = rows[0].split(',').map(h => h.trim());
+    function parseCsv(csv){
+      const rows = csv.trim().split(/\r?\n/);
+      const headers = rows[0].split(",");
       return rows.slice(1).map(r => {
-        // allow commas inside quotes (basic)
-        const cols = r.match(/(?:"([^"]*)")|([^,]+)/g).map(c=>c.replace(/^"|"$/g,''));
-        const obj = {};
-        headers.forEach((h,i)=>obj[h]=cols[i] ? cols[i].trim() : '');
+        const cols = r.match(/(?:"([^"]*)")|([^,]+)/g).map(c => c.replace(/^"|"$/g, ""));
+        const obj = {}; headers.forEach((h,i)=> obj[h.trim().toLowerCase()] = cols[i] || "");
         return obj;
       });
     }
 
-    // render
     async function init(){
-      const updatedAtEl = document.getElementById('updatedAt');
-      const goalEl = document.getElementById('goalAmount');
-      const totalEl = document.getElementById('totalAmount');
-      const fill = document.getElementById('progressFill');
-      const percentLabel = document.getElementById('percentLabel');
-      const donorList = document.getElementById('donorList');
-      const swiperWrapper = document.getElementById('swiperWrapper');
+      const updatedAtEl = document.getElementById("updatedAt");
+      const goalEl = document.getElementById("goalAmount");
+      const totalEl = document.getElementById("totalAmount");
+      const fill = document.getElementById("progressFill");
+      const percentLabel = document.getElementById("percentLabel");
+      const donorList = document.getElementById("donorList");
+      const swiperWrapper = document.getElementById("swiperWrapper");
 
       goalEl.textContent = formatRupiah(CONFIG.GOAL_AMOUNT);
 
-      try{
-        if(!CONFIG.SPREADSHEET_ID || CONFIG.SPREADSHEET_ID.includes('MASUKKAN')){
-          throw new Error('SPREADSHEET_ID belum diatur. Silakan edit file HTML dan masukkan ID spreadsheet Anda.');
-        }
+      const rows = await fetchSheetCsv();
+      let total = 0;
+      const donors = rows.map(r => {
+        const name = r["donor_name"] || r["nama"] || "Anonim";
+        const amount = Number((r["amount"] || "0").replace(/[^0-9]/g, ""));
+        const photo = r["photo_url"] || "";
+        total += amount;
+        return { name, amount, photo };
+      }).sort((a,b)=> b.amount - a.amount);
 
-        const rows = await fetchSheetCsv(CONFIG.SPREADSHEET_ID, CONFIG.SHEET_NAME);
+      totalEl.textContent = formatRupiah(total);
+      const percent = Math.min(100, Math.round((total / CONFIG.GOAL_AMOUNT) * 100));
+      fill.style.width = percent + "%";
+      percentLabel.textContent = percent + "%";
 
-        // normalize keys: lower-case and trim
-        const normalized = rows.map(r => {
-          const obj = {};
-          Object.keys(r).forEach(k => obj[k.trim().toLowerCase()] = r[k]);
-          return obj;
-        });
+      donorList.innerHTML = "";
+      donors.forEach(d => {
+        donorList.innerHTML += `
+          <div class="donor-item">
+            <div>${d.name}</div>
+            <div>${formatRupiah(d.amount)}</div>
+          </div>`;
+      });
 
-        // compute totals
-        let total = 0;
-        const donors = normalized.map(r => {
-          const name = r['donor_name'] || r['name'] || r['nama'] || 'Anonim';
-          const raw = r['amount'] || r['nominal'] || r['jumlah'] || '0';
-          const amount = Number(String(raw).replace(/[^0-9\-\.]/g,'')) || 0;
-          const photo = r['photo_url'] || r['photo'] || r['gambar'] || '';
-          total += amount;
-          return {name,amount,photo};
-        }).sort((a,b)=>b.amount - a.amount);
+      swiperWrapper.innerHTML = "";
+      donors.filter(d => d.photo).forEach(p => {
+        swiperWrapper.innerHTML += `
+          <div class="swiper-slide">
+            <img class="donor-photo" src="${p.photo}" />
+          </div>`;
+      });
 
-        // update UI
-        totalEl.textContent = formatRupiah(total);
-        const percent = Math.min(100, Math.round((total / CONFIG.GOAL_AMOUNT) * 100));
-        // animate fill
-        requestAnimationFrame(()=>{
-          fill.style.width = percent + '%';
-          percentLabel.textContent = percent + '%';
-        });
-
-        // donors list (top 50)
-        donorList.innerHTML = '';
-        donors.slice(0,50).forEach(d => {
-          const item = document.createElement('div');
-          item.className = 'donor-item';
-          item.innerHTML = `<div><div class=\"name\">${escapeHtml(d.name)}</div><div class=\"muted\">${d.photo ? 'Dengan foto' : 'Tanpa foto'}</div></div><div class=\"amount\">${formatRupiah(d.amount)}</div>`;
-          donorList.appendChild(item);
-        });
-
-        // photos for slider (only donors with photo)
-        swiperWrapper.innerHTML = '';
-        const photos = donors.filter(d=>d.photo).slice(0,20);
-        if(photos.length===0){
-          swiperWrapper.innerHTML = `<div class="swiper-slide"><div class="muted">Belum ada foto donatur. Tambahkan kolom photo_url di Google Sheets.</div></div>`;
-        } else {
-          photos.forEach(p => {
-            const slide = document.createElement('div');
-            slide.className = 'swiper-slide';
-            slide.innerHTML = `<img loading=\"lazy\" class=\"donor-photo\" src=\"${escapeHtml(p.photo)}\" alt=\"Foto ${escapeHtml(p.name)}\" title=\"${escapeHtml(p.name)}\"/>`;
-            swiperWrapper.appendChild(slide);
-          });
-        }
-
-        // set updatedAt
-        updatedAtEl.textContent = new Date().toLocaleString('id-ID');
-
-        // init swiper
-        initSwiper();
-        initInView();
-
-      }catch(err){
-        console.error(err);
-        document.getElementById('donorList').innerHTML = `<div class=\"muted\">Gagal memuat data: ${escapeHtml(err.message)}</div>`;
-      }
-    }
-
-    function escapeHtml(s){
-      return String(s||'').replace(/[&<>\"']/g, c=>({ '&':'&amp;','<':'&lt;','>':'&gt;','\"':'&quot;',"'":'&#39;' })[c]);
-    }
-
-    function initSwiper(){
-      const swiper = new Swiper('.swiper', {
+      new Swiper('.swiper', {
         slidesPerView: 'auto',
         spaceBetween: 12,
-        centeredSlides: true,
         loop: true,
-        autoplay: { delay: 2400, disableOnInteraction: false },
-        pagination: { el: '.swiper-pagination', clickable: true }
+        autoplay: { delay: 2500 }
       });
+
+      updatedAtEl.textContent = new Date().toLocaleString("id-ID");
     }
 
-    // reveal animations when in view
-    function initInView(){
-      const obs = new IntersectionObserver(entries=>{
-        entries.forEach(en=>{
-          if(en.isIntersecting){
-            en.target.classList.add('inview');
-            obs.unobserve(en.target);
-          }
-        });
-      },{threshold:0.15});
-
-      document.querySelectorAll('.fade-up').forEach(el=>obs.observe(el));
-    }
-
-    // start
     init();
   </script>
 </body>
