@@ -4,8 +4,15 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Donasi</title>
+
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+
   <style>
+    * {
+      box-sizing: border-box;
+      transition: all 0.25s ease-in-out;
+    }
+
     body { 
       font-family: Arial, sans-serif; 
       padding: 20px; 
@@ -13,49 +20,81 @@
     }
 
     .container { 
-      max-width: 800px; 
+      max-width: 900px; 
       margin: auto; 
       text-align: center;
     }
 
     /* LOGO */
     .logo {
-      width: 120px;
+      width: 140px;
       margin: 0 auto 20px auto;
       display: block;
     }
 
+    /* PROGRESS BAR */
     .progress-bar { 
-      background: #ddd; 
-      border-radius: 8px; 
+      background: #e0e0e0; 
+      border-radius: 14px; 
       overflow: hidden; 
-      height: 24px; 
+      height: 26px; 
+      margin-top: 10px;
     }
 
     #progressFill { 
-      background: #4caf50; 
+      background: linear-gradient(90deg, #4caf50, #8bc34a); 
       height: 100%; 
       width: 0; 
-      transition: 1s; 
+      transition: width 1s ease;
     }
 
+    /* DONOR ITEM */
     .donor-item { 
       display: flex; 
       justify-content: space-between; 
-      padding: 10px; 
+      padding: 14px; 
       background: #fff; 
-      margin-top: 8px; 
-      border-radius: 6px; 
+      margin-top: 10px; 
+      border-radius: 12px; 
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
     }
 
-    /* FOTO DONATUR FULL, TIDAK TERPOTONG */
+    /* SWIPER FOTO */
+    .swiper {
+      width: 100%;
+      padding: 10px 0 25px 0;
+    }
+
+    .swiper-slide {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
     .donor-photo { 
       width: 100%; 
-      height: 250px; 
-      object-fit: contain;       /* FOTO TIDAK TERPOTONG */
-      background: #00000020;     /* BACKGROUND TRANSPARAN */
-      border-radius: 8px; 
+      max-width: 300px;
+      height: auto; 
+      object-fit: contain;
+      background: transparent;
+      border-radius: 16px; 
       display: block;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+
+    .donor-photo:hover {
+      transform: scale(1.03);
+      box-shadow: 0 8px 18px rgba(0,0,0,0.20);
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .donor-photo { max-width: 240px; }
+      .donor-item { padding: 12px; }
+    }
+
+    @media (max-width: 480px) {
+      .donor-photo { max-width: 200px; }
     }
   </style>
 </head>
@@ -65,7 +104,7 @@
     <!-- LOGO -->
     <img src="https://joshmedia2023.github.io/siazamfile/asset/logobaz.png" alt="Logo" class="logo" />
 
-    <h2>Progress Donasi</h2>
+    <h2>Progress Donasi untuk Bencana di Aceh, Sumatera Utara dan Sumatera Barat - BAZNAS Kabupaten Sragen</h2>
     <p>Target: <span id="goalAmount"></span></p>
     <p>Terkumpul: <span id="totalAmount"></span></p>
 
@@ -91,7 +130,7 @@
   <script>
     const CONFIG = {
       CSV_URL: "https://docs.google.com/spreadsheets/d/e/2PACX-1vRG0tlowgCqkCOUUZayH4Myis8MUPNHWMJyl-3-xzoDOAkZbrwgxEdLSJ2EBVVIVjIK96LqWEjm4JnV/pub?gid=0&single=true&output=csv",
-      GOAL_AMOUNT: 50000000
+      GOAL_AMOUNT: 200000000
     };
 
     function formatRupiah(n){ 
@@ -163,7 +202,9 @@
         slidesPerView: 'auto',
         spaceBetween: 12,
         loop: true,
-        autoplay: { delay: 2500 }
+        autoplay: { delay: 2500 },
+        centeredSlides: true,
+        pagination: { el: '.swiper-pagination', clickable: true },
       });
 
       updatedAtEl.textContent = new Date().toLocaleString("id-ID");
