@@ -51,12 +51,28 @@
     /* DONOR ITEM */
     .donor-item { 
       display: flex; 
-      justify-content: space-between; 
+      justify-content: space-between;
+      align-items: center;
       padding: 14px; 
       background: #fff; 
       margin-top: 10px; 
       border-radius: 12px; 
       box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+
+      /* TYPOGRAPHY RESPONSIF */
+      font-size: clamp(13px, 3.2vw, 18px);  /* otomatis menyesuaikan layar */
+      font-weight: 600;
+    }
+
+    .donor-item div:first-child {
+      text-align: left;
+      flex: 1;
+      padding-right: 10px;
+      word-break: break-word;
+    }
+
+    .donor-item div:last-child {
+      white-space: nowrap;
     }
 
     /* SWIPER FOTO */
