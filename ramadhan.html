@@ -1,50 +1,186 @@
-<html>
-<link href="style.css" rel="stylesheet" type="text/css">
-<div style="display: flex; justify-content: center;">
-        <img src="logbaz.png" width="30%" height="30%">
-    </div>
-<div id="header">
-<DIV align="center">
-  <h1>Sinergi Kebaikan Mengejar Berkah Ramadhan </h1> 
-</div>
-
+<!DOCTYPE html>
+<html lang="id">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mengejar Keberkahan Ramadhan</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
 
+    body {
+      background-color: #eafff6;
+      color: #333;
+      overflow-x: hidden;
+    }
+
+    header {
+      width: 100%;
+      background: #dff7f2;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px 10px;
+    }
+
+    .hero-img {
+      width: 100%;
+      max-width: 1200px;
+      height: auto;
+      object-fit: contain; /* gambar tidak terpotong */
+      border-radius: 20px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+    }
+
+    main {
+      padding: 30px 20px;
+      text-align: center;
+    }
+
+    h1 {
+      color: #1aa89b; /* hijau tosca */
+      margin-bottom: 10px;
+      font-size: 28px;
+    }
+
+    h2 {
+      color: #0f8f83;
+      margin: 15px 0;
+    }
+
+    p {
+      margin-bottom: 20px;
+      line-height: 1.6;
+    }
+
+    .benefits {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .benefit {
+      background: #e6fffa;
+      border-radius: 12px;
+      padding: 18px;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.08);
+      transition: all 0.5s ease;
+      opacity: 0;
+      transform: translateY(25px);
+      border: 1px solid #b6f0e6;
+    }
+
+    .benefit.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .cta {
+      display: inline-block;
+      background: linear-gradient(135deg, #1cc8b7, #12a89a); /* hijau tosca */
+      color: white;
+      padding: 14px 30px;
+      border-radius: 40px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: all 0.3s ease;
+      margin-top: 25px;
+      opacity: 0;
+      transform: translateY(20px);
+      box-shadow: 0 6px 15px rgba(0, 200, 180, 0.35);
+    }
+
+    .cta.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .cta:hover {
+      background: linear-gradient(135deg, #12a89a, #0f8f83);
+      transform: translateY(-3px) scale(1.03);
+      box-shadow: 0 10px 20px rgba(0, 200, 180, 0.45);
+    }
+
+    footer {
+      background: #0f8f83;
+      color: white;
+      text-align: center;
+      padding: 30px 15px;
+      margin-top: 40px;
+    }
+
+    footer h3 {
+      margin-bottom: 10px;
+      font-size: 20px;
+      font-weight: 600;
+    }
+
+    footer p {
+      font-size: 14px;
+      margin-bottom: 5px;
+      line-height: 1.5;
+    }
+
+    .copyright {
+      margin-top: 15px;
+      font-size: 13px;
+      color: #cffff5;
+    }
+
+    @media (max-width: 768px) {
+      h1 {font-size: 24px;}
+      .cta {padding: 12px 24px; font-size: 14px;}
+    }
+  </style>
 </head>
-
 <body>
 
-<div id="single">
-  <div id="isi">
-  
-		<DIV align="center"><p style="font-size:19px;font-family:serif;color:#000000">
-  <h2>Visi</h2>
-        <h2>"SINERGI KEBAIKAN BAZNAS KABUPATEN SRAGEN"</h2>
-       <DIV align="center"><p style="font-size:25px;font-family:serif;color:#000000">
-		<div style="display: flex; justify-content: center;">
-        <img src="bgmuz.png" width="auto" height="auto">
-    </div> <br />
-		
-	</div>
+  <header>
+    <!-- Gambar utama TANPA slider & tidak terpotong -->
+    <img class="hero-img" src="https://raw.githubusercontent.com/joshmedia2023/siazamfile/main/asset/iftar2.jpg" alt="Iftar Ramadhan">
+  </header>
 
-        </div>
-<DIV align="left"><p style="font-size:19px;font-family:serif;color:#000000">
-<h2>Misi</h2>
-<ol>
-        <li>Membangun BAZNAS yang kuat, terpercaya, dan modern sebagai lembaga pemerintah non-struktural yang berwenang dalam pengelolaan zakat</li>
-		<li>Memaksimalkan literasi zakat nasional da peningkatan pengumpulan ZIS-DSKL secara massif dan terukur</li>
-		<li>Memaksimalkan pendistribusian dan pendayagunaan ZIS-DSKL untuk mengentaskan kemiskinan, menungkatkan kesejahteraan ummat, dan mengurangi kesenjangan sosial</li>
-		<li>Memperkuat kompetensi, profesionalisme, integritas, dan kesejahteraan ummat, dan mengurangi kesenjangan sosial</li>
-		<li>Modernisasi dan digitalitas pengelolaan zakat nasional dengan sistem manajemen berbasis data yang kokoh dan terukur</li>
-		<li>Memperkuat sistem perencanaan, pengendalian, pelaporan, pertanggungjawaban, dan koordinasi pengelolaan zakat secara nasional</li>
-		<li>Meningkatkan sinergi dan kolaborasi seluruh pemangku kepentingan terkait untuk pembangunan zakat nasional, dan</li>
-		<li>Berperan aktif dan menjadi referensi bagi gerakan zakat dunia.</li>
-    </ol>
+  <main>
+    <h1>Sinergi Kebaikan</h1>
+    <p><strong>Mengejar Keberkahan Ramadhan</strong></p>
 
-</div>		
-		   
-</div>
+    <h2>Pilih Paket Sedekah</h2>
+    <div class="benefits">
+      <div class="benefit">🍽️ Sedekah Paket Buka Puasa / Iftar</div>
+      <div class="benefit">🥖 Sedekah Paket Sembako Untuk Dhuafa</div>
+      <div class="benefit">👕 Sedekah Baju Lebaran Untuk Anak Yatim/Piatu</div>
+    </div>
 
-</div> 
+    <a class="cta" href="https://wa.me/6285729436744?text=Assalamualaikum%20Saya%20Ingin%20Berpartisipasi%20Program%20Sedekah%20Mengejar%20Keberkahan%20Bulan%20Ramadhan%20Mohon%20Info%20Detailnya%20Kak." target="_blank">
+      💬 Hubungi Kami via WhatsApp
+    </a>
+  </main>
 
-<br />
+  <footer>
+    <h3>Sinergi Kebaikan Ramadhan</h3>
+    <p>Bersama berbagi, bersama menguatkan</p>
+    <div class="copyright">© 2026 - Program Ramadhan</div>
+  </footer>
+
+  <script>
+    // Animasi fade-in saat scroll
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, {threshold: 0.2});
+
+    document.querySelectorAll('.benefit, .cta').forEach(el => {
+      observer.observe(el);
+    });
+  </script>
+
+</body>
+</html>
