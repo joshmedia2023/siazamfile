@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mengejar Keberkahan Ramadhan</title>
+
   <style>
     * {
       margin: 0;
@@ -31,7 +32,7 @@
       width: 100%;
       max-width: 1200px;
       height: auto;
-      object-fit: contain; /* gambar tidak terpotong */
+      object-fit: contain;
       border-radius: 20px;
       box-shadow: 0 6px 15px rgba(0,0,0,0.1);
     }
@@ -42,14 +43,14 @@
     }
 
     h1 {
-      color: #1aa89b; /* hijau tosca */
+      color: #1aa89b;
       margin-bottom: 10px;
       font-size: 28px;
     }
 
     h2 {
       color: #0f8f83;
-      margin: 15px 0;
+      margin: 30px 0 15px;
     }
 
     p {
@@ -57,39 +58,16 @@
       line-height: 1.6;
     }
 
-    .benefits {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 15px;
-      margin-top: 20px;
-    }
-
-    .benefit {
-      background: #e6fffa;
-      border-radius: 12px;
-      padding: 18px;
-      box-shadow: 0 3px 8px rgba(0,0,0,0.08);
-      transition: all 0.5s ease;
-      opacity: 0;
-      transform: translateY(25px);
-      border: 1px solid #b6f0e6;
-    }
-
-    .benefit.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
     .cta {
       display: inline-block;
-      background: linear-gradient(135deg, #1cc8b7, #12a89a); /* hijau tosca */
-      color: white;
+      background: linear-gradient(135deg, #1cc8b7, #12a89a);
+      color: #fff;
       padding: 14px 30px;
       border-radius: 40px;
       text-decoration: none;
       font-weight: bold;
       transition: all 0.3s ease;
-      margin-top: 25px;
+      margin-top: 15px;
       opacity: 0;
       transform: translateY(20px);
       box-shadow: 0 6px 15px rgba(0, 200, 180, 0.35);
@@ -108,7 +86,7 @@
 
     footer {
       background: #0f8f83;
-      color: white;
+      color: #fff;
       text-align: center;
       padding: 30px 15px;
       margin-top: 40px;
@@ -123,7 +101,6 @@
     footer p {
       font-size: 14px;
       margin-bottom: 5px;
-      line-height: 1.5;
     }
 
     .copyright {
@@ -133,74 +110,161 @@
     }
 
     @media (max-width: 768px) {
-      h1 {font-size: 24px;}
-      .cta {padding: 12px 24px; font-size: 14px;}
+      h1 {
+        font-size: 24px;
+      }
+      .cta {
+        padding: 12px 24px;
+        font-size: 14px;
+      }
     }
+	.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+  margin-top: 30px;
+}
+
+.card {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 25px 22px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  border: 1px solid #dff5f1;
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 35px rgba(0, 0, 0, 0.12);
+}
+
+.card h3 {
+  color: #0f8f83;
+  margin-bottom: 10px;
+  font-size: 20px;
+}
+
+.card .price {
+  font-size: 15px;
+  font-weight: 600;
+  color: #1aa89b;
+  margin-bottom: 12px;
+}
+
+.card p {
+  font-size: 14.5px;
+  line-height: 1.6;
+}
+
+.card .cta {
+  margin-top: 18px;
+}
+
   </style>
 </head>
+
 <body>
 
   <header>
-    <!-- Gambar utama TANPA slider & tidak terpotong -->
-    <img class="hero-img" src="https://raw.githubusercontent.com/joshmedia2023/siazamfile/main/asset/iftar2.jpg" alt="Iftar Ramadhan">
+    <img
+      class="hero-img"
+      src="https://raw.githubusercontent.com/joshmedia2023/siazamfile/main/asset/iftar2.jpg"
+      alt="Iftar Ramadhan"
+    />
   </header>
 
   <main>
     <h1>Sinergi Kebaikan</h1>
     <p><strong>Mengejar Keberkahan Ramadhan</strong></p>
-	<a>Di bulan yang penuh ampunan ini, setiap kebaikan memiliki arti yang jauh lebih besar. Melalui ZIS BAZNAS Kabupaten Sragen, sinergi kepedulian kita menjadi harapan bagi dhuafa, anak yatim, dan mereka yang membutuhkan. Setiap rupiah yang ditunaikan bukan sekadar sedekah, tetapi doa, senyum, dan kekuatan untuk menjalani Ramadhan dengan lebih layak dan bermartabat. Mari bersama, satukan niat dan langkah, menjemput keberkahan Ramadhan dengan berbagi.</a>
 
-    <h2>Pilih Paket Sedekah</h2>
-	
-	<p>
-Sedekah <strong>Paket Buka Puasa/Iftar</strong> mulai dari <strong>Rp 25.000</strong> adalah cara sederhana namun bermakna untuk menghadirkan senyum di waktu maghrib.<br><br>
-Lewat sedekah ini, Anda ikut memastikan saudara-saudara kita yang membutuhkan dapat berbuka dengan layak—menghangatkan perut, menenangkan hati, dan menguatkan harapan.<br><br>
-Di bulan penuh keberkahan, setiap rupiah yang Anda titipkan menjadi pahala yang terus mengalir.<br><br>
-Karena bagi mereka, seporsi iftar bukan sekadar makanan, melainkan bentuk kepedulian dan cinta dari sesama.
-</p>
-<a class="cta" href="https://wa.me/6285729436744?text=Assalamualaikum%20Saya%20Ingin%20Berpartisipasi%20Program%20Sedekah%20Paket%20Buka%20Puasa/Iftar%20Mohon%20Info%20Detailnya%20Kak." target="_blank">
-🍽️ Sedekah Paket Buka Puasa / Iftar
-</a>
-<br><br>
-<p>
-Sedekah <strong>Sembako untuk Dhuafa </strong> mulai dari <strong>Rp 75.000</strong> adalah uluran tangan nyata untuk meringankan beban hidup saudara-saudara kita yang membutuhkan. <br><br>
-Setiap paket berisi kebutuhan pokok yang membantu mereka bertahan, menjalani hari dengan lebih tenang, dan menyambut Ramadhan dengan harapan.<br><br>
-Di balik satu paket sembako, ada doa yang terucap, ada keluarga yang terbantu, dan ada keberkahan yang mengalir untuk Anda.<br><br>
-Karena kebaikan kecil yang dilakukan bersama, mampu menjadi kekuatan besar bagi mereka yang lemah.
-</p>
-	<a class="cta" href="https://wa.me/6285729436744?text=Assalamualaikum%20Saya%20Ingin%20Berpartisipasi%20Program%20Sedekah%20Paket%20Sembako%20Untuk%20Dhuafa%20Mohon%20Info%20Detailnya%20Kak." target="_blank">
-       🥖️ Sedekah Paket Sembako Untuk Dhuafa
+    <p>
+      Di bulan yang penuh ampunan ini, setiap kebaikan memiliki arti yang jauh lebih besar.
+      Melalui ZIS BAZNAS Kabupaten Sragen, sinergi kepedulian kita menjadi harapan bagi
+      dhuafa, anak yatim, dan mereka yang membutuhkan. Setiap rupiah yang ditunaikan bukan
+      sekadar sedekah, tetapi doa, senyum, dan kekuatan untuk menjalani Ramadhan dengan
+      lebih layak dan bermartabat. Mari bersama, satukan niat dan langkah, menjemput
+      keberkahan Ramadhan dengan berbagi.
+    </p>
+
+  <h2>Pilih Paket Sedekah</h2>
+
+<div class="cards">
+
+  <!-- Card Buka Puasa -->
+  <div class="card">
+    <h3>🍽️ Paket Buka Puasa / Iftar</h3>
+    <div class="price">Mulai Rp 25.000</div>
+    <p>
+      Cara sederhana namun bermakna untuk menghadirkan senyum di waktu maghrib.
+      Menghangatkan perut, menenangkan hati, dan menguatkan harapan saudara-saudara kita yang membutuhkan.
+    </p>
+    <a
+      class="cta"
+      href="https://wa.me/6285729436744?text=Assalamualaikum%20Saya%20Ingin%20Berpartisipasi%20Program%20Sedekah%20Paket%20Buka%20Puasa/Iftar%20Mohon%20Info%20Detailnya%20Kak."
+      target="_blank"
+    >
+      🍽️ Gabung Program Sedekah Iftar
     </a>
-	<br><br>
-	<p>
-Sedekah <strong>Baju Lebaran untuk Anak Yatim/Piatu </strong> mulai dari <strong>Rp 100.000</strong> adalah hadiah cinta agar mereka dapat menyambut hari kemenangan dengan senyum dan percaya diri. <br><br>
-Lewat sedekah ini, Anda menghadirkan pakaian baru yang layak bukan sekadar kain, tetapi rasa dihargai dan kebahagiaan di hari yang suci.<br><br>
-Bagi mereka, baju Lebaran adalah mimpi sederhana yang begitu berarti. Bagi Anda, ini adalah amal kebaikan yang menghidupkan harapan dan mengalirkan pahala.<br><br>
-	<a class="cta" href="https://wa.me/6285729436744?text=Assalamualaikum%20Saya%20Ingin%20Berpartisipasi%20Program%20Sedekah%20Baju%20Lebaran%20Untuk%20Anak%20Yatim%20Piatu,%20Mohon%20Info%20Detailnya%20Kak." target="_blank">
-       👕 Sedekah Baju Lebaran Untuk Anak Yatim/Piatu
+  </div>
+
+  <!-- Card Sembako -->
+  <div class="card">
+    <h3>🥖 Paket Sembako Dhuafa</h3>
+    <div class="price">Mulai Rp 75.000</div>
+    <p>
+      Uluran tangan nyata untuk meringankan beban hidup.
+      Setiap paket adalah doa, harapan, dan kekuatan bagi keluarga dhuafa.
+    </p>
+    <a
+      class="cta"
+      href="https://wa.me/6285729436744?text=Assalamualaikum%20Saya%20Ingin%20Berpartisipasi%20Program%20Sedekah%20Paket%20Sembako%20Untuk%20Dhuafa%20Mohon%20Info%20Detailnya%20Kak."
+      target="_blank"
+    >
+      🥖 Gabung Program Sedekah Sembako
     </a>
-	
+  </div>
+
+  <!-- Card Baju Lebaran -->
+  <div class="card">
+    <h3>👕 Baju Lebaran Anak Yatim</h3>
+    <div class="price">Mulai Rp 100.000</div>
+    <p>
+      Hadiah cinta agar anak yatim dan piatu menyambut hari kemenangan
+      dengan senyum, percaya diri, dan kebahagiaan.
+    </p>
+    <a
+      class="cta"
+      href="https://wa.me/6285729436744?text=Assalamualaikum%20Saya%20Ingin%20Berpartisipasi%20Program%20Sedekah%20Baju%20Lebaran%20Untuk%20Anak%20Yatim%20Piatu%20Mohon%20Info%20Detailnya%20Kak."
+      target="_blank"
+    >
+      👕 Gabung Program Sedekah Lebaran
+    </a>
+  </div>
+
+</div>
+
+      
   </main>
 
   <footer>
     <h3>Sinergi Kebaikan Ramadhan</h3>
     <p>Bersama berbagi, bersama menguatkan</p>
-    <div class="copyright">© 2026 - Program Ramadhan BAZNAS Sragen</div>
+    <div class="copyright">
+      © 2026 – Program Ramadhan BAZNAS Sragen
+    </div>
   </footer>
 
   <script>
-    // Animasi fade-in saat scroll
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('visible');
         }
       });
-    }, {threshold: 0.2});
+    }, { threshold: 0.2 });
 
-    document.querySelectorAll('.benefit, .cta').forEach(el => {
-      observer.observe(el);
-    });
+    document.querySelectorAll('.cta').forEach(el => observer.observe(el));
   </script>
 
 </body>
