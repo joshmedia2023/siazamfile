@@ -82,9 +82,10 @@ button{
     Ambil Antrian Dokter Gigi
   </button>
 
-  <div class="info">
-    Tekan tombol P untuk cetak ulang
-  </div>
+ <div class="info">
+  Tekan tombol P = Antrian Umum<br>
+  Tekan tombol G = Dokter Gigi
+</div>
 
 </div>
 
@@ -217,12 +218,18 @@ function cetak(nomor){
 
 document.addEventListener('keydown', function(e){
 
+  // P = Ambil Antrian Umum otomatis
   if(e.key.toLowerCase() == 'p'){
 
-    if(nomorTerakhir){
-      cetak(nomorTerakhir);
-    }
+    ambil('A');
   }
+
+  // G = Ambil Antrian Dokter Gigi otomatis
+  if(e.key.toLowerCase() == 'g'){
+
+    ambil('B');
+  }
+
 });
 
 </script>
