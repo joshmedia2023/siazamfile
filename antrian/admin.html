@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Panel Admin</title>
+
+<style>
+
+body{
+  margin:0;
+  font-family:Arial;
+  background:#f1f5f9;
+  padding:40px;
+}
+
+.box{
+  max-width:700px;
+  margin:auto;
+  background:white;
+  padding:40px;
+  border-radius:20px;
+  box-shadow:0 10px 30px rgba(0,0,0,.1);
+}
+
+h1{
+  text-align:center;
+}
+
+.nomor{
+  font-size:120px;
+  text-align:center;
+  margin:40px 0;
+  font-weight:bold;
+  color:#0f172a;
+}
+
+button{
+  width:100%;
+  padding:20px;
+  margin-top:15px;
+  border:none;
+  border-radius:15px;
+  font-size:22px;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+.panggil{
+  background:#f59e0b;
+  color:white;
+}
+
+.reset{
+  background:#dc2626;
+  color:white;
+}
+
+.info{
+  margin-top:20px;
+  background:#e2e8f0;
+  padding:15px;
+  border-radius:10px;
+}
+
+</style>
+</head>
+<body>
+
+<div class="box">
+
+  <h1>PANEL ADMIN</h1>
+
+  <div class="nomor" id="nomor">A00</div>
+
+  <button class="panggil" onclick="panggil('A')">
+    Panggil Pasien Umum
+  </button>
+
+  <button class="panggil" onclick="panggil('B')">
+    Panggil Dokter Gigi
+  </button>
+
+  <button class="reset" onclick="resetAntrian()">
+    Reset Antrian
+  </button>
+
+  <div class="info">
+    Sistem realtime Firebase
+  </div>
+
+</div>
+
+<script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+import {
+  getDatabase,
+  ref,
+  get,
+  set
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+
+const firebaseConfig = {
+
+  apiKey: "AIzaSyA2IejPWHJTG0fn8uHbUqYplanMTZhW8b8",
+  authDomain: "antrian-rsbsragen.firebaseapp.com",
+  databaseURL: "https://antrian-rsbsragen-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "antrian-rsbsragen",
+  storageBucket: "antrian-rsbsragen.firebasestorage.app",
+  messagingSenderId: "695389973549",
+  appId: "1:695389973549:web:0068f899b069fe00a19ca4"
+
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+
+let panggilUmum = 0;
+let panggilGigi = 0;
+
+async function panggil(jenis){
+
+  const snapshot = await get(ref(db,'antrian'));
+
+  const data = snapshot.val();
+
+  let nomor = '';
+
+  if(jenis == 'A'){
+
+    if(panggilUmum < data.umum){
+
+      panggilUmum++;
+    }
+
+    nomor = 'A' + String(panggilUmum).padStart(2,'0');
+  }
+
+  if(jenis == 'B'){
+
+    if(panggilGigi < data.gigi){
+
+      panggilGigi++;
+    }
+
+    nomor = 'B' + String(panggilGigi).padStart(2,'0');
+  }
+
+  document.getElementById('nomor').innerHTML = nomor;
+
+  suara(nomor);
+}
+
+window.panggil = panggil;
+
+function suara(nomor){
+
+  const speech = new SpeechSynthesisUtterance(
+    'Nomor antrian ' + nomor + ', silahkan menuju ruangan'
+  );
+
+  speech.lang = 'id-ID';
+
+  speech.rate = 0.9;
+
+  speechSynthesis.speak(speech);
+}
+
+async function resetAntrian(){
+
+  const today = new Date().toLocaleDateString();
+
+  await set(ref(db,'antrian'), {
+
+    umum:0,
+    gigi:0,
+    tanggal:today
+
+  });
+
+  panggilUmum = 0;
+  panggilGigi = 0;
+
+  document.getElementById('nomor').innerHTML = 'A00';
+}
+
+window.resetAntrian = resetAntrian;
+
+</script>
+
+</body>
+</html>
