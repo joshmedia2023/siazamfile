@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Ambil Antrian</title>
+
+<style>
+
+body{
+  margin:0;
+  font-family:Arial;
+  background:#f1f5f9;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+}
+
+.box{
+  background:white;
+  width:450px;
+  padding:40px;
+  border-radius:20px;
+  text-align:center;
+  box-shadow:0 10px 30px rgba(0,0,0,.1);
+}
+
+h1{
+  margin-bottom:20px;
+}
+
+.nomor{
+  font-size:80px;
+  font-weight:bold;
+  margin:30px 0;
+  color:#0f172a;
+}
+
+button{
+  width:100%;
+  padding:18px;
+  margin-top:15px;
+  border:none;
+  border-radius:15px;
+  font-size:20px;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+.umum{
+  background:#2563eb;
+  color:white;
+}
+
+.gigi{
+  background:#16a34a;
+  color:white;
+}
+
+.info{
+  margin-top:20px;
+  color:#64748b;
+}
+
+</style>
+</head>
+<body>
+
+<div class="box">
+
+  <h1>AMBIL NOMOR ANTRIAN</h1>
+
+  <div class="nomor" id="nomor">A00</div>
+
+  <button class="umum" onclick="ambil('A')">
+    Ambil Antrian Umum
+  </button>
+
+  <button class="gigi" onclick="ambil('B')">
+    Ambil Antrian Dokter Gigi
+  </button>
+
+  <div class="info">
+    Tekan tombol P untuk cetak ulang
+  </div>
+
+</div>
+
+<script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+import {
+  getDatabase,
+  ref,
+  get,
+  set
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+
+const firebaseConfig = {
+
+  apiKey: "ISI_APIKEY",
+  authDomain: "ISI_DOMAIN",
+  databaseURL: "ISI_DATABASE_URL",
+  projectId: "ISI_PROJECT_ID",
+  storageBucket: "ISI_BUCKET",
+  messagingSenderId: "ISI_SENDER_ID",
+  appId: "ISI_APP_ID"
+
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+
+let nomorTerakhir = '';
+
+async function ambil(jenis){
+
+  const today = new Date().toLocaleDateString();
+
+  const snapshot = await get(ref(db,'antrian'));
+
+  let data = snapshot.val();
+
+  if(!data){
+
+    data = {
+      umum:0,
+      gigi:0,
+      tanggal:today
+    };
+  }
+
+  // reset otomatis ganti hari
+  if(data.tanggal != today){
+
+    data.umum = 0;
+    data.gigi = 0;
+    data.tanggal = today;
+  }
+
+  let nomor = '';
+
+  if(jenis == 'A'){
+
+    data.umum++;
+
+    nomor = 'A' + String(data.umum).padStart(2,'0');
+  }
+
+  if(jenis == 'B'){
+
+    data.gigi++;
+
+    nomor = 'B' + String(data.gigi).padStart(2,'0');
+  }
+
+  await set(ref(db,'antrian'), data);
+
+  nomorTerakhir = nomor;
+
+  document.getElementById('nomor').innerHTML = nomor;
+
+  cetak(nomor);
+}
+
+window.ambil = ambil;
+
+function cetak(nomor){
+
+  const printWindow = window.open('', '', 'width=400,height=600');
+
+  printWindow.document.write(`
+    <html>
+    <head>
+      <title>Cetak</title>
+
+      <style>
+      body{
+        text-align:center;
+        font-family:Arial;
+        margin-top:60px;
+      }
+
+      h1{
+        font-size:100px;
+      }
+
+      p{
+        font-size:25px;
+      }
+      </style>
+
+    </head>
+
+    <body>
+
+      <p>NOMOR ANTRIAN</p>
+
+      <h1>${nomor}</h1>
+
+      <p>${new Date().toLocaleString('id-ID')}</p>
+
+      <script>
+        window.print();
+        window.close();
+      <\/script>
+
+    </body>
+    </html>
+  `);
+
+  printWindow.document.close();
+}
+
+document.addEventListener('keydown', function(e){
+
+  if(e.key.toLowerCase() == 'p'){
+
+    if(nomorTerakhir){
+      cetak(nomorTerakhir);
+    }
+  }
+});
+
+</script>
+
+</body>
+</html>
