@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Sistem Antrian Pasien</title>
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Arial, sans-serif;
+}
+
+body{
+  background:#f1f5f9;
+  min-height:100vh;
+  padding:20px;
+}
+
+.container{
+  max-width:1200px;
+  margin:auto;
+}
+
+.header{
+  background:linear-gradient(135deg,#0f172a,#1e293b);
+  color:white;
+  padding:20px;
+  border-radius:20px;
+  margin-bottom:20px;
+  text-align:center;
+  box-shadow:0 10px 30px rgba(0,0,0,.1);
+}
+
+.header h1{
+  font-size:32px;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:20px;
+}
+
+.card{
+  background:white;
+  border-radius:20px;
+  padding:25px;
+  box-shadow:0 5px 20px rgba(0,0,0,.08);
+}
+
+.card h2{
+  margin-bottom:20px;
+  color:#0f172a;
+}
+
+.antrian-box{
+  background:#0f172a;
+  color:white;
+  padding:30px;
+  border-radius:20px;
+  text-align:center;
+  margin-bottom:20px;
+}
+
+.nomor{
+  font-size:70px;
+  font-weight:bold;
+  margin-top:10px;
+}
+
+.row{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+}
+
+button{
+  padding:14px 20px;
+  border:none;
+  border-radius:12px;
+  cursor:pointer;
+  font-size:16px;
+  font-weight:bold;
+  transition:.2s;
+}
+
+button:hover{
+  transform:scale(1.03);
+}
+
+.btn-umum{
+  background:#2563eb;
+  color:white;
+}
+
+.btn-gigi{
+  background:#16a34a;
+  color:white;
+}
+
+.btn-panggil{
+  background:#f59e0b;
+  color:white;
+}
+
+.btn-reset{
+  background:#dc2626;
+  color:white;
+}
+
+.info{
+  margin-top:15px;
+  background:#e2e8f0;
+  padding:12px;
+  border-radius:10px;
+  font-size:14px;
+}
+
+.footer{
+  margin-top:20px;
+  text-align:center;
+  color:#64748b;
+}
+
+@media(max-width:768px){
+  .grid{
+    grid-template-columns:1fr;
+  }
+
+  .nomor{
+    font-size:50px;
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <div class="header">
+    <h1>🏥 Sistem Antrian Pasien</h1>
+    <p>Antrian Pasien Umum & Dokter Gigi</p>
+  </div>
+
+  <div class="grid">
+
+    <!-- PANEL PASIEN -->
+    <div class="card">
+      <h2>Panel Pasien</h2>
+
+      <div class="antrian-box">
+        <div>Nomor Antrian Terakhir</div>
+        <div class="nomor" id="displayPasien">A00</div>
+      </div>
+
+      <div class="row">
+        <button class="btn-umum" onclick="ambilAntrian('A')">
+          Ambil Antrian Umum
+        </button>
+
+        <button class="btn-gigi" onclick="ambilAntrian('B')">
+          Ambil Antrian Dokter Gigi
+        </button>
+      </div>
+
+      <div class="info">
+        Tekan tombol keyboard <b>P</b> untuk cetak ulang nomor terakhir.
+      </div>
+    </div>
+
+    <!-- PANEL ADMIN -->
+    <div class="card">
+      <h2>Panel Admin</h2>
+
+      <div class="antrian-box">
+        <div>Sedang Dipanggil</div>
+        <div class="nomor" id="displayAdmin">A00</div>
+      </div>
+
+      <div class="row">
+        <button class="btn-panggil" onclick="panggilAntrian('A')">
+          Panggil Umum
+        </button>
+
+        <button class="btn-panggil" onclick="panggilAntrian('B')">
+          Panggil Gigi
+        </button>
+
+        <button class="btn-reset" onclick="resetAntrian()">
+          Reset Manual
+        </button>
+      </div>
+
+      <div class="info">
+        Data realtime menggunakan LocalStorage browser.
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer">
+    Sistem Antrian Pasien Realtime
+  </div>
+
+</div>
+
+<script>
+/* ===============================
+   DATA STORAGE
+================================= */
+
+function getToday(){
+  return new Date().toISOString().split('T')[0];
+}
+
+function initData(){
+
+  let data = JSON.parse(localStorage.getItem('antrianData'));
+
+  if(!data || data.tanggal !== getToday()){
+
+    data = {
+      tanggal : getToday(),
+      umum : 0,
+      gigi : 0,
+      panggilUmum : 0,
+      panggilGigi : 0,
+      lastPrinted : ''
+    };
+
+    localStorage.setItem('antrianData', JSON.stringify(data));
+  }
+
+  return data;
+}
+
+function saveData(data){
+  localStorage.setItem('antrianData', JSON.stringify(data));
+}
+
+/* ===============================
+   UPDATE UI
+================================= */
+
+function updateUI(){
+
+  const data = initData();
+
+  const lastUmum = "A" + String(data.umum).padStart(2,'0');
+  const lastGigi = "B" + String(data.gigi).padStart(2,'0');
+
+  const panggilUmum = "A" + String(data.panggilUmum).padStart(2,'0');
+  const panggilGigi = "B" + String(data.panggilGigi).padStart(2,'0');
+
+  document.getElementById('displayPasien').innerHTML =
+    data.lastPrinted || "A00";
+
+  document.getElementById('displayAdmin').innerHTML =
+    data.lastCalled || "A00";
+}
+
+/* ===============================
+   AMBIL ANTRIAN
+================================= */
+
+function ambilAntrian(jenis){
+
+  let data = initData();
+
+  let nomor = '';
+
+  if(jenis === 'A'){
+    data.umum++;
+    nomor = "A" + String(data.umum).padStart(2,'0');
+  }
+
+  if(jenis === 'B'){
+    data.gigi++;
+    nomor = "B" + String(data.gigi).padStart(2,'0');
+  }
+
+  data.lastPrinted = nomor;
+
+  saveData(data);
+
+  updateUI();
+
+  cetakNomor(nomor);
+}
+
+/* ===============================
+   CETAK
+================================= */
+
+function cetakNomor(nomor){
+
+  const printWindow = window.open('', '', 'width=400,height=600');
+
+  printWindow.document.write(`
+    <html>
+    <head>
+      <title>Cetak Antrian</title>
+      <style>
+        body{
+          text-align:center;
+          font-family:Arial;
+          padding-top:50px;
+        }
+
+        h1{
+          font-size:70px;
+          margin:20px 0;
+        }
+
+        p{
+          font-size:22px;
+        }
+      </style>
+    </head>
+    <body>
+      <p>Nomor Antrian</p>
+      <h1>${nomor}</h1>
+      <p>${new Date().toLocaleString('id-ID')}</p>
+
+      <script>
+        window.print();
+        window.close();
+      <\/script>
+    </body>
+    </html>
+  `);
+
+  printWindow.document.close();
+}
+
+/* ===============================
+   KEYBOARD P
+================================= */
+
+document.addEventListener('keydown', function(e){
+
+  if(e.key.toLowerCase() === 'p'){
+
+    const data = initData();
+
+    if(data.lastPrinted){
+      cetakNomor(data.lastPrinted);
+    }
+  }
+});
+
+/* ===============================
+   PANGGIL ANTRIAN
+================================= */
+
+function panggilAntrian(jenis){
+
+  let data = initData();
+
+  let nomor = '';
+
+  if(jenis === 'A'){
+
+    if(data.panggilUmum < data.umum){
+      data.panggilUmum++;
+    }
+
+    nomor = "A" + String(data.panggilUmum).padStart(2,'0');
+  }
+
+  if(jenis === 'B'){
+
+    if(data.panggilGigi < data.gigi){
+      data.panggilGigi++;
+    }
+
+    nomor = "B" + String(data.panggilGigi).padStart(2,'0');
+  }
+
+  data.lastCalled = nomor;
+
+  saveData(data);
+
+  updateUI();
+
+  suaraPanggil(nomor);
+}
+
+/* ===============================
+   SUARA PANGGIL
+================================= */
+
+function suaraPanggil(nomor){
+
+  const teks = `Nomor antrian ${nomor}, silahkan menuju loket`;
+
+  const speech = new SpeechSynthesisUtterance(teks);
+
+  speech.lang = 'id-ID';
+  speech.rate = 0.9;
+
+  window.speechSynthesis.speak(speech);
+}
+
+/* ===============================
+   RESET MANUAL
+================================= */
+
+function resetAntrian(){
+
+  if(confirm('Reset semua nomor antrian?')){
+
+    const data = {
+      tanggal : getToday(),
+      umum : 0,
+      gigi : 0,
+      panggilUmum : 0,
+      panggilGigi : 0,
+      lastPrinted : '',
+      lastCalled : ''
+    };
+
+    saveData(data);
+
+    updateUI();
+  }
+}
+
+/* ===============================
+   REALTIME UPDATE
+================================= */
+
+window.addEventListener('storage', function(){
+  updateUI();
+});
+
+/* ===============================
+   INIT
+================================= */
+
+updateUI();
+
+setInterval(updateUI, 1000);
+
+</script>
+
+</body>
+</html>
