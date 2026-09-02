@@ -1,0 +1,1 @@
+import{auth,provider,signInWithPopup,onAuthStateChanged}from'./firebase.js';login.onclick=async()=>{try{await signInWithPopup(auth,provider)}catch(e){msg.textContent=e.message}};onAuthStateChanged(auth,u=>{if(u)location.href='karyawan.html'});

@@ -1,0 +1,1 @@
+import{auth,signOut,onAuthStateChanged}from'./firebase.js';onAuthStateChanged(auth,u=>{if(!u)location.href='index.html'});logout.onclick=()=>signOut(auth).then(()=>location.href='index.html');requests.textContent='Data pengajuan SDM.';attendance.textContent='Data absensi SDM.';
