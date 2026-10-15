@@ -229,7 +229,6 @@
         const totalPenyaluran = penyaluran.reduce((a,b) => a+b, 0);
         document.getElementById('totalPengumpulan').textContent = rupiah(totalPengumpulan);
         document.getElementById('totalPenyaluran').textContent = rupiah(totalPenyaluran);
-        document.getElementById('totalSelisih').textContent = rupiah(totalPengumpulan-totalPenyaluran);
         document.getElementById('updatedLabel').innerHTML = '<span class="status-dot"></span>Data berhasil dimuat';
         document.getElementById('loadingState').hidden = true;
         document.getElementById('errorState').hidden = true;
