@@ -78,7 +78,7 @@ select,.btn{border:1px solid var(--line);border-radius:12px;background:white;pad
 </div>
 <script>
 let DATA = {monthly:[],zakat_program_counts:[],infaq_program_counts:[],zakat_distribution:[],infaq_distribution:[]};
-const API_URL = "TEMPEL_URL_APPS_SCRIPT_DI_SINI";
+const API_URL = "https://script.google.com/macros/s/AKfycbw9l0vR66Wls2O_A3cdyadFVNmAGkLbGRWvt3E8pxAuu1_DtKkWb-fWh2bZGxxd41B4/exec";
 let months = [];
 const money = n => n==null || n==="" || n==="-" ? "—" : new Intl.NumberFormat('id-ID',{style:'currency',currency:'IDR',maximumFractionDigits:0}).format(Number(n));
 const integer = n => n==null || n==="" || n==="-" ? "—" : new Intl.NumberFormat('id-ID',{maximumFractionDigits:0}).format(Number(n));
