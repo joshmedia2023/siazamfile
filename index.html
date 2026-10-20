@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#087443">
+<meta name="description" content="Laporan publik pengumpulan dan penyaluran zakat, infak, serta program BAZNAS Kabupaten Sragen tahun 2026.">
+<title>Laporan Publik 2026 | BAZNAS Sragen</title>
+<style>
+:root{--green:#087443;--green2:#0d9657;--mint:#e9f7ef;--ink:#172b23;--muted:#687970;--line:#e2ebe5;--paper:#f5f8f6;--white:#fff;--gold:#e9b949;--red:#d86b5d;--shadow:0 12px 34px rgba(16,65,42,.07)}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.5}
+.wrap{max-width:1180px;margin:auto;padding:24px 22px 48px}
+.hero{background:linear-gradient(120deg,#075b37,#0b8750);color:white;border-radius:24px;padding:32px;position:relative;overflow:hidden;box-shadow:var(--shadow)}
+.hero:after{content:"";position:absolute;width:320px;height:320px;border:1px solid #ffffff24;border-radius:50%;right:-80px;top:-150px;box-shadow:0 0 0 35px #ffffff0a,0 0 0 75px #ffffff08}
+.brand{display:flex;gap:12px;align-items:center;margin-bottom:24px;position:relative;z-index:1}
+.brand-mark{width:44px;height:44px;border-radius:14px;background:#ffffff1c;display:grid;place-items:center;font-size:23px}
+.eyebrow{text-transform:uppercase;letter-spacing:.14em;font-size:11px;font-weight:800;opacity:.8}
+h1{font-size:clamp(28px,4vw,43px);line-height:1.12;letter-spacing:-.035em;margin:0 0 12px;max-width:680px;position:relative;z-index:1}
+.hero p{margin:0;color:#e4f5eb;max-width:650px;font-size:15px;position:relative;z-index:1}
+.hero-foot{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px;position:relative;z-index:1}
+.pill{border:1px solid #ffffff48;background:#ffffff12;border-radius:99px;padding:7px 12px;font-size:12px;font-weight:650}
+.section-head{display:flex;justify-content:space-between;align-items:end;gap:14px;margin:28px 0 14px}
+.section-head h2{margin:0;font-size:20px;letter-spacing:-.02em}.section-head p{margin:4px 0 0;color:var(--muted);font-size:13px}
+select,.btn{border:1px solid var(--line);border-radius:12px;background:white;padding:10px 13px;font:inherit;color:var(--ink);font-size:13px}
+.cards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.card,.panel{background:white;border:1px solid var(--line);border-radius:18px;padding:19px;box-shadow:var(--shadow)}
+.metric-top{display:flex;justify-content:space-between;align-items:center;gap:8px;color:var(--muted);font-size:12px;font-weight:700}
+.metric-icon{width:34px;height:34px;border-radius:11px;background:var(--mint);display:grid;place-items:center;font-size:17px}
+.metric{font-size:clamp(19px,2.2vw,27px);font-weight:850;letter-spacing:-.04em;margin:14px 0 4px;overflow-wrap:anywhere}
+.metric-note{font-size:12px;color:var(--muted)}
+.grid2{display:grid;grid-template-columns:1.25fr 1fr;gap:16px}
+.panel h3{font-size:16px;margin:0 0 4px}.sub{font-size:12px;color:var(--muted);margin:0 0 18px}
+.chart{width:100%;height:auto;display:block;overflow:visible}.legend{display:flex;flex-wrap:wrap;gap:15px;margin-top:12px;font-size:12px;color:var(--muted)}.dot{display:inline-block;width:9px;height:9px;border-radius:3px;margin-right:6px}
+.barlist{display:grid;gap:16px}.barrow{display:grid;grid-template-columns:110px 1fr;gap:10px;align-items:center;font-size:12px}.barlabel{color:var(--muted)}.bars{display:grid;gap:5px}.bar{height:10px;border-radius:5px;background:var(--green2);min-width:2px}.bar.alt{background:var(--gold)}.barval{font-size:11px;color:var(--muted);margin-top:2px}
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}.tab{cursor:pointer;border:1px solid var(--line);border-radius:99px;background:white;padding:9px 14px;font-weight:700;font-size:12px;color:var(--muted)}.tab.active{background:var(--green);color:white;border-color:var(--green)}
+.table-wrap{overflow:auto;border:1px solid var(--line);border-radius:14px}table{width:100%;border-collapse:collapse;min-width:650px;font-size:13px}th,td{text-align:right;padding:12px 14px;border-bottom:1px solid var(--line);white-space:nowrap}th{background:#f4f8f5;color:#53665a;font-size:11px;text-transform:uppercase;letter-spacing:.04em}th:first-child,td:first-child{text-align:left}tbody tr:last-child td{border-bottom:0}tbody tr:hover{background:#f9fcfa}.num{font-variant-numeric:tabular-nums}.empty{color:#a0aaa4}
+.note{margin-top:16px;padding:14px 16px;background:#fff9e8;border:1px solid #f4e6bd;border-radius:14px;color:#715d2b;font-size:12px}
+.footer{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:26px;padding:18px 2px;color:var(--muted);font-size:12px;border-top:1px solid var(--line)}
+.btn{cursor:pointer;font-weight:700}.btn:hover{border-color:var(--green);color:var(--green)}
+@media(max-width:850px){.cards{grid-template-columns:repeat(2,minmax(0,1fr))}.grid2{grid-template-columns:1fr}.hero{padding:26px}.wrap{padding:14px 13px 32px}}
+@media(max-width:460px){.cards{gap:9px}.card{padding:14px}.metric{font-size:19px}.metric-top{align-items:flex-start}.metric-icon{width:29px;height:29px}.hero{border-radius:18px}.section-head{align-items:flex-start;flex-direction:column}.barrow{grid-template-columns:85px 1fr}}
+@media print{body{background:white}.wrap{max-width:none;padding:0}.hero,.card,.panel{box-shadow:none;break-inside:avoid}.tabs,select,.btn{display:none}.table-wrap{overflow:visible}table{min-width:0;font-size:10px}th,td{padding:6px}.footer{margin-top:10px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="hero">
+  <div class="brand"><div class="brand-mark">✳</div><div><div class="eyebrow">Transparansi & Akuntabilitas</div><strong>BAZNAS Kabupaten Sragen</strong></div></div>
+  <h1>Laporan Publik Pengumpulan & Penyaluran 2026</h1>
+  <p>Ringkasan pengumpulan dana, penyaluran, dan distribusi program sebagai wujud keterbukaan informasi kepada masyarakat.</p>
+  <div class="hero-foot"><span class="pill">Tahun 2026</span><span class="pill" id="coverage">Menghubungkan ke Google Sheets…</span><span class="pill">Laporan publik</span></div>
+</header>
+
+<div class="section-head"><div><h2>Ringkasan dana</h2><p>Pilih periode untuk melihat angka pengumpulan dan penyaluran.</p></div><select id="monthFilter" aria-label="Filter bulan"><option value="all">Akumulasi tersedia</option></select></div>
+<section class="cards">
+  <article class="card"><div class="metric-top"><span>Total Pengumpulan</span><span class="metric-icon">↗</span></div><div class="metric" id="mCollect">—</div><div class="metric-note" id="nCollect">Dana terhimpun</div></article>
+  <article class="card"><div class="metric-top"><span>Total Penyaluran</span><span class="metric-icon">↘</span></div><div class="metric" id="mDisburse">—</div><div class="metric-note" id="nDisburse">Dana tersalurkan</div></article>
+  <article class="card"><div class="metric-top"><span>Selisih Pengumpulan</span><span class="metric-icon">◈</span></div><div class="metric" id="mBalance">—</div><div class="metric-note">Pengumpulan dikurangi penyaluran</div></article>
+  <article class="card"><div class="metric-top"><span>Penyaluran Program</span><span class="metric-icon">♡</span></div><div class="metric" id="mPrograms">—</div><div class="metric-note" id="nPrograms">Akumulasi kategori program</div></article>
+</section>
+
+<div class="section-head"><div><h2>Pergerakan dana</h2><p>Perbandingan pengumpulan dan penyaluran per bulan.</p></div></div>
+<div class="grid2">
+  <section class="panel"><h3>Pengumpulan vs penyaluran</h3><p class="sub">Nilai dalam rupiah (Rp).</p><div id="financeChart"></div><div class="legend"><span><i class="dot" style="background:#0d9657"></i>Pengumpulan</span><span><i class="dot" style="background:#e9b949"></i>Penyaluran</span></div></section>
+  <section class="panel"><h3>Penyaluran menurut bidang</h3><p class="sub">Total data penyaluran zakat dan infak per bidang yang tercatat.</p><div id="categoryBars" class="barlist"></div></section>
+</div>
+
+<div class="section-head"><div><h2>Rincian laporan</h2><p>Gunakan tab untuk melihat data sesuai kelompok laporan.</p></div><button class="btn" onclick="window.print()">Cetak / Simpan PDF</button></div>
+<div class="tabs" role="tablist">
+<button class="tab active" data-tab="finance">Pengumpulan & Penyaluran</button>
+<button class="tab" data-tab="zakat">Penyaluran Zakat</button>
+<button class="tab" data-tab="infaq">Penyaluran Infak</button>
+<button class="tab" data-tab="program">Program Zakat & Infak</button>
+</div>
+<section class="panel"><div id="tableTitle"><h3>Pengumpulan dan penyaluran bulanan</h3><p class="sub">Angka kosong berarti belum tersedia pada file sumber, bukan bernilai nol.</p></div><div id="dataTable" class="table-wrap"></div></section>
+<div class="note"><strong>Catatan transparansi:</strong> Data pada halaman ini diambil dari file sumber yang diunggah. Beberapa lembar memiliki periode pembaruan berbeda. Nilai kosong ditampilkan sebagai “—” dan tidak dianggap nol. Kolom jumlah/penerima pada lembar program mengikuti pencatatan di file sumber; mohon verifikasi definisi satuan sebelum digunakan sebagai angka publik final.</div>
+<footer class="footer"><span>© 2026 BAZNAS Kabupaten Sragen · Laporan Publik</span><span id="updated">Sumber: Google Sheets</span></footer>
+</div>
+<script>
+let DATA = {monthly:[],zakat_program_counts:[],infaq_program_counts:[],zakat_distribution:[],infaq_distribution:[]};
+const API_URL = "TEMPEL_URL_APPS_SCRIPT_DI_SINI";
+let months = [];
+const money = n => n==null || n==="" || n==="-" ? "—" : new Intl.NumberFormat('id-ID',{style:'currency',currency:'IDR',maximumFractionDigits:0}).format(Number(n));
+const integer = n => n==null || n==="" || n==="-" ? "—" : new Intl.NumberFormat('id-ID',{maximumFractionDigits:0}).format(Number(n));
+const num = v => (v===null || v==="" || v==="-" || !Number.isFinite(Number(v))) ? null : Number(v);
+const sum = (arr,key) => arr.reduce((s,r)=>s+(num(r[key])||0),0);
+const financeRows=DATA.monthly.filter(r=>num(r.Pengumpulan)!==null || num(r.Penyaluran)!==null);
+const financeMonths=financeRows.map(r=>r.Bulan);
+const cats=['Kemanusiaan','Kesehatan','Pendidikan','Ekonomi','Dakwah Advokasi'];
+function setText(id,val){document.getElementById(id).textContent=val}
+function activeFinanceRows(){const f=document.getElementById('monthFilter').value;return financeRows.filter(r=>f==='all'||r.Bulan===f)}
+function renderMetrics(){
+ const rows=activeFinanceRows(), collection=sum(rows,'Pengumpulan'), disbursement=sum(rows,'Penyaluran');
+ setText('mCollect',money(collection));setText('mDisburse',money(disbursement));setText('mBalance',money(collection-disbursement));
+ const z=DATA.zakat_distribution, i=DATA.infaq_distribution;
+ const all=z.concat(i);let total=0;
+ all.forEach(r=>cats.forEach(c=>total+=num(r[c])||0));
+ setText('mPrograms',money(total));setText('nPrograms','Total nilai bidang pada lembar penyaluran');
+ setText('nCollect',document.getElementById('monthFilter').value==='all'?'Akumulasi bulan yang tersedia':'Periode '+document.getElementById('monthFilter').value);
+ setText('nDisburse',document.getElementById('monthFilter').value==='all'?'Akumulasi bulan yang tersedia':'Periode '+document.getElementById('monthFilter').value);
+}
+function svgChart(){
+ const rows=financeRows, W=640,H=260, left=48,right=12,top=14,bottom=38, plotH=H-top-bottom, plotW=W-left-right;
+ const max=Math.max(1,...rows.flatMap(r=>[num(r.Pengumpulan)||0,num(r.Penyaluran)||0]));
+ const niceMax=Math.ceil(max/500000000)*500000000 || max;
+ let s=`<svg class="chart" viewBox="0 0 ${W} ${H}" role="img" aria-label="Grafik pengumpulan dan penyaluran bulanan">`;
+ for(let t=0;t<=4;t++){let y=top+plotH*t/4, val=niceMax*(1-t/4);s+=`<line x1="${left}" y1="${y}" x2="${W-right}" y2="${y}" stroke="#e8efea" stroke-width="1"/><text x="${left-8}" y="${y+4}" text-anchor="end" fill="#87948b" font-size="10">${val===0?'0':(val/1e9).toLocaleString('id-ID',{maximumFractionDigits:1})+'M'}</text>`}
+ const group=plotW/rows.length,bw=Math.min(15,group*.25);
+ rows.forEach((r,i)=>{const x=left+group*i+group/2;[['Pengumpulan','#0d9657',-bw*.65],['Penyaluran','#e9b949',bw*.65]].forEach(([k,c,off])=>{let v=num(r[k])||0,h=v/niceMax*plotH,y=top+plotH-h;s+=`<rect x="${x+off-bw/2}" y="${y}" width="${bw}" height="${h}" rx="3" fill="${c}"><title>${r.Bulan} · ${k}: ${money(v)}</title></rect>`});s+=`<text x="${x}" y="${H-13}" text-anchor="middle" fill="#687970" font-size="10">${r.Bulan.slice(0,3)}</text>`});
+ s+='</svg>';return s;
+}
+function renderCategoryBars(){
+ const z=DATA.zakat_distribution,i=DATA.infaq_distribution, totals={};
+ cats.forEach(c=>totals[c]=sum(z,c)+sum(i,c));
+ const max=Math.max(1,...Object.values(totals));
+ document.getElementById('categoryBars').innerHTML=cats.map(c=>`<div class="barrow"><div class="barlabel">${c}</div><div><div class="bar" style="width:${Math.max(1,totals[c]/max*100)}%"></div><div class="barval">${money(totals[c])}</div></div></div>`).join('');
+}
+function table(headers,rows){
+ return `<table><thead><tr>${headers.map(h=>`<th>${h}</th>`).join('')}</tr></thead><tbody>${rows.map(r=>`<tr>${r.map((v,i)=>`<td class="${i?'num':''}">${v===null||v===undefined||v===''||v==='-'?'<span class="empty">—</span>':v}</td>`).join('')}</tr>`).join('')}</tbody></table>`;
+}
+function renderTable(tab){
+ const title=document.getElementById('tableTitle'), out=document.getElementById('dataTable');
+ if(tab==='finance'){
+ title.innerHTML='<h3>Pengumpulan dan penyaluran bulanan</h3><p class="sub">Angka kosong berarti belum tersedia pada file sumber, bukan bernilai nol.</p>';
+ out.innerHTML=table(['Bulan','Pengumpulan','Penyaluran','Selisih'],DATA.monthly.map(r=>[r.Bulan,num(r.Pengumpulan)===null?'—':money(r.Pengumpulan),num(r.Penyaluran)===null?'—':money(r.Penyaluran),num(r.Pengumpulan)===null||num(r.Penyaluran)===null?'—':money(r.Pengumpulan-r.Penyaluran)]));
+ } else if(tab==='zakat'||tab==='infaq'){
+ const isZ=tab==='zakat',rows=isZ?DATA.zakat_distribution:DATA.infaq_distribution,label=isZ?'Zakat':'Infak';
+ title.innerHTML=`<h3>Rincian penyaluran ${label}</h3><p class="sub">Nilai per bidang dalam rupiah, sesuai pencatatan pada file sumber.</p>`;
+ out.innerHTML=table(['Bulan',...cats,'Jumlah bidang'],rows.map(r=>{const vals=cats.map(c=>num(r[c])===null?'—':money(r[c]));const total=cats.reduce((s,c)=>s+(num(r[c])||0),0);return [r.Bulan,...vals,money(total)]}));
+ } else {
+ title.innerHTML='<h3>Rekap program zakat dan infak</h3><p class="sub">Angka kategori dan jumlah penerima disalin dari lembar program; satuannya mengikuti sumber.</p>';
+ const rows=months.map(m=>{const z=DATA.zakat_program_counts.find(x=>x.Bulan===m)||{},i=DATA.infaq_program_counts.find(x=>x.Bulan===m)||{};return [m,...cats.map(c=>`${integer(z[c])} / ${integer(i[c])}`),integer(z.Jumlah),integer(i.Jumlah),integer(z['Jumlah Penerima']),integer(i['Jumlah Penerima'])]});
+ out.innerHTML=table(['Bulan','Kemanusiaan Zakat/Infak','Kesehatan Zakat/Infak','Pendidikan Zakat/Infak','Ekonomi Zakat/Infak','Dakwah Zakat/Infak','Jumlah Zakat','Jumlah Infak','Penerima Zakat','Penerima Infak'],rows);
+ }
+}
+let currentTab='finance';
+document.querySelectorAll('.tab').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('.tab').forEach(x=>x.classList.toggle('active',x===b));currentTab=b.dataset.tab;renderTable(currentTab)}));
+document.getElementById('monthFilter').addEventListener('change',renderMetrics);
+
+function showLoadError(message){
+  document.getElementById('financeChart').innerHTML='<p style="color:#b45309;font-size:13px">'+message+'</p>';
+  document.getElementById('dataTable').innerHTML='<div style="padding:16px;font-size:13px;color:#b45309">Data belum berhasil dimuat. Periksa URL deployment Apps Script dan izin akses publik.</div>';
+  setText('mCollect','—');setText('mDisburse','—');setText('mBalance','—');setText('mPrograms','—');
+}
+function loadLiveData(){
+  if(!API_URL || API_URL==='TEMPEL_URL_APPS_SCRIPT_DI_SINI'){
+    showLoadError('Hubungkan Apps Script terlebih dahulu dengan menempelkan URL deployment pada variabel API_URL di index.html.');
+    return;
+  }
+  const callbackName='baznasSheetCallback';
+  const timeout=setTimeout(()=>{showLoadError('Waktu tunggu habis saat membaca Google Sheets. Coba muat ulang halaman.');},20000);
+  window[callbackName]=function(payload){
+    clearTimeout(timeout);
+    try{
+      if(!payload || payload.ok!==true) throw new Error(payload && payload.error ? payload.error : 'Respons data tidak valid.');
+      DATA=payload.data;
+      prepareData();
+      const select=document.getElementById('monthFilter');
+      select.innerHTML='<option value="all">Akumulasi tersedia</option>';
+      financeMonths.forEach(m=>{const o=document.createElement('option');o.value=m;o.textContent=m;select.appendChild(o)});
+      document.getElementById('financeChart').innerHTML=svgChart();
+      renderCategoryBars();renderMetrics();renderTable(currentTab);
+      setText('coverage', 'Data tersedia: '+(months.length ? months.join(', ') : 'belum tersedia'));
+      setText('updated','Sumber: Google Sheets · diperbarui '+(payload.updatedAt||''));
+    }catch(err){showLoadError('Gagal membaca data: '+err.message);}
+    finally{delete window[callbackName];script.remove();}
+  };
+  const script=document.createElement('script');
+  script.src=API_URL+(API_URL.includes('?')?'&':'?')+'callback='+callbackName+'&t='+Date.now();
+  script.onerror=function(){clearTimeout(timeout);showLoadError('Tidak dapat mengakses Apps Script. Pastikan deployment dapat diakses siapa saja.');delete window[callbackName];script.remove();};
+  document.head.appendChild(script);
+}
+loadLiveData();
+</script>
+</body></html>
