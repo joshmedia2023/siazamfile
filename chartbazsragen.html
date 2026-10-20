@@ -10,7 +10,7 @@
 :root{--green:#087443;--green2:#0d9657;--mint:#e9f7ef;--ink:#172b23;--muted:#687970;--line:#e2ebe5;--paper:#f5f8f6;--white:#fff;--gold:#e9b949;--red:#d86b5d;--shadow:0 12px 34px rgba(16,65,42,.07)}
 *{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.5}
 .wrap{max-width:1180px;margin:auto;padding:24px 22px 48px}
-.hero{background:linear-gradient(120deg,#075b37,#0b8750);color:white;border-radius:24px;padding:32px;position:relative;overflow:hidden;box-shadow:var(--shadow)}
+.hero{background:radial-gradient(circle at 90% 10%,#ffffff16 0,transparent 28%),linear-gradient(125deg,#06482f 0%,#087443 52%,#10945a 100%);color:white;border-radius:26px;padding:36px;position:relative;overflow:hidden;box-shadow:0 18px 42px rgba(6,72,47,.18)}
 .hero:after{content:"";position:absolute;width:320px;height:320px;border:1px solid #ffffff24;border-radius:50%;right:-80px;top:-150px;box-shadow:0 0 0 35px #ffffff0a,0 0 0 75px #ffffff08}
 .brand{display:flex;gap:12px;align-items:center;margin-bottom:24px;position:relative;z-index:1}
 .brand-mark{width:44px;height:44px;border-radius:14px;background:#ffffff1c;display:grid;place-items:center;font-size:23px}
@@ -22,11 +22,11 @@ h1{font-size:clamp(28px,4vw,43px);line-height:1.12;letter-spacing:-.035em;margin
 .section-head{display:flex;justify-content:space-between;align-items:end;gap:14px;margin:28px 0 14px}
 .section-head h2{margin:0;font-size:20px;letter-spacing:-.02em}.section-head p{margin:4px 0 0;color:var(--muted);font-size:13px}
 select,.btn{border:1px solid var(--line);border-radius:12px;background:white;padding:10px 13px;font:inherit;color:var(--ink);font-size:13px}
-.cards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
-.card,.panel{background:white;border:1px solid var(--line);border-radius:18px;padding:19px;box-shadow:var(--shadow)}
+.cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.card,.panel{background:white;border:1px solid var(--line);border-radius:20px;padding:22px;box-shadow:0 8px 26px rgba(16,65,42,.045);transition:transform .2s ease,box-shadow .2s ease}.card:hover{transform:translateY(-2px);box-shadow:0 14px 30px rgba(16,65,42,.09)}
 .metric-top{display:flex;justify-content:space-between;align-items:center;gap:8px;color:var(--muted);font-size:12px;font-weight:700}
 .metric-icon{width:34px;height:34px;border-radius:11px;background:var(--mint);display:grid;place-items:center;font-size:17px}
-.metric{font-size:clamp(19px,2.2vw,27px);font-weight:850;letter-spacing:-.04em;margin:14px 0 4px;overflow-wrap:anywhere}
+.metric{font-size:clamp(20px,2.25vw,28px);font-weight:800;letter-spacing:-.04em;margin:14px 0 4px;overflow-wrap:anywhere}
 .metric-note{font-size:12px;color:var(--muted)}
 .grid2{display:grid;grid-template-columns:1.25fr 1fr;gap:16px}
 .panel h3{font-size:16px;margin:0 0 4px}.sub{font-size:12px;color:var(--muted);margin:0 0 18px}
@@ -38,7 +38,7 @@ select,.btn{border:1px solid var(--line);border-radius:12px;background:white;pad
 .footer{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:26px;padding:18px 2px;color:var(--muted);font-size:12px;border-top:1px solid var(--line)}
 .btn{cursor:pointer;font-weight:700}.btn:hover{border-color:var(--green);color:var(--green)}
 @media(max-width:850px){.cards{grid-template-columns:repeat(2,minmax(0,1fr))}.grid2{grid-template-columns:1fr}.hero{padding:26px}.wrap{padding:14px 13px 32px}}
-@media(max-width:460px){.cards{gap:9px}.card{padding:14px}.metric{font-size:19px}.metric-top{align-items:flex-start}.metric-icon{width:29px;height:29px}.hero{border-radius:18px}.section-head{align-items:flex-start;flex-direction:column}.barrow{grid-template-columns:85px 1fr}}
+@media(max-width:460px){.cards{grid-template-columns:1fr;gap:10px}.card{padding:14px}.metric{font-size:19px}.metric-top{align-items:flex-start}.metric-icon{width:29px;height:29px}.hero{border-radius:18px}.section-head{align-items:flex-start;flex-direction:column}.barrow{grid-template-columns:85px 1fr}}
 @media print{body{background:white}.wrap{max-width:none;padding:0}.hero,.card,.panel{box-shadow:none;break-inside:avoid}.tabs,select,.btn{display:none}.table-wrap{overflow:visible}table{min-width:0;font-size:10px}th,td{padding:6px}.footer{margin-top:10px}}
 </style>
 </head>
@@ -115,7 +115,7 @@ function normalizeRow(row){
 function activeFinanceRows(){const f=document.getElementById('monthFilter').value;return financeRows().filter(r=>f==='all'||r.Bulan===f)}
 function renderMetrics(){
  const rows=activeFinanceRows(), collection=sum(rows,'Pengumpulan'), disbursement=sum(rows,'Penyaluran');
- setText('mCollect',money(collection));setText('mDisburse',money(disbursement));setText('mBalance',money(collection-disbursement));
+ setText('mCollect',money(collection));setText('mDisburse',money(disbursement));
  const z=DATA.zakat_distribution, i=DATA.infaq_distribution;
  const all=z.concat(i);let total=0;
  all.forEach(r=>cats.forEach(c=>total+=num(r[c])||0));
@@ -147,7 +147,7 @@ function renderTable(tab){
  const title=document.getElementById('tableTitle'), out=document.getElementById('dataTable');
  if(tab==='finance'){
  title.innerHTML='<h3>Pengumpulan dan penyaluran bulanan</h3><p class="sub">Angka kosong berarti belum tersedia pada file sumber, bukan bernilai nol.</p>';
- out.innerHTML=table(['Bulan','Pengumpulan','Penyaluran'],DATA.monthly.map(r=>[r.Bulan,num(r.Pengumpulan)===null?'—':money(r.Pengumpulan),num(r.Penyaluran)===null?'—':money(r.Penyaluran),num(r.Pengumpulan)===null||num(r.Penyaluran)===null?'—':money(r.Pengumpulan-r.Penyaluran)]));
+ out.innerHTML=table(['Bulan','Pengumpulan','Penyaluran'],DATA.monthly.map(r=>[r.Bulan,num(r.Pengumpulan)===null?'—':money(r.Pengumpulan),num(r.Penyaluran)===null?'—':money(r.Penyaluran)]));
  } else if(tab==='zakat'||tab==='infaq'){
  const isZ=tab==='zakat',rows=isZ?DATA.zakat_distribution:DATA.infaq_distribution,label=isZ?'Zakat':'Infak';
  title.innerHTML=`<h3>Rincian penyaluran ${label}</h3><p class="sub">Nilai per bidang dalam rupiah, sesuai pencatatan pada file sumber.</p>`;
@@ -165,7 +165,7 @@ document.getElementById('monthFilter').addEventListener('change',renderMetrics);
 function showLoadError(message){
   document.getElementById('financeChart').innerHTML='<p style="color:#b45309;font-size:13px">'+message+'</p>';
   document.getElementById('dataTable').innerHTML='<div style="padding:16px;font-size:13px;color:#b45309">Data belum berhasil dimuat. Periksa URL deployment Apps Script dan izin akses publik.</div>';
-  setText('mCollect','—');setText('mDisburse','—');setText('mBalance','—');setText('mPrograms','—');
+  setText('mCollect','—');setText('mDisburse','—');setText('mPrograms','—');
 }
 function loadLiveData(){
   if(!API_URL || !/^https:\/\/script\.google\.com\/macros\/s\//.test(API_URL)){
