@@ -73,7 +73,7 @@ select,.btn{border:1px solid var(--line);border-radius:12px;background:white;pad
 <button class="tab" data-tab="program">Program Zakat & Infak</button>
 </div>
 <section class="panel"><div id="tableTitle"><h3>Pengumpulan dan penyaluran bulanan</h3><p class="sub">Angka kosong berarti belum tersedia pada file sumber, bukan bernilai nol.</p></div><div id="dataTable" class="table-wrap"></div></section>
-<div class="note"><strong>Catatan transparansi:</strong> Data pada halaman ini diambil dari file sumber yang diunggah. Beberapa lembar memiliki periode pembaruan berbeda. Nilai kosong ditampilkan sebagai “—” dan tidak dianggap nol. Kolom jumlah/penerima pada lembar program mengikuti pencatatan di file sumber; mohon verifikasi definisi satuan sebelum digunakan sebagai angka publik final.</div>
+<div class="note"><strong>Catatan transparansi:</strong> Data pada halaman ini diambil langsung dari Google Sheets yang terhubung. Beberapa lembar memiliki periode pembaruan berbeda. Nilai kosong ditampilkan sebagai “—” dan tidak dianggap nol. Kolom jumlah/penerima pada lembar program mengikuti pencatatan di file sumber; mohon verifikasi definisi satuan sebelum digunakan sebagai angka publik final.</div>
 <footer class="footer"><span>© 2026 BAZNAS Kabupaten Sragen · Laporan Publik</span><span id="updated">Sumber: Google Sheets</span></footer>
 </div>
 <script>
@@ -84,11 +84,36 @@ const money = n => n==null || n==="" || n==="-" ? "—" : new Intl.NumberFormat(
 const integer = n => n==null || n==="" || n==="-" ? "—" : new Intl.NumberFormat('id-ID',{maximumFractionDigits:0}).format(Number(n));
 const num = v => (v===null || v==="" || v==="-" || !Number.isFinite(Number(v))) ? null : Number(v);
 const sum = (arr,key) => arr.reduce((s,r)=>s+(num(r[key])||0),0);
-const financeRows=DATA.monthly.filter(r=>num(r.Pengumpulan)!==null || num(r.Penyaluran)!==null);
-const financeMonths=financeRows.map(r=>r.Bulan);
+const financeRows=()=>DATA.monthly.filter(r=>num(r.Pengumpulan)!==null || num(r.Penyaluran)!==null);
+const financeMonths=()=>financeRows().map(r=>r.Bulan).filter(Boolean);
 const cats=['Kemanusiaan','Kesehatan','Pendidikan','Ekonomi','Dakwah Advokasi'];
 function setText(id,val){document.getElementById(id).textContent=val}
-function activeFinanceRows(){const f=document.getElementById('monthFilter').value;return financeRows.filter(r=>f==='all'||r.Bulan===f)}
+function prepareData(){
+  const keys=['monthly','zakat_program_counts','infaq_program_counts','zakat_distribution','infaq_distribution'];
+  keys.forEach(k=>{if(!Array.isArray(DATA[k])) DATA[k]=[];});
+  // Normalisasi nama kolom umum agar variasi header spreadsheet tidak memutus grafik.
+  DATA.monthly=DATA.monthly.map(normalizeRow);
+  DATA.zakat_program_counts=DATA.zakat_program_counts.map(normalizeRow);
+  DATA.infaq_program_counts=DATA.infaq_program_counts.map(normalizeRow);
+  DATA.zakat_distribution=DATA.zakat_distribution.map(normalizeRow);
+  DATA.infaq_distribution=DATA.infaq_distribution.map(normalizeRow);
+  months=[...new Set(keys.flatMap(k=>DATA[k].map(r=>r.Bulan).filter(Boolean)))];
+}
+function normalizeRow(row){
+  const out={};
+  Object.keys(row||{}).forEach(k=>{
+    const clean=String(k).trim();
+    const lower=clean.toLowerCase().replace(/[ _-]/g,'');
+    const aliases={bulan:'Bulan',periode:'Bulan',month:'Bulan',pengumpulan:'Pengumpulan',pengumpulanzakatinfak:'Pengumpulan',penyaluran:'Penyaluran',penyaluranzakatinfak:'Penyaluran',kesehataan:'Kesehatan','jumlahpenerima':'Jumlah Penerima'};
+    out[aliases[lower]||clean]=row[k];
+  });
+  if(!out.Bulan){
+    const possible=Object.keys(out).find(k=>/bulan|periode|month/i.test(k));
+    if(possible) out.Bulan=out[possible];
+  }
+  return out;
+}
+function activeFinanceRows(){const f=document.getElementById('monthFilter').value;return financeRows().filter(r=>f==='all'||r.Bulan===f)}
 function renderMetrics(){
  const rows=activeFinanceRows(), collection=sum(rows,'Pengumpulan'), disbursement=sum(rows,'Penyaluran');
  setText('mCollect',money(collection));setText('mDisburse',money(disbursement));setText('mBalance',money(collection-disbursement));
@@ -100,13 +125,14 @@ function renderMetrics(){
  setText('nDisburse',document.getElementById('monthFilter').value==='all'?'Akumulasi bulan yang tersedia':'Periode '+document.getElementById('monthFilter').value);
 }
 function svgChart(){
- const rows=financeRows, W=640,H=260, left=48,right=12,top=14,bottom=38, plotH=H-top-bottom, plotW=W-left-right;
+ const rows=financeRows(), W=640,H=260, left=48,right=12,top=14,bottom=38, plotH=H-top-bottom, plotW=W-left-right;
+ if(!rows.length) return '<p class="empty">Belum ada data pengumpulan/penyaluran untuk ditampilkan.</p>';
  const max=Math.max(1,...rows.flatMap(r=>[num(r.Pengumpulan)||0,num(r.Penyaluran)||0]));
  const niceMax=Math.ceil(max/500000000)*500000000 || max;
  let s=`<svg class="chart" viewBox="0 0 ${W} ${H}" role="img" aria-label="Grafik pengumpulan dan penyaluran bulanan">`;
  for(let t=0;t<=4;t++){let y=top+plotH*t/4, val=niceMax*(1-t/4);s+=`<line x1="${left}" y1="${y}" x2="${W-right}" y2="${y}" stroke="#e8efea" stroke-width="1"/><text x="${left-8}" y="${y+4}" text-anchor="end" fill="#87948b" font-size="10">${val===0?'0':(val/1e9).toLocaleString('id-ID',{maximumFractionDigits:1})+'M'}</text>`}
  const group=plotW/rows.length,bw=Math.min(15,group*.25);
- rows.forEach((r,i)=>{const x=left+group*i+group/2;[['Pengumpulan','#0d9657',-bw*.65],['Penyaluran','#e9b949',bw*.65]].forEach(([k,c,off])=>{let v=num(r[k])||0,h=v/niceMax*plotH,y=top+plotH-h;s+=`<rect x="${x+off-bw/2}" y="${y}" width="${bw}" height="${h}" rx="3" fill="${c}"><title>${r.Bulan} · ${k}: ${money(v)}</title></rect>`});s+=`<text x="${x}" y="${H-13}" text-anchor="middle" fill="#687970" font-size="10">${r.Bulan.slice(0,3)}</text>`});
+ rows.forEach((r,i)=>{const x=left+group*i+group/2;[['Pengumpulan','#0d9657',-bw*.65],['Penyaluran','#e9b949',bw*.65]].forEach(([k,c,off])=>{let v=num(r[k])||0,h=v/niceMax*plotH,y=top+plotH-h;s+=`<rect x="${x+off-bw/2}" y="${y}" width="${bw}" height="${h}" rx="3" fill="${c}"><title>${r.Bulan} · ${k}: ${money(v)}</title></rect>`});s+=`<text x="${x}" y="${H-13}" text-anchor="middle" fill="#687970" font-size="10">${String(r.Bulan||'').slice(0,3)}</text>`});
  s+='</svg>';return s;
 }
 function renderCategoryBars(){
@@ -143,8 +169,8 @@ function showLoadError(message){
   setText('mCollect','—');setText('mDisburse','—');setText('mBalance','—');setText('mPrograms','—');
 }
 function loadLiveData(){
-  if(!API_URL || API_URL==='https://script.google.com/macros/s/AKfycbw9l0vR66Wls2O_A3cdyadFVNmAGkLbGRWvt3E8pxAuu1_DtKkWb-fWh2bZGxxd41B4/exec'){
-    showLoadError('Hubungkan Apps Script terlebih dahulu dengan menempelkan URL deployment pada variabel API_URL di index.html.');
+  if(!API_URL || !/^https:\/\/script\.google\.com\/macros\/s\//.test(API_URL)){
+    showLoadError('Hubungkan Apps Script terlebih dahulu dengan menempelkan URL deployment pada variabel API_URL di chartbazsragen.html.');
     return;
   }
   const callbackName='baznasSheetCallback';
@@ -157,7 +183,7 @@ function loadLiveData(){
       prepareData();
       const select=document.getElementById('monthFilter');
       select.innerHTML='<option value="all">Akumulasi tersedia</option>';
-      financeMonths.forEach(m=>{const o=document.createElement('option');o.value=m;o.textContent=m;select.appendChild(o)});
+      financeMonths().forEach(m=>{const o=document.createElement('option');o.value=m;o.textContent=m;select.appendChild(o)});
       document.getElementById('financeChart').innerHTML=svgChart();
       renderCategoryBars();renderMetrics();renderTable(currentTab);
       setText('coverage', 'Data tersedia: '+(months.length ? months.join(', ') : 'belum tersedia'));
