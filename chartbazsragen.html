@@ -147,7 +147,7 @@ function renderTable(tab){
  const title=document.getElementById('tableTitle'), out=document.getElementById('dataTable');
  if(tab==='finance'){
  title.innerHTML='<h3>Pengumpulan dan penyaluran bulanan</h3><p class="sub">Angka kosong berarti belum tersedia pada file sumber, bukan bernilai nol.</p>';
- out.innerHTML=table(['Bulan','Pengumpulan','Penyaluran','Selisih'],DATA.monthly.map(r=>[r.Bulan,num(r.Pengumpulan)===null?'—':money(r.Pengumpulan),num(r.Penyaluran)===null?'—':money(r.Penyaluran),num(r.Pengumpulan)===null||num(r.Penyaluran)===null?'—':money(r.Pengumpulan-r.Penyaluran)]));
+ out.innerHTML=table(['Bulan','Pengumpulan','Penyaluran'],DATA.monthly.map(r=>[r.Bulan,num(r.Pengumpulan)===null?'—':money(r.Pengumpulan),num(r.Penyaluran)===null?'—':money(r.Penyaluran),num(r.Pengumpulan)===null||num(r.Penyaluran)===null?'—':money(r.Pengumpulan-r.Penyaluran)]));
  } else if(tab==='zakat'||tab==='infaq'){
  const isZ=tab==='zakat',rows=isZ?DATA.zakat_distribution:DATA.infaq_distribution,label=isZ?'Zakat':'Infak';
  title.innerHTML=`<h3>Rincian penyaluran ${label}</h3><p class="sub">Nilai per bidang dalam rupiah, sesuai pencatatan pada file sumber.</p>`;
