@@ -143,7 +143,7 @@ function showLoadError(message){
   setText('mCollect','—');setText('mDisburse','—');setText('mBalance','—');setText('mPrograms','—');
 }
 function loadLiveData(){
-  if(!API_URL || API_URL==='TEMPEL_URL_APPS_SCRIPT_DI_SINI'){
+  if(!API_URL || API_URL==='https://script.google.com/macros/s/AKfycbw9l0vR66Wls2O_A3cdyadFVNmAGkLbGRWvt3E8pxAuu1_DtKkWb-fWh2bZGxxd41B4/exec'){
     showLoadError('Hubungkan Apps Script terlebih dahulu dengan menempelkan URL deployment pada variabel API_URL di index.html.');
     return;
   }
