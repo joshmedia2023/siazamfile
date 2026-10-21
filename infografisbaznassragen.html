@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#087443">
+<meta name="description" content="Laporan publik pengumpulan dan penyaluran zakat, infak, serta program BAZNAS Kabupaten Sragen tahun 2026.">
+<title>Laporan Publik 2026 | BAZNAS Sragen</title>
+<style>
+:root{--green:#087443;--green2:#0d9657;--mint:#e9f7ef;--ink:#172b23;--muted:#687970;--line:#e2ebe5;--paper:#f3f6f4;--white:#fff;--gold:#e9b949;--red:#d86b5d;--shadow:0 12px 34px rgba(16,65,42,.07)}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.5}
+.wrap{max-width:1180px;margin:auto;padding:24px 22px 48px}
+.hero{background:radial-gradient(circle at 90% 10%,#ffffff16 0,transparent 28%),linear-gradient(125deg,#06482f 0%,#087443 52%,#10945a 100%);color:white;border-radius:24px;padding:34px;position:relative;overflow:hidden;box-shadow:0 18px 42px rgba(6,72,47,.18)}
+.hero:after{content:"";position:absolute;width:320px;height:320px;border:1px solid #ffffff24;border-radius:50%;right:-80px;top:-150px;box-shadow:0 0 0 35px #ffffff0a,0 0 0 75px #ffffff08}
+.brand{display:flex;gap:12px;align-items:center;margin-bottom:24px;position:relative;z-index:1}
+.brand-mark{width:90px;height:90px;flex:0 0 90px;border-radius:14px;background:#fff;display:grid;place-items:center;padding:5px;overflow:hidden;box-shadow:0 4px 14px rgba(0,0,0,.12)}.brand-logo{display:block;width:100%;height:100%;object-fit:contain}
+.eyebrow{text-transform:uppercase;letter-spacing:.14em;font-size:11px;font-weight:800;opacity:.8}
+h1{font-size:clamp(28px,4vw,43px);line-height:1.12;letter-spacing:-.035em;margin:0 0 12px;max-width:680px;position:relative;z-index:1}
+.hero p{margin:0;color:#e4f5eb;max-width:650px;font-size:15px;position:relative;z-index:1}
+.hero-foot{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px;position:relative;z-index:1}
+.pill{border:1px solid #ffffff48;background:#ffffff12;border-radius:99px;padding:7px 12px;font-size:12px;font-weight:650}
+.section-head{display:flex;justify-content:space-between;align-items:end;gap:14px;margin:28px 0 14px}
+.section-head h2{margin:0;font-size:20px;letter-spacing:-.02em}.section-head p{margin:4px 0 0;color:var(--muted);font-size:13px}
+select,.btn{border:1px solid var(--line);border-radius:12px;background:white;padding:10px 13px;font:inherit;color:var(--ink);font-size:13px}
+.cards{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px}
+.card,.panel{background:white;border:1px solid var(--line);border-radius:18px;padding:21px;box-shadow:0 8px 26px rgba(16,65,42,.045);transition:transform .2s ease,box-shadow .2s ease}.card:hover{transform:translateY(-2px);box-shadow:0 14px 30px rgba(16,65,42,.09)}
+.metric-top{display:flex;justify-content:space-between;align-items:center;gap:8px;color:var(--muted);font-size:12px;font-weight:700}
+.metric-icon{width:38px;height:38px;border-radius:12px;background:var(--mint);display:grid;place-items:center;font-size:18px;flex:0 0 auto}
+.metric{font-size:clamp(20px,2.25vw,28px);font-weight:800;letter-spacing:-.04em;margin:14px 0 4px;overflow-wrap:anywhere}
+.metric-note{font-size:12px;color:var(--muted)}
+.grid2{display:grid;grid-template-columns:1.15fr .85fr;gap:16px}
+.panel h3{font-size:16px;margin:0 0 4px}.sub{font-size:12px;color:var(--muted);margin:0 0 18px}
+.chart{width:100%;height:auto;display:block;overflow:visible}.legend{display:flex;flex-wrap:wrap;gap:15px;margin-top:12px;font-size:12px;color:var(--muted)}.dot{display:inline-block;width:9px;height:9px;border-radius:3px;margin-right:6px}
+.barlist{display:grid;gap:16px}.category-item{display:grid;grid-template-columns:38px 1fr auto;gap:11px;align-items:center}.category-icon{width:38px;height:38px;border-radius:12px;display:grid;place-items:center}.category-icon svg{width:20px;height:20px}.category-name{font-size:13px;font-weight:750}.category-meta{font-size:11px;color:var(--muted);margin-top:2px}.category-track{height:6px;background:#edf2ef;border-radius:8px;overflow:hidden;margin-top:7px}.category-fill{height:100%;border-radius:8px}.category-value{font-size:12px;font-weight:750;text-align:right;white-space:nowrap}.donut-layout{display:grid;grid-template-columns:minmax(150px,.9fr) 1.1fr;align-items:center;gap:12px}.donut-svg{width:100%;max-width:240px;margin:auto;display:block}.donut-legend{display:grid;gap:11px}.donut-row{display:grid;grid-template-columns:10px 1fr;gap:8px;align-items:start;font-size:12px}.donut-row strong{display:block;font-size:12px}.donut-row small{color:var(--muted)}.metric-accent{height:3px;border-radius:5px;margin:16px 0 0;background:var(--green)}.metric[data-kind="mustahik"]{color:#0c6e9c}.metric[data-kind="ratio"]{color:#8b5cf6}.barrow{display:grid;grid-template-columns:110px 1fr;gap:10px;align-items:center;font-size:12px}.barlabel{color:var(--muted)}.bars{display:grid;gap:5px}.bar{height:10px;border-radius:5px;background:var(--green2);min-width:2px}.bar.alt{background:var(--gold)}.barval{font-size:11px;color:var(--muted);margin-top:2px}
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}.tab{cursor:pointer;border:1px solid var(--line);border-radius:99px;background:white;padding:9px 14px;font-weight:700;font-size:12px;color:var(--muted)}.tab.active{background:var(--green);color:white;border-color:var(--green)}
+.table-wrap{overflow:auto;border:1px solid var(--line);border-radius:14px}table{width:100%;border-collapse:collapse;min-width:650px;font-size:13px}th,td{text-align:right;padding:12px 14px;border-bottom:1px solid var(--line);white-space:nowrap}th{background:#f4f8f5;color:#53665a;font-size:11px;text-transform:uppercase;letter-spacing:.04em}th:first-child,td:first-child{text-align:left}tbody tr:last-child td{border-bottom:0}tbody tr:hover{background:#f9fcfa}.num{font-variant-numeric:tabular-nums}.empty{color:#a0aaa4}
+.note{margin-top:16px;padding:14px 16px;background:#fff9e8;border:1px solid #f4e6bd;border-radius:14px;color:#715d2b;font-size:12px}
+.footer{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:26px;padding:18px 2px;color:var(--muted);font-size:12px;border-top:1px solid var(--line)}
+.btn{cursor:pointer;font-weight:700}.btn:hover{border-color:var(--green);color:var(--green)}
+@media(max-width:1000px){.cards{grid-template-columns:repeat(3,minmax(0,1fr))}.donut-layout{grid-template-columns:1fr 1fr}}@media(max-width:850px){.cards{grid-template-columns:repeat(2,minmax(0,1fr))}.grid2{grid-template-columns:1fr}.hero{padding:26px}.wrap{padding:14px 13px 32px}}
+@media(max-width:560px){.donut-layout{grid-template-columns:1fr}.donut-svg{max-width:210px}}@media(max-width:460px){.cards{grid-template-columns:1fr;gap:10px}.card{padding:14px}.metric{font-size:19px}.metric-top{align-items:flex-start}.metric-icon{width:29px;height:29px}.hero{border-radius:18px}.section-head{align-items:flex-start;flex-direction:column}.barrow{grid-template-columns:85px 1fr}}
+@media print{body{background:white}.wrap{max-width:none;padding:0}.hero,.card,.panel{box-shadow:none;break-inside:avoid}.tabs,select,.btn{display:none}.table-wrap{overflow:visible}table{min-width:0;font-size:10px}th,td{padding:6px}.footer{margin-top:10px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="hero">
+  <div class="brand"><div class="brand-mark"><img class="brand-logo" src="https://joshmedia2023.github.io/siazamfile/lh.png" alt="Logo BAZNAS Kabupaten Sragen" onerror="this.style.display='none';this.parentElement.textContent='B'"></div><div><div class="eyebrow">Transparansi & Akuntabilitas</div><strong>BAZNAS Kabupaten Sragen</strong></div></div>
+  <h1>Laporan Publik Pengumpulan & Penyaluran 2026</h1>
+  <p>Ringkasan pengumpulan dana, penyaluran, dan distribusi program sebagai wujud keterbukaan informasi kepada masyarakat.</p>
+  <div class="hero-foot"><span class="pill">Tahun 2026</span><span class="pill" id="coverage">Menghubungkan ke Google Sheets…</span><span class="pill">Laporan publik</span></div>
+</header>
+
+<div class="section-head"><div><h2>Ringkasan dana</h2><p>Pilih periode untuk melihat angka pengumpulan dan penyaluran.</p></div><select id="monthFilter" aria-label="Filter bulan"><option value="all">Akumulasi tersedia</option></select></div>
+<section class="cards">
+  <article class="card"><div class="metric-top"><span>Total Pengumpulan</span><span class="metric-icon" style="color:#087443">↗</span></div><div class="metric" id="mCollect">—</div><div class="metric-note" id="nCollect">Dana terhimpun</div><div class="metric-accent"></div></article>
+  <article class="card"><div class="metric-top"><span>Total Penyaluran</span><span class="metric-icon" style="color:#b77908;background:#fff4d7">↘</span></div><div class="metric" id="mDisburse">—</div><div class="metric-note" id="nDisburse">Dana tersalurkan</div><div class="metric-accent" style="background:#e9b949"></div></article>
+  <article class="card"><div class="metric-top"><span>Total Mustahik</span><span class="metric-icon" style="color:#0c6e9c;background:#e6f5fc">♙</span></div><div class="metric" id="mMustahik" data-kind="mustahik">—</div><div class="metric-note" id="nMustahik">Penerima manfaat tercatat</div><div class="metric-accent" style="background:#0c9ac7"></div></article>
+  <article class="card"><div class="metric-top"><span>Rasio Penyaluran</span><span class="metric-icon" style="color:#7c3aed;background:#f0eaff">◉</span></div><div class="metric" id="mRatio" data-kind="ratio">—</div><div class="metric-note" id="nRatio">Penyaluran dibanding pengumpulan</div><div class="metric-accent" style="background:#8b5cf6"></div></article>
+  <article class="card"><div class="metric-top"><span>Penyaluran Program</span><span class="metric-icon" style="color:#be185d;background:#fce7f3">♡</span></div><div class="metric" id="mPrograms">—</div><div class="metric-note" id="nPrograms">Akumulasi kategori program</div><div class="metric-accent" style="background:#db2777"></div></article>
+</section>
+
+<div class="section-head"><div><h2>Pergerakan dana</h2><p>Perbandingan pengumpulan dan penyaluran per bulan.</p></div></div>
+<div class="grid2">
+  <section class="panel"><h3>Pengumpulan vs penyaluran</h3><p class="sub">Nilai dalam rupiah (Rp).</p><div id="financeChart"></div><div class="legend"><span><i class="dot" style="background:#0d9657"></i>Pengumpulan</span><span><i class="dot" style="background:#e9b949"></i>Penyaluran</span></div></section>
+  <section class="panel"><h3>Penyaluran menurut bidang</h3><p class="sub">Proporsi nilai penyaluran zakat dan infak pada setiap bidang.</p><div id="categoryPie"></div></section><section class="panel"><h3>Rincian nilai per bidang</h3><p class="sub">Perbandingan nominal penyaluran berdasarkan kategori program.</p><div id="categoryBars" class="barlist"></div></section>
+</div>
+
+<div class="section-head"><div><h2>Rincian laporan</h2><p>Gunakan tab untuk melihat data sesuai kelompok laporan.</p></div><button class="btn" onclick="window.print()">Cetak / Simpan PDF</button></div>
+<div class="tabs" role="tablist">
+<button class="tab active" data-tab="finance">Pengumpulan & Penyaluran</button>
+<button class="tab" data-tab="zakat">Penyaluran Zakat</button>
+<button class="tab" data-tab="infaq">Penyaluran Infak</button>
+<button class="tab" data-tab="program">Program Zakat & Infak</button>
+</div>
+<section class="panel"><div id="tableTitle"><h3>Pengumpulan dan penyaluran bulanan</h3><p class="sub">Angka kosong berarti belum tersedia pada file sumber, bukan bernilai nol.</p></div><div id="dataTable" class="table-wrap"></div></section>
+<footer class="footer"><span>© 2026 BAZNAS Kabupaten Sragen · Laporan Publik</span><span id="updated">Sumber: Google Sheets</span></footer>
+</div>
+<script>
+let DATA = {monthly:[],zakat_program_counts:[],infaq_program_counts:[],zakat_distribution:[],infaq_distribution:[]};
+const API_URL = "https://script.google.com/macros/s/AKfycbw9l0vR66Wls2O_A3cdyadFVNmAGkLbGRWvt3E8pxAuu1_DtKkWb-fWh2bZGxxd41B4/exec";
+let months = [];
+const money = n => n==null || n==="" || n==="-" ? "—" : new Intl.NumberFormat('id-ID',{style:'currency',currency:'IDR',maximumFractionDigits:0}).format(Number(n));
+const integer = n => n==null || n==="" || n==="-" ? "—" : new Intl.NumberFormat('id-ID',{maximumFractionDigits:0}).format(Number(n));
+const num = v => (v===null || v==="" || v==="-" || !Number.isFinite(Number(v))) ? null : Number(v);
+const sum = (arr,key) => arr.reduce((s,r)=>s+(num(r[key])||0),0);
+const financeRows=()=>DATA.monthly.filter(r=>num(r.Pengumpulan)!==null || num(r.Penyaluran)!==null);
+const financeMonths=()=>financeRows().map(r=>r.Bulan).filter(Boolean);
+const cats=['Kemanusiaan','Kesehatan','Pendidikan','Dakwah Advokasi','Ekonomi'];
+const categoryMeta={
+ 'Kemanusiaan':{color:'#e45b63',bg:'#fff0f1',icon:'<path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1.1L12 21l7.8-7.5 1.1-1.1a5.5 5.5 0 0 0-.1-7.8Z"/>'},
+ 'Kesehatan':{color:'#159b87',bg:'#e6f8f3',icon:'<path d="M12 22s8-4 8-11V5l-8-3-8 3v6c0 7 8 11 8 11Z"/><path d="M12 8v8M8 12h8"/>'},
+ 'Pendidikan':{color:'#4778e8',bg:'#edf2ff',icon:'<path d="m2 10 10-5 10 5-10 5-10-5Z"/><path d="M6 12v5c3.5 3 8.5 3 12 0v-5M22 10v6"/>'},
+ 'Dakwah Advokasi':{color:'#8b5cf6',bg:'#f2edff',icon:'<path d="M3 10v4h4l5 4V6l-5 4H3Z"/><path d="M16 9a5 5 0 0 1 0 6M18.5 5.5a9 9 0 0 1 0 13"/>'},
+ 'Ekonomi':{color:'#d99417',bg:'#fff5df',icon:'<path d="M3 3v18h18"/><path d="m7 14 4-4 3 3 6-7"/>'}
+};
+function categoryIcon(c){const m=categoryMeta[c];return `<span class="category-icon" style="color:${m.color};background:${m.bg}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${m.icon}</svg></span>`}
+function categoryValue(c){return c==='Dakwah Advokasi'?'Dakwah':c}
+function setText(id,val){document.getElementById(id).textContent=val}
+function prepareData(){
+  const keys=['monthly','zakat_program_counts','infaq_program_counts','zakat_distribution','infaq_distribution'];
+  keys.forEach(k=>{if(!Array.isArray(DATA[k])) DATA[k]=[];});
+  // Normalisasi nama kolom umum agar variasi header spreadsheet tidak memutus grafik.
+  DATA.monthly=DATA.monthly.map(normalizeRow);
+  DATA.zakat_program_counts=DATA.zakat_program_counts.map(normalizeRow);
+  DATA.infaq_program_counts=DATA.infaq_program_counts.map(normalizeRow);
+  DATA.zakat_distribution=DATA.zakat_distribution.map(normalizeRow);
+  DATA.infaq_distribution=DATA.infaq_distribution.map(normalizeRow);
+  months=[...new Set(keys.flatMap(k=>DATA[k].map(r=>r.Bulan).filter(Boolean)))];
+}
+function normalizeRow(row){
+  const out={};
+  Object.keys(row||{}).forEach(k=>{
+    const clean=String(k).trim();
+    const lower=clean.toLowerCase().replace(/[ _-]/g,'');
+    const aliases={bulan:'Bulan',periode:'Bulan',month:'Bulan',pengumpulan:'Pengumpulan',pengumpulanzakatinfak:'Pengumpulan',penyaluran:'Penyaluran',penyaluranzakatinfak:'Penyaluran',kesehataan:'Kesehatan','jumlahpenerima':'Jumlah Penerima'};
+    out[aliases[lower]||clean]=row[k];
+  });
+  if(!out.Bulan){
+    const possible=Object.keys(out).find(k=>/bulan|periode|month/i.test(k));
+    if(possible) out.Bulan=out[possible];
+  }
+  return out;
+}
+function activeFinanceRows(){const f=document.getElementById('monthFilter').value;return financeRows().filter(r=>f==='all'||r.Bulan===f)}
+function renderMetrics(){
+ const rows=activeFinanceRows(), collection=sum(rows,'Pengumpulan'), disbursement=sum(rows,'Penyaluran');
+ setText('mCollect',money(collection));setText('mDisburse',money(disbursement));
+ const z=DATA.zakat_distribution, i=DATA.infaq_distribution;let total=0;
+ [...z,...i].forEach(r=>cats.forEach(c=>total+=num(r[c])||0));
+ setText('mPrograms',money(total));setText('nPrograms','Total nilai bidang pada lembar penyaluran');
+ const programRows=[...DATA.zakat_program_counts,...DATA.infaq_program_counts];
+ const mustahik=programRows.reduce((s,r)=>s+(num(r['Jumlah Penerima'])||0),0);
+ setText('mMustahik',integer(mustahik));
+ setText('nMustahik','Akumulasi angka penerima dari data program');
+ setText('mRatio',collection>0?(disbursement/collection*100).toLocaleString('id-ID',{maximumFractionDigits:1})+'%':'—');
+ setText('nRatio',collection>0?'Penyaluran ÷ pengumpulan':'Belum dapat dihitung tanpa data pengumpulan');
+ const f=document.getElementById('monthFilter').value;
+ setText('nCollect',f==='all'?'Akumulasi bulan yang tersedia':'Periode '+f);
+ setText('nDisburse',f==='all'?'Akumulasi bulan yang tersedia':'Periode '+f);
+}
+function svgChart(){
+ const rows=financeRows(), W=640,H=260, left=48,right=12,top=14,bottom=38, plotH=H-top-bottom, plotW=W-left-right;
+ if(!rows.length) return '<p class="empty">Belum ada data pengumpulan/penyaluran untuk ditampilkan.</p>';
+ const max=Math.max(1,...rows.flatMap(r=>[num(r.Pengumpulan)||0,num(r.Penyaluran)||0]));
+ const niceMax=Math.ceil(max/500000000)*500000000 || max;
+ let s=`<svg class="chart" viewBox="0 0 ${W} ${H}" role="img" aria-label="Grafik pengumpulan dan penyaluran bulanan">`;
+ for(let t=0;t<=4;t++){let y=top+plotH*t/4, val=niceMax*(1-t/4);s+=`<line x1="${left}" y1="${y}" x2="${W-right}" y2="${y}" stroke="#e8efea" stroke-width="1"/><text x="${left-8}" y="${y+4}" text-anchor="end" fill="#87948b" font-size="10">${val===0?'0':(val/1e9).toLocaleString('id-ID',{maximumFractionDigits:1})+'M'}</text>`}
+ const group=plotW/rows.length,bw=Math.min(15,group*.25);
+ rows.forEach((r,i)=>{const x=left+group*i+group/2;[['Pengumpulan','#0d9657',-bw*.65],['Penyaluran','#e9b949',bw*.65]].forEach(([k,c,off])=>{let v=num(r[k])||0,h=v/niceMax*plotH,y=top+plotH-h;s+=`<rect x="${x+off-bw/2}" y="${y}" width="${bw}" height="${h}" rx="3" fill="${c}"><title>${r.Bulan} · ${k}: ${money(v)}</title></rect>`});s+=`<text x="${x}" y="${H-13}" text-anchor="middle" fill="#687970" font-size="10">${String(r.Bulan||'').slice(0,3)}</text>`});
+ s+='</svg>';return s;
+}
+function categoryTotals(){
+ const z=DATA.zakat_distribution,i=DATA.infaq_distribution,totals={};
+ cats.forEach(c=>totals[c]=sum(z,c)+sum(i,c));
+ return totals;
+}
+function renderCategoryBars(){
+ const totals=categoryTotals(), max=Math.max(1,...Object.values(totals)), total=Object.values(totals).reduce((a,b)=>a+b,0);
+ document.getElementById('categoryBars').innerHTML=cats.map(c=>{
+  const m=categoryMeta[c],v=totals[c],pct=total>0?v/total*100:0;
+  return `<div class="category-item">${categoryIcon(c)}<div><div class="category-name">${categoryValue(c)}</div><div class="category-track"><div class="category-fill" style="width:${Math.max(v>0?2:0,v/max*100)}%;background:${m.color}"></div></div><div class="category-meta">${pct.toLocaleString('id-ID',{maximumFractionDigits:1})}% dari total bidang</div></div><div class="category-value">${money(v)}</div></div>`;
+ }).join('');
+}
+function renderCategoryPie(){
+ const totals=categoryTotals(), total=Object.values(totals).reduce((a,b)=>a+b,0);
+ const el=document.getElementById('categoryPie');
+ if(total<=0){el.innerHTML='<p class="empty">Data penyaluran per bidang belum tersedia untuk membentuk diagram.</p>';return}
+ let offset=0,circles='';
+ cats.forEach(c=>{
+  const v=totals[c],pct=v/total*100,dash=pct*4.1469;
+  circles+=`<circle cx="100" cy="100" r="66" fill="none" stroke="${categoryMeta[c].color}" stroke-width="25" stroke-dasharray="${dash} ${414.69-dash}" stroke-dashoffset="${-offset*4.1469}" transform="rotate(-90 100 100)"><title>${categoryValue(c)}: ${money(v)} (${pct.toLocaleString('id-ID',{maximumFractionDigits:1})}%)</title></circle>`;
+  offset+=pct;
+ });
+ el.innerHTML=`<div class="donut-layout"><svg class="donut-svg" viewBox="0 0 200 200" role="img" aria-label="Diagram lingkaran penyaluran per bidang">${circles}<text x="100" y="94" text-anchor="middle" font-size="10" fill="#687970">TOTAL PENYALURAN</text><text x="100" y="113" text-anchor="middle" font-size="12" font-weight="800" fill="#172b23">${total>=1e9?(total/1e9).toLocaleString('id-ID',{maximumFractionDigits:1})+' M':total>=1e6?(total/1e6).toLocaleString('id-ID',{maximumFractionDigits:1})+' jt':integer(total)}</text></svg><div class="donut-legend">${cats.map(c=>`<div class="donut-row"><i class="dot" style="background:${categoryMeta[c].color};margin-top:4px"></i><div><strong>${categoryValue(c)}</strong><small>${money(totals[c])} · ${(totals[c]/total*100).toLocaleString('id-ID',{maximumFractionDigits:1})}%</small></div></div>`).join('')}</div></div>`;
+}
+function table(headers,rows){
+ return `<table><thead><tr>${headers.map(h=>`<th>${h}</th>`).join('')}</tr></thead><tbody>${rows.map(r=>`<tr>${r.map((v,i)=>`<td class="${i?'num':''}">${v===null||v===undefined||v===''||v==='-'?'<span class="empty">—</span>':v}</td>`).join('')}</tr>`).join('')}</tbody></table>`;
+}
+function renderTable(tab){
+ const title=document.getElementById('tableTitle'), out=document.getElementById('dataTable');
+ if(tab==='finance'){
+ title.innerHTML='<h3>Pengumpulan dan penyaluran bulanan</h3><p class="sub">Angka kosong berarti belum tersedia pada file sumber, bukan bernilai nol.</p>';
+ out.innerHTML=table(['Bulan','Pengumpulan','Penyaluran'],DATA.monthly.map(r=>[r.Bulan,num(r.Pengumpulan)===null?'—':money(r.Pengumpulan),num(r.Penyaluran)===null?'—':money(r.Penyaluran)]));
+ } else if(tab==='zakat'||tab==='infaq'){
+ const isZ=tab==='zakat',rows=isZ?DATA.zakat_distribution:DATA.infaq_distribution,label=isZ?'Zakat':'Infak';
+ title.innerHTML=`<h3>Rincian penyaluran ${label}</h3><p class="sub">Nilai per bidang dalam rupiah, sesuai pencatatan pada file sumber.</p>`;
+ out.innerHTML=table(['Bulan',...cats,'Jumlah bidang'],rows.map(r=>{const vals=cats.map(c=>num(r[c])===null?'—':money(r[c]));const total=cats.reduce((s,c)=>s+(num(r[c])||0),0);return [r.Bulan,...vals,money(total)]}));
+ } else {
+ title.innerHTML='<h3>Rekap program zakat dan infak</h3><p class="sub">Angka kategori dan jumlah penerima disalin dari lembar program; satuannya mengikuti sumber.</p>';
+ const rows=months.map(m=>{const z=DATA.zakat_program_counts.find(x=>x.Bulan===m)||{},i=DATA.infaq_program_counts.find(x=>x.Bulan===m)||{};return [m,...cats.map(c=>`${integer(z[c])} / ${integer(i[c])}`),integer(z.Jumlah),integer(i.Jumlah),integer(z['Jumlah Penerima']),integer(i['Jumlah Penerima'])]});
+ out.innerHTML=table(['Bulan','Kemanusiaan Zakat/Infak','Kesehatan Zakat/Infak','Pendidikan Zakat/Infak','Ekonomi Zakat/Infak','Dakwah Zakat/Infak','Jumlah Zakat','Jumlah Infak','Penerima Zakat','Penerima Infak'],rows);
+ }
+}
+let currentTab='finance';
+document.querySelectorAll('.tab').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('.tab').forEach(x=>x.classList.toggle('active',x===b));currentTab=b.dataset.tab;renderTable(currentTab)}));
+document.getElementById('monthFilter').addEventListener('change',renderMetrics);
+
+function showLoadError(message){
+  document.getElementById('financeChart').innerHTML='<p style="color:#b45309;font-size:13px">'+message+'</p>';
+  document.getElementById('dataTable').innerHTML='<div style="padding:16px;font-size:13px;color:#b45309">Data belum berhasil dimuat. Periksa URL deployment Apps Script dan izin akses publik.</div>';
+  setText('mCollect','—');setText('mDisburse','—');setText('mMustahik','—');setText('mRatio','—');setText('mPrograms','—');
+}
+function loadLiveData(){
+  if(!API_URL || !/^https:\/\/script\.google\.com\/macros\/s\//.test(API_URL)){
+    showLoadError('Hubungkan Apps Script terlebih dahulu dengan menempelkan URL deployment pada variabel API_URL di chartbazsragen.html.');
+    return;
+  }
+  const callbackName='baznasSheetCallback';
+  const timeout=setTimeout(()=>{showLoadError('Waktu tunggu habis saat membaca Google Sheets. Coba muat ulang halaman.');},20000);
+  window[callbackName]=function(payload){
+    clearTimeout(timeout);
+    try{
+      if(!payload || payload.ok!==true) throw new Error(payload && payload.error ? payload.error : 'Respons data tidak valid.');
+      DATA=payload.data;
+      prepareData();
+      const select=document.getElementById('monthFilter');
+      select.innerHTML='<option value="all">Akumulasi tersedia</option>';
+      financeMonths().forEach(m=>{const o=document.createElement('option');o.value=m;o.textContent=m;select.appendChild(o)});
+      document.getElementById('financeChart').innerHTML=svgChart();
+      renderCategoryBars();renderCategoryPie();renderMetrics();renderTable(currentTab);
+      setText('coverage', 'Data tersedia: '+(months.length ? months.join(', ') : 'belum tersedia'));
+      setText('updated','Sumber: Google Sheets · diperbarui '+(payload.updatedAt||''));
+    }catch(err){showLoadError('Gagal membaca data: '+err.message);}
+    finally{delete window[callbackName];script.remove();}
+  };
+  const script=document.createElement('script');
+  script.src=API_URL+(API_URL.includes('?')?'&':'?')+'callback='+callbackName+'&t='+Date.now();
+  script.onerror=function(){clearTimeout(timeout);showLoadError('Tidak dapat mengakses Apps Script. Pastikan deployment dapat diakses siapa saja.');delete window[callbackName];script.remove();};
+  document.head.appendChild(script);
+}
+loadLiveData();
+</script>
+</body></html>
