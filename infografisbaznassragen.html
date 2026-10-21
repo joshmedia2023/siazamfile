@@ -23,11 +23,11 @@ h1{font-size:clamp(28px,4vw,43px);line-height:1.12;letter-spacing:-.035em;margin
 .section-head h2{margin:0;font-size:20px;letter-spacing:-.02em}.section-head p{margin:4px 0 0;color:var(--muted);font-size:13px}
 select,.btn{border:1px solid var(--line);border-radius:12px;background:white;padding:10px 13px;font:inherit;color:var(--ink);font-size:13px}
 .cards{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px}
-.card,.panel{background:white;border:1px solid var(--line);border-radius:18px;padding:21px;box-shadow:0 8px 26px rgba(16,65,42,.045);transition:transform .2s ease,box-shadow .2s ease}.card:hover{transform:translateY(-2px);box-shadow:0 14px 30px rgba(16,65,42,.09)}
-.metric-top{display:flex;justify-content:space-between;align-items:center;gap:8px;color:var(--muted);font-size:10px;font-weight:700}
+.card,.panel{background:white;border:1px solid var(--line);border-radius:18px;padding:18px;min-width:0;box-shadow:0 8px 26px rgba(16,65,42,.045);transition:transform .2s ease,box-shadow .2s ease}.card:hover{transform:translateY(-2px);box-shadow:0 14px 30px rgba(16,65,42,.09)}
+.metric-top{display:flex;justify-content:space-between;align-items:center;gap:8px;color:var(--muted);font-size:12px;line-height:1.35;font-weight:700;min-height:38px}
 .metric-icon{width:38px;height:38px;border-radius:12px;background:var(--mint);display:grid;place-items:center;font-size:18px;flex:0 0 auto}
-.metric{font-size:clamp(20px,2.25vw,28px);font-weight:800;letter-spacing:-.04em;margin:14px 0 4px;overflow-wrap:anywhere}
-.metric-note{font-size:12px;color:var(--muted)}
+.metric{font-size:clamp(16px,1.55vw,25px);line-height:1.25;font-weight:800;letter-spacing:-.035em;margin:13px 0 6px;overflow-wrap:anywhere;word-break:normal;min-width:0}
+.metric-note{font-size:11px;line-height:1.45;color:var(--muted);min-height:32px}
 .grid2{display:grid;grid-template-columns:1.15fr .85fr;gap:16px}
 .panel h3{font-size:16px;margin:0 0 4px}.sub{font-size:12px;color:var(--muted);margin:0 0 18px}
 .chart{width:100%;height:auto;display:block;overflow:visible}.legend{display:flex;flex-wrap:wrap;gap:15px;margin-top:12px;font-size:12px;color:var(--muted)}.dot{display:inline-block;width:9px;height:9px;border-radius:3px;margin-right:6px}
@@ -37,8 +37,8 @@ select,.btn{border:1px solid var(--line);border-radius:12px;background:white;pad
 .note{margin-top:16px;padding:14px 16px;background:#fff9e8;border:1px solid #f4e6bd;border-radius:14px;color:#715d2b;font-size:12px}
 .footer{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:26px;padding:18px 2px;color:var(--muted);font-size:12px;border-top:1px solid var(--line)}
 .btn{cursor:pointer;font-weight:700}.btn:hover{border-color:var(--green);color:var(--green)}
-@media(max-width:1000px){.cards{grid-template-columns:repeat(3,minmax(0,1fr))}.donut-layout{grid-template-columns:1fr 1fr}}@media(max-width:850px){.cards{grid-template-columns:repeat(2,minmax(0,1fr))}.grid2{grid-template-columns:1fr}.hero{padding:26px}.wrap{padding:14px 13px 32px}}
-@media(max-width:560px){.donut-layout{grid-template-columns:1fr}.donut-svg{max-width:210px}}@media(max-width:460px){.cards{grid-template-columns:1fr;gap:10px}.card{padding:14px}.metric{font-size:19px}.metric-top{align-items:flex-start}.metric-icon{width:29px;height:29px}.hero{border-radius:18px}.section-head{align-items:flex-start;flex-direction:column}.barrow{grid-template-columns:85px 1fr}}
+@media(max-width:1150px){.cards{grid-template-columns:repeat(3,minmax(0,1fr))}.donut-layout{grid-template-columns:1fr 1fr}}@media(max-width:1000px){.cards{grid-template-columns:repeat(3,minmax(0,1fr))}.donut-layout{grid-template-columns:1fr 1fr}}@media(max-width:850px){.cards{grid-template-columns:repeat(2,minmax(0,1fr))}.grid2{grid-template-columns:1fr}.hero{padding:26px}.wrap{padding:14px 13px 32px}}
+@media(max-width:560px){.donut-layout{grid-template-columns:1fr}.donut-svg{max-width:210px}}@media(max-width:460px){.cards{grid-template-columns:1fr;gap:10px}.card{padding:14px}.metric{font-size:22px}.metric-top{align-items:flex-start}.metric-icon{width:29px;height:29px}.hero{border-radius:18px}.section-head{align-items:flex-start;flex-direction:column}.barrow{grid-template-columns:85px 1fr}}
 @media print{body{background:white}.wrap{max-width:none;padding:0}.hero,.card,.panel{box-shadow:none;break-inside:avoid}.tabs,select,.btn{display:none}.table-wrap{overflow:visible}table{min-width:0;font-size:10px}th,td{padding:6px}.footer{margin-top:10px}}
 </style>
 </head>
@@ -48,7 +48,7 @@ select,.btn{border:1px solid var(--line);border-radius:12px;background:white;pad
   <div class="brand"><div class="brand-mark"><img class="brand-logo" src="https://joshmedia2023.github.io/siazamfile/lh.png" alt="Logo BAZNAS Kabupaten Sragen" onerror="this.style.display='none';this.parentElement.textContent='B'"></div><div><div class="eyebrow">Transparansi & Akuntabilitas</div><strong>BAZNAS Kabupaten Sragen</strong></div></div>
   <h1>Laporan Publik Pengumpulan & Penyaluran 2026</h1>
   <p>Ringkasan pengumpulan dana, penyaluran, dan distribusi program sebagai wujud keterbukaan informasi kepada masyarakat.</p>
-    <div class="hero-foot"><span class="pill">Tahun 2026</span><span class="pill" id="coverage">Menghubungkan ke Database</span><span class="pill">Laporan publik</span></div>
+  <div class="hero-foot"><span class="pill">Tahun 2026</span><span class="pill" id="coverage" hidden></span><span class="pill">Laporan publik</span></div>
 </header>
 
 <div class="section-head"><div><h2>Ringkasan dana</h2><p>Pilih periode untuk melihat angka pengumpulan dan penyaluran.</p></div><select id="monthFilter" aria-label="Filter bulan"><option value="all">Akumulasi tersedia</option></select></div>
@@ -65,6 +65,9 @@ select,.btn{border:1px solid var(--line);border-radius:12px;background:white;pad
   <section class="panel"><h3>Pengumpulan vs penyaluran</h3><p class="sub">Nilai dalam rupiah (Rp).</p><div id="financeChart"></div><div class="legend"><span><i class="dot" style="background:#0d9657"></i>Pengumpulan</span><span><i class="dot" style="background:#e9b949"></i>Penyaluran</span></div></section>
   <section class="panel"><h3>Penyaluran menurut bidang</h3><p class="sub">Proporsi nilai penyaluran zakat dan infak pada setiap bidang.</p><div id="categoryPie"></div></section><section class="panel"><h3>Rincian nilai per bidang</h3><p class="sub">Perbandingan nominal penyaluran berdasarkan kategori program.</p><div id="categoryBars" class="barlist"></div></section>
 </div>
+
+<div class="section-head"><div><h2>Rekapitulasi mustahik per bidang</h2><p>Jumlah penerima manfaat berdasarkan bidang program zakat dan infak.</p></div></div>
+<section class="panel"><div id="mustahikByCategory" class="barlist"></div><p class="sub" style="margin:16px 0 0">Catatan: rekap mengikuti angka penerima pada lembar program sumber. Jika data per bulan merupakan penerima yang sama, total akumulasi dapat menghitung penerima berulang.</p></section>
 
 <div class="section-head"><div><h2>Rincian laporan</h2><p>Gunakan tab untuk melihat data sesuai kelompok laporan.</p></div><button class="btn" onclick="window.print()">Cetak / Simpan PDF</button></div>
 <div class="tabs" role="tablist">
@@ -174,6 +177,17 @@ function renderCategoryPie(){
  });
  el.innerHTML=`<div class="donut-layout"><svg class="donut-svg" viewBox="0 0 200 200" role="img" aria-label="Diagram lingkaran penyaluran per bidang">${circles}<text x="100" y="94" text-anchor="middle" font-size="10" fill="#687970">TOTAL PENYALURAN</text><text x="100" y="113" text-anchor="middle" font-size="12" font-weight="800" fill="#172b23">${total>=1e9?(total/1e9).toLocaleString('id-ID',{maximumFractionDigits:1})+' M':total>=1e6?(total/1e6).toLocaleString('id-ID',{maximumFractionDigits:1})+' jt':integer(total)}</text></svg><div class="donut-legend">${cats.map(c=>`<div class="donut-row"><i class="dot" style="background:${categoryMeta[c].color};margin-top:4px"></i><div><strong>${categoryValue(c)}</strong><small>${money(totals[c])} · ${(totals[c]/total*100).toLocaleString('id-ID',{maximumFractionDigits:1})}%</small></div></div>`).join('')}</div></div>`;
 }
+function renderMustahikByCategory(){
+ const all=[...DATA.zakat_program_counts,...DATA.infaq_program_counts];
+ const totals={};cats.forEach(c=>totals[c]=all.reduce((sum,row)=>sum+(num(row[c])||0),0));
+ const total=Object.values(totals).reduce((a,b)=>a+b,0),max=Math.max(1,...Object.values(totals));
+ const el=document.getElementById('mustahikByCategory');
+ if(!all.length || total===0){el.innerHTML='<p class="empty">Data jumlah penerima per bidang belum tersedia pada lembar program.</p>';return}
+ el.innerHTML=cats.map(c=>{
+  const v=totals[c],m=categoryMeta[c],pct=v/total*100;
+  return `<div class="category-item">${categoryIcon(c)}<div><div class="category-name">${categoryValue(c)}</div><div class="category-track"><div class="category-fill" style="width:${Math.max(v>0?2:0,v/max*100)}%;background:${m.color}"></div></div><div class="category-meta">${pct.toLocaleString('id-ID',{maximumFractionDigits:1})}% dari jumlah bidang</div></div><div class="category-value">${integer(v)} orang</div></div>`;
+ }).join('');
+}
 function table(headers,rows){
  return `<table><thead><tr>${headers.map(h=>`<th>${h}</th>`).join('')}</tr></thead><tbody>${rows.map(r=>`<tr>${r.map((v,i)=>`<td class="${i?'num':''}">${v===null||v===undefined||v===''||v==='-'?'<span class="empty">—</span>':v}</td>`).join('')}</tr>`).join('')}</tbody></table>`;
 }
@@ -218,8 +232,8 @@ function loadLiveData(){
       select.innerHTML='<option value="all">Akumulasi tersedia</option>';
       financeMonths().forEach(m=>{const o=document.createElement('option');o.value=m;o.textContent=m;select.appendChild(o)});
       document.getElementById('financeChart').innerHTML=svgChart();
-      renderCategoryBars();renderCategoryPie();renderMetrics();renderTable(currentTab);
-      setText('coverage', 'Data tersedia: '+(months.length ? months.join(', ') : 'belum tersedia'));
+      renderCategoryBars();renderCategoryPie();renderMustahikByCategory();renderMetrics();renderTable(currentTab);
+      setText('coverage', '');
       setText('updated','Sumber: Google Sheets · diperbarui '+(payload.updatedAt||''));
     }catch(err){showLoadError('Gagal membaca data: '+err.message);}
     finally{delete window[callbackName];script.remove();}
