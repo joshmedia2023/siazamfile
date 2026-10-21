@@ -1,1 +1,0 @@
-import{auth,signOut,onAuthStateChanged}from'./firebase.js';onAuthStateChanged(auth,u=>{if(!u)location.href='index.html'});logout.onclick=()=>signOut(auth).then(()=>location.href='index.html');requests.textContent='Endpoint approval siap dikembangkan.';attendance.textContent='Monitoring absensi siap dikembangkan.';
