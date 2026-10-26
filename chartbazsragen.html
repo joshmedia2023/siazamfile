@@ -4,11 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#087443">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;650;700;750;800&display=swap" rel="stylesheet">
 <meta name="description" content="Laporan publik pengumpulan dan penyaluran zakat, infak, serta program BAZNAS Kabupaten Sragen tahun 2026.">
 <title>Laporan Publik 2026 | BAZNAS Sragen</title>
 <style>
 :root{--green:#087443;--green2:#0d9657;--mint:#e9f7ef;--ink:#172b23;--muted:#687970;--line:#e2ebe5;--paper:#f3f6f4;--white:#fff;--gold:#e9b949;--red:#d86b5d;--shadow:0 12px 34px rgba(16,65,42,.07)}
-*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.5}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:"Inter","Plus Jakarta Sans",ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.5}
 .wrap{max-width:1180px;margin:auto;padding:24px 22px 48px}
 .hero{background:radial-gradient(circle at 90% 10%,#ffffff16 0,transparent 28%),linear-gradient(125deg,#06482f 0%,#087443 52%,#10945a 100%);color:white;border-radius:24px;padding:34px;position:relative;overflow:hidden;box-shadow:0 18px 42px rgba(6,72,47,.18)}
 .hero:after{content:"";position:absolute;width:320px;height:320px;border:1px solid #ffffff24;border-radius:50%;right:-80px;top:-150px;box-shadow:0 0 0 35px #ffffff0a,0 0 0 75px #ffffff08}
@@ -41,6 +44,156 @@ select,.btn{border:1px solid var(--line);border-radius:12px;background:white;pad
 @media(max-width:1150px){.cards{grid-template-columns:repeat(3,minmax(0,1fr))}.donut-layout{grid-template-columns:1fr 1fr}}@media(max-width:1000px){.cards{grid-template-columns:repeat(3,minmax(0,1fr))}.donut-layout{grid-template-columns:1fr 1fr}}@media(max-width:850px){.cards{grid-template-columns:repeat(2,minmax(0,1fr))}.grid2{grid-template-columns:1fr}.hero{padding:26px}.wrap{padding:14px 13px 32px}}
 @media(max-width:560px){.donut-layout{grid-template-columns:1fr}.donut-svg{max-width:210px}}@media(max-width:460px){.cards{grid-template-columns:1fr;gap:10px}.card{padding:14px}.metric{font-size:22px}.metric-top{align-items:flex-start}.metric-icon{width:29px;height:29px}.hero{border-radius:18px}.section-head{align-items:flex-start;flex-direction:column}.barrow{grid-template-columns:85px 1fr}}
 @media print{body{background:white}.wrap{max-width:none;padding:0}.hero,.card,.panel{box-shadow:none;break-inside:avoid}.tabs,select,.btn{display:none}.table-wrap{overflow:visible}table{min-width:0;font-size:10px}th,td{padding:6px}.footer{margin-top:10px}}
+
+/* ===== Penyempurnaan visual: tipografi, hierarki, dan keterbacaan ===== */
+:root{
+  --green:#087443;--green2:#0d9657;--mint:#e9f7ef;--ink:#172b23;
+  --muted:#64756b;--line:#e3ebe5;--paper:#f5f8f6;--white:#fff;
+  --gold:#e9b949;--red:#d86b5d;--shadow:0 10px 30px rgba(16,65,42,.055);
+}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{font-size:15px;line-height:1.65;letter-spacing:-.01em;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+.wrap{max-width:1240px;padding:30px 26px 52px}
+.hero{padding:clamp(26px,4vw,44px);border-radius:26px;box-shadow:0 20px 48px rgba(6,72,47,.16)}
+.brand{gap:16px;margin-bottom:30px}
+.brand-mark{width:82px;height:82px;flex-basis:82px;border-radius:18px;padding:7px}
+.eyebrow{font-size:11px;letter-spacing:.16em;line-height:1.5}
+.brand strong{font-size:15px;letter-spacing:.005em}
+h1{font-size:clamp(30px,4vw,46px);line-height:1.13;letter-spacing:-.045em;font-weight:800;max-width:760px}
+.hero p{font-size:15px;line-height:1.75;max-width:700px}
+.hero-foot{gap:9px;margin-top:26px}
+.pill{padding:7px 12px;font-size:11px;letter-spacing:.015em}
+.section-head{margin:34px 0 16px;align-items:center}
+.section-head h2{font-size:clamp(20px,2vw,25px);font-weight:800;letter-spacing:-.035em;line-height:1.3}
+.section-head p{font-size:13px;line-height:1.65;margin-top:6px}
+select,.btn{min-height:42px;border-color:#dce7df;border-radius:12px;padding:10px 14px;font-size:13px;font-weight:650;box-shadow:0 2px 5px rgba(16,65,42,.025)}
+select:focus-visible,.btn:focus-visible,.tab:focus-visible{outline:3px solid #91d7b0;outline-offset:2px}
+.cards{gap:16px}
+.card,.panel{border-color:#e4ece6;border-radius:20px;box-shadow:0 5px 20px rgba(16,65,42,.035)}
+.card{padding:20px}
+.card:hover{transform:translateY(-3px);box-shadow:0 14px 32px rgba(16,65,42,.075)}
+.metric-top{font-size:12px;letter-spacing:.005em;line-height:1.5;min-height:42px}
+.metric-icon{border-radius:13px}
+.metric{font-size:clamp(17px,1.45vw,24px);font-weight:800;letter-spacing:-.04em;line-height:1.35;font-variant-numeric:tabular-nums}
+.metric-note{font-size:11px;line-height:1.6}
+.metric-accent{margin-top:18px}
+.grid2{gap:18px}
+.panel{padding:clamp(18px,2.2vw,25px)}
+.panel h3{font-size:16px;line-height:1.45;font-weight:800;letter-spacing:-.02em}
+.sub{font-size:12px;line-height:1.7;margin:5px 0 20px}
+.legend{font-size:12px;line-height:1.6;gap:16px}
+.category-item{grid-template-columns:40px minmax(0,1fr) auto;gap:12px}
+.category-icon{border-radius:13px}
+.category-name{font-size:13px;line-height:1.45;font-weight:750}
+.category-meta{font-size:11px;line-height:1.55}
+.category-value{font-size:12px;font-weight:800;font-variant-numeric:tabular-nums}
+.category-track{height:7px;margin-top:8px;background:#edf3ef}
+.donut-layout{gap:18px}
+.donut-row{font-size:12px;line-height:1.5}
+.donut-row strong{font-size:12px;line-height:1.5;margin-bottom:2px}
+.donut-row small{font-size:11px;line-height:1.6}
+.tabs{gap:8px;margin-bottom:16px}
+.tab{font-family:inherit;padding:10px 15px;font-size:12px;line-height:1.35;font-weight:750;border-color:#e0e9e3;transition:background .18s ease,color .18s ease,border-color .18s ease}
+.tab:hover:not(.active){background:#f0f8f3;color:var(--green);border-color:#c8e2d2}
+.table-wrap{border-color:#e0e9e3;border-radius:15px;background:#fff}
+table{font-size:12px;line-height:1.6}
+th,td{padding:13px 15px}
+th{font-size:10px;letter-spacing:.07em;font-weight:800;color:#53685b;background:#f2f7f3}
+td{font-variant-numeric:tabular-nums}
+tbody tr:nth-child(even){background:#fbfdfb}
+tbody tr:hover{background:#f2faf5}
+td:first-child{font-weight:650;color:#344a3d}
+.empty{color:#8a9990}
+.note{font-size:12px;line-height:1.7;border-radius:15px}
+.footer{font-size:11px;line-height:1.7;padding-top:20px}
+.btn{transition:all .18s ease}
+.btn:hover{background:#f2faf5}
+@media(max-width:850px){
+ .wrap{padding:18px 14px 34px}
+ .hero{border-radius:22px}
+ .section-head{margin-top:29px}
+ .cards{gap:12px}
+ .card{padding:16px}
+ .panel{padding:18px}
+}
+@media(max-width:560px){
+ body{font-size:14px}
+ .wrap{padding:12px 10px 28px}
+ .hero{padding:23px 19px;border-radius:19px}
+ .brand{align-items:center;gap:12px;margin-bottom:25px}
+ .brand-mark{width:64px;height:64px;flex-basis:64px;border-radius:14px}
+ .brand strong{font-size:13px}
+ .eyebrow{font-size:9px;letter-spacing:.12em}
+ h1{font-size:clamp(27px,8vw,36px);line-height:1.15}
+ .hero p{font-size:13px;line-height:1.7}
+ .section-head{gap:12px}
+ .section-head h2{font-size:20px}
+ .cards{gap:10px}
+ .metric{font-size:21px}
+ .panel{padding:16px;border-radius:16px}
+ .category-item{grid-template-columns:34px minmax(0,1fr) auto;gap:9px}
+ .category-icon{width:34px;height:34px}
+ .category-value{font-size:11px}
+ .tab{padding:9px 12px}
+ th,td{padding:11px 12px}
+}
+@media(prefers-reduced-motion:reduce){
+ html{scroll-behavior:auto}
+ *,*::before,*::after{transition:none!important;animation:none!important}
+}
+@media print{
+ body{font-family:Arial,sans-serif;font-size:10pt;color:#111}
+ .wrap{padding:0}
+ .hero{border-radius:12px}
+ .card,.panel{border:1px solid #ddd}
+}
+
+
+/* ===== Penyempurnaan dashboard sesuai permintaan ===== */
+.cards{grid-template-columns:repeat(5,minmax(0,1fr));gap:12px}
+.card{padding:clamp(12px,1.25vw,18px)}
+.metric-top{gap:6px;font-size:11px}
+.metric-top>span:first-child{min-width:0}
+.metric{white-space:nowrap;word-break:normal;overflow-wrap:normal;font-size:clamp(14px,1.32vw,22px);letter-spacing:-.045em;font-variant-numeric:tabular-nums}
+.metric-icon{width:31px;height:31px;flex:0 0 31px;font-size:15px}
+.metric-note{font-size:10px;min-height:30px}
+.asnaf-panel{grid-column:1/-1}
+.asnaf-layout{display:grid;grid-template-columns:minmax(190px,.65fr) minmax(0,1.35fr);align-items:center;gap:26px}
+.asnaf-donut{max-width:260px;width:100%}
+.asnaf-legend{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.asnaf-row{display:grid;grid-template-columns:36px minmax(0,1fr) auto;gap:9px;align-items:center;padding:11px;border:1px solid #e8eee9;border-radius:14px;background:linear-gradient(135deg,#fff,#fbfdfb);min-width:0}
+.asnaf-icon{display:grid;place-items:center;width:36px;height:36px;border-radius:12px;background:color-mix(in srgb,var(--asnaf-color) 11%,white);color:var(--asnaf-color)}
+.asnaf-icon svg{width:21px;height:21px}
+.asnaf-label{min-width:0}
+.asnaf-label strong{display:block;font-size:12px;font-weight:800;line-height:1.35}
+.asnaf-label small{display:block;font-size:10px;color:var(--muted);margin-top:3px;line-height:1.45}
+.asnaf-amount{font-size:11px;font-weight:800;color:#263d30;text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
+@media(max-width:1150px){
+ .cards{grid-template-columns:repeat(3,minmax(0,1fr))}
+ .metric{font-size:clamp(16px,1.7vw,22px)}
+}
+@media(max-width:850px){
+ .cards{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .asnaf-layout{grid-template-columns:1fr;gap:16px}
+ .asnaf-donut{max-width:220px}
+}
+@media(max-width:560px){
+ .cards{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+ .card{padding:12px}
+ .metric{font-size:clamp(15px,4.2vw,20px)}
+ .metric-icon{width:27px;height:27px;flex-basis:27px;font-size:14px}
+ .metric-top{font-size:10px;min-height:35px}
+ .metric-note{font-size:10px;min-height:34px}
+ .asnaf-legend{grid-template-columns:1fr}
+ .asnaf-row{grid-template-columns:36px minmax(0,1fr) auto;padding:10px}
+ .asnaf-icon{width:36px;height:36px}
+ .asnaf-amount{font-size:11px}
+}
+@media(max-width:360px){
+ .cards{grid-template-columns:1fr}
+ .metric{font-size:22px}
+}
+
 </style>
 </head>
 <body>
@@ -69,8 +222,7 @@ select,.btn{border:1px solid var(--line);border-radius:12px;background:white;pad
 
 <div class="section-head"><div><h2>Penyaluran berdasarkan asnaf</h2><p>Distribusi zakat dan infak kepada delapan golongan penerima, beserta persentase dari total penyaluran asnaf.</p></div></div>
 <div class="grid2">
-  <section class="panel"><h3>Proporsi penyaluran per asnaf</h3><p class="sub">Diagram menunjukkan porsi nominal tiap asnaf dari total zakat dan infak yang tercatat.</p><div id="asnafPie"></div></section>
-  <section class="panel"><h3>Rincian nominal dan persentase</h3><p class="sub">Bandingkan besaran penyaluran pada setiap golongan penerima.</p><div id="asnafBars" class="barlist"></div></section>
+  <section class="panel asnaf-panel"><h3>Proporsi penyaluran per asnaf</h3><p class="sub">Diagram menunjukkan porsi nominal tiap asnaf dari total zakat dan infak yang tercatat.</p><div id="asnafPie"></div></section>
 </div>
 
 <div class="section-head"><div><h2>Rekapitulasi mustahik per bidang</h2><p>Jumlah penerima manfaat berdasarkan bidang program zakat dan infak.</p></div></div>
@@ -195,26 +347,45 @@ function renderCategoryPie(){
 
 const asnafKeys=['Fakir','Miskin','Muallaf','Riqab','Gharimin','Sabilillah','Ibnu Sabil','Amil'];
 const asnafColors=['#0d9657','#e9b949','#4778e8','#e45b63','#8b5cf6','#159b87','#d99417','#64748b'];
+const asnafIcons={
+ 'Fakir':'<circle cx="12" cy="7" r="3"/><path d="M5 21v-2a7 7 0 0 1 14 0v2"/>',
+ 'Miskin':'<path d="M3 20h18M5 20v-7l7-5 7 5v7"/><path d="M9 20v-5h6v5"/>',
+ 'Muallaf':'<circle cx="12" cy="12" r="9"/><path d="M12 7v10M7 12h10"/>',
+ 'Riqab':'<rect x="5" y="10" width="14" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3M12 14v3"/>',
+ 'Gharimin':'<path d="M4 5h16v14H4z"/><path d="M8 9h8M8 12h5M8 16h8"/>',
+ 'Sabilillah':'<path d="M12 22s8-4 8-11V5l-8-3-8 3v6c0 7 8 11 8 11Z"/><path d="m9 12 2 2 4-4"/>',
+ 'Ibnu Sabil':'<circle cx="12" cy="5" r="2.5"/><path d="M10 8l-3 5 4 2-1 6M14 9l3 4 3 1M8 13l-4 3"/>',
+ 'Amil':'<rect x="3" y="5" width="18" height="15" rx="2"/><path d="M8 5V3h8v2M7 10h10M7 14h6"/>'
+};
+function asnafIcon(name){
+ const idx=asnafKeys.indexOf(name),color=asnafColors[idx]||'#64748b';
+ return `<span class="asnaf-icon" style="--asnaf-color:${color}" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">${asnafIcons[name]||'<circle cx="12" cy="12" r="8"/>'}</svg></span>`;
+}
 function asnafTotals(){
  const totals={};asnafKeys.forEach(k=>totals[k]=0);
  [...DATA.asnaf_zakat,...DATA.asnaf_infaq].forEach(row=>asnafKeys.forEach(k=>totals[k]+=num(row[k])||0));
  return totals;
 }
 function renderAsnaf(){
- const totals=asnafTotals(), total=Object.values(totals).reduce((a,b)=>a+b,0);
- const pie=document.getElementById('asnafPie'), bars=document.getElementById('asnafBars');
- if(!total){pie.innerHTML='<p class="empty">Data penyaluran berdasarkan asnaf belum tersedia.</p>';bars.innerHTML='';return}
- let offset=0,circles='';
- asnafKeys.forEach((k,i)=>{
-  const pct=totals[k]/total*100,dash=pct*4.1469;
-  if(pct>0) circles+=`<circle cx="100" cy="100" r="66" fill="none" stroke="${asnafColors[i]}" stroke-width="25" stroke-dasharray="${dash} ${414.69-dash}" stroke-dashoffset="${-offset*4.1469}" transform="rotate(-90 100 100)"><title>${k}: ${money(totals[k])} (${pct.toLocaleString('id-ID',{maximumFractionDigits:1})}%)</title></circle>`;
-  offset+=pct;
- });
- pie.innerHTML=`<div class="donut-layout"><svg class="donut-svg" viewBox="0 0 200 200" role="img" aria-label="Diagram penyaluran berdasarkan asnaf">${circles}<text x="100" y="94" text-anchor="middle" font-size="10" fill="#687970">TOTAL ASNAF</text><text x="100" y="113" text-anchor="middle" font-size="12" font-weight="800" fill="#172b23">${total>=1e9?(total/1e9).toLocaleString('id-ID',{maximumFractionDigits:1})+' M':total>=1e6?(total/1e6).toLocaleString('id-ID',{maximumFractionDigits:1})+' jt':integer(total)}</text></svg><div class="donut-legend">${asnafKeys.filter(k=>totals[k]>0).map(k=>{const i=asnafKeys.indexOf(k);return `<div class="donut-row"><i class="dot" style="background:${asnafColors[i]};margin-top:4px"></i><div><strong>${k}</strong><small>${money(totals[k])} · ${(totals[k]/total*100).toLocaleString('id-ID',{maximumFractionDigits:1})}%</small></div></div>`}).join('')}</div></div>`;
- const max=Math.max(1,...Object.values(totals));
- bars.innerHTML=asnafKeys.map((k,i)=>{const v=totals[k],pct=v/total*100;return `<div class="category-item"><span class="category-icon" style="background:${asnafColors[i]}18;color:${asnafColors[i]}"><strong>${k.slice(0,1)}</strong></span><div><div class="category-name">${k}</div><div class="category-track"><div class="category-fill" style="width:${Math.max(v>0?2:0,v/max*100)}%;background:${asnafColors[i]}"></div></div><div class="category-meta">${pct.toLocaleString('id-ID',{maximumFractionDigits:1})}% dari total asnaf</div></div><div class="category-value">${money(v)}</div></div>`}).join('');
+  const totals=asnafTotals(), total=Object.values(totals).reduce((a,b)=>a+b,0);
+  const pie=getEl('asnafPie');
+  if(!pie){console.warn('Elemen #asnafPie tidak ditemukan; bagian diagram asnaf dilewati.');return}
+  if(!total){pie.innerHTML='<p class="empty">Data penyaluran berdasarkan asnaf belum tersedia.</p>';return}
+  let offset=0,circles='';
+  asnafKeys.forEach((k,i)=>{
+    const pct=totals[k]/total*100,dash=pct*4.1469;
+    if(pct>0) circles+=`<circle cx="100" cy="100" r="66" fill="none" stroke="${asnafColors[i]}" stroke-width="25" stroke-dasharray="${dash} ${414.69-dash}" stroke-dashoffset="${-offset*4.1469}" transform="rotate(-90 100 100)"><title>${k}: ${money(totals[k])} (${pct.toLocaleString('id-ID',{maximumFractionDigits:1})}%)</title></circle>`;
+    offset+=pct;
+  });
+  const totalLabel=total>=1e9?(total/1e9).toLocaleString('id-ID',{maximumFractionDigits:1})+' M':total>=1e6?(total/1e6).toLocaleString('id-ID',{maximumFractionDigits:1})+' jt':integer(total);
+  pie.innerHTML=`<div class="asnaf-layout">
+    <svg class="donut-svg asnaf-donut" viewBox="0 0 200 200" role="img" aria-label="Diagram penyaluran berdasarkan asnaf">${circles}<text x="100" y="94" text-anchor="middle" font-size="10" fill="#687970">TOTAL ASNAF</text><text x="100" y="113" text-anchor="middle" font-size="12" font-weight="800" fill="#172b23">${totalLabel}</text></svg>
+    <div class="asnaf-legend">${asnafKeys.map(k=>{
+      const pct=total>0?totals[k]/total*100:0;
+      return `<div class="asnaf-row">${asnafIcon(k)}<div class="asnaf-label"><strong>${k}</strong><small>${pct.toLocaleString('id-ID',{maximumFractionDigits:1})}% dari total</small></div><div class="asnaf-amount">${money(totals[k])}</div></div>`;
+    }).join('')}</div>
+  </div>`;
 }
-
 function renderMustahikByCategory(){
  const all=[...DATA.zakat_program_counts,...DATA.infaq_program_counts];
  const totals={};cats.forEach(c=>totals[c]=all.reduce((sum,row)=>sum+(num(row[c])||0),0));
@@ -259,7 +430,7 @@ function showLoadError(message){
   setText('mCollect','—');setText('mDisburse','—');setText('mMustahik','—');setText('mRatio','—');setText('mPrograms','—');
 }
 function loadLiveData(){
-  const requiredIds=['monthFilter','financeChart','categoryPie','asnafPie','asnafBars','mustahikByCategory','tableTitle','dataTable','mCollect','mDisburse','mMustahik','mRatio','mPrograms'];
+  const requiredIds=['monthFilter','financeChart','categoryPie','asnafPie','mustahikByCategory','tableTitle','dataTable','mCollect','mDisburse','mMustahik','mRatio','mPrograms'];
   const missingIds=requiredIds.filter(id=>!getEl(id));
   if(missingIds.length){console.error('Elemen HTML yang dibutuhkan tidak ditemukan:',missingIds);showLoadError('Struktur HTML belum lengkap. Elemen yang tidak ditemukan: '+missingIds.join(', '));return}
   if(!API_URL || !/^https:\/\/script\.google\.com\/macros\/s\//.test(API_URL)){
