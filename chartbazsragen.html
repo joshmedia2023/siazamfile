@@ -32,7 +32,8 @@ select,.btn{border:1px solid var(--line);border-radius:12px;background:white;pad
 .panel h3{font-size:16px;margin:0 0 4px}.sub{font-size:12px;color:var(--muted);margin:0 0 18px}
 .chart{width:100%;height:auto;display:block;overflow:visible}.legend{display:flex;flex-wrap:wrap;gap:15px;margin-top:12px;font-size:12px;color:var(--muted)}.dot{display:inline-block;width:9px;height:9px;border-radius:3px;margin-right:6px}
 .barlist{display:grid;gap:16px}.category-item{display:grid;grid-template-columns:38px 1fr auto;gap:11px;align-items:center}.category-icon{width:38px;height:38px;border-radius:12px;display:grid;place-items:center}.category-icon svg{width:20px;height:20px}.category-name{font-size:13px;font-weight:750}.category-meta{font-size:11px;color:var(--muted);margin-top:2px}.category-track{height:6px;background:#edf2ef;border-radius:8px;overflow:hidden;margin-top:7px}.category-fill{height:100%;border-radius:8px}.category-value{font-size:12px;font-weight:750;text-align:right;white-space:nowrap}.donut-layout{display:grid;grid-template-columns:minmax(150px,.9fr) 1.1fr;align-items:center;gap:12px}.donut-svg{width:100%;max-width:240px;margin:auto;display:block}.donut-legend{display:grid;gap:11px}.donut-row{display:grid;grid-template-columns:10px 1fr;gap:8px;align-items:start;font-size:12px}.donut-row strong{display:block;font-size:12px}.donut-row small{color:var(--muted)}.metric-accent{height:3px;border-radius:5px;margin:16px 0 0;background:var(--green)}.metric[data-kind="mustahik"]{color:#0c6e9c}.metric[data-kind="ratio"]{color:#8b5cf6}.barrow{display:grid;grid-template-columns:110px 1fr;gap:10px;align-items:center;font-size:12px}.barlabel{color:var(--muted)}.bars{display:grid;gap:5px}.bar{height:10px;border-radius:5px;background:var(--green2);min-width:2px}.bar.alt{background:var(--gold)}.barval{font-size:11px;color:var(--muted);margin-top:2px}
-.tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}.tab{cursor:pointer;border:1px solid var(--line);border-radius:99px;background:white;padding:9px 14px;font-weight:700;font-size:12px;color:var(--muted)}.tab.active{background:var(--green);color:white;border-color:var(--green)}
+.section-head h2{font-size:clamp(19px,2.2vw,24px)}
+.panel{padding:clamp(16px,2vw,22px)}\n.tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}.tab{cursor:pointer;border:1px solid var(--line);border-radius:99px;background:white;padding:9px 14px;font-weight:700;font-size:12px;color:var(--muted)}.tab.active{background:var(--green);color:white;border-color:var(--green)}
 .table-wrap{overflow:auto;border:1px solid var(--line);border-radius:14px}table{width:100%;border-collapse:collapse;min-width:650px;font-size:13px}th,td{text-align:right;padding:12px 14px;border-bottom:1px solid var(--line);white-space:nowrap}th{background:#f4f8f5;color:#53665a;font-size:11px;text-transform:uppercase;letter-spacing:.04em}th:first-child,td:first-child{text-align:left}tbody tr:last-child td{border-bottom:0}tbody tr:hover{background:#f9fcfa}.num{font-variant-numeric:tabular-nums}.empty{color:#a0aaa4}
 .note{margin-top:16px;padding:14px 16px;background:#fff9e8;border:1px solid #f4e6bd;border-radius:14px;color:#715d2b;font-size:12px}
 .footer{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:26px;padding:18px 2px;color:var(--muted);font-size:12px;border-top:1px solid var(--line)}
@@ -63,7 +64,13 @@ select,.btn{border:1px solid var(--line);border-radius:12px;background:white;pad
 <div class="section-head"><div><h2>Pergerakan dana</h2><p>Perbandingan pengumpulan dan penyaluran per bulan.</p></div></div>
 <div class="grid2">
   <section class="panel"><h3>Pengumpulan vs penyaluran</h3><p class="sub">Nilai dalam rupiah (Rp).</p><div id="financeChart"></div><div class="legend"><span><i class="dot" style="background:#0d9657"></i>Pengumpulan</span><span><i class="dot" style="background:#e9b949"></i>Penyaluran</span></div></section>
-  <section class="panel"><h3>Penyaluran menurut bidang</h3><p class="sub">Proporsi nilai penyaluran zakat dan infak pada setiap bidang.</p><div id="categoryPie"></div></section><section class="panel"><h3>Rincian nilai per bidang</h3><p class="sub">Perbandingan nominal penyaluran berdasarkan kategori program.</p><div id="categoryBars" class="barlist"></div></section>
+  <section class="panel"><h3>Penyaluran menurut bidang</h3><p class="sub">Proporsi nilai penyaluran zakat dan infak pada setiap bidang.</p><div id="categoryPie"></div></section>
+</div>
+
+<div class="section-head"><div><h2>Penyaluran berdasarkan asnaf</h2><p>Distribusi zakat dan infak kepada delapan golongan penerima, beserta persentase dari total penyaluran asnaf.</p></div></div>
+<div class="grid2">
+  <section class="panel"><h3>Proporsi penyaluran per asnaf</h3><p class="sub">Diagram menunjukkan porsi nominal tiap asnaf dari total zakat dan infak yang tercatat.</p><div id="asnafPie"></div></section>
+  <section class="panel"><h3>Rincian nominal dan persentase</h3><p class="sub">Bandingkan besaran penyaluran pada setiap golongan penerima.</p><div id="asnafBars" class="barlist"></div></section>
 </div>
 
 <div class="section-head"><div><h2>Rekapitulasi mustahik per bidang</h2><p>Jumlah penerima manfaat berdasarkan bidang program zakat dan infak.</p></div></div>
@@ -75,12 +82,14 @@ select,.btn{border:1px solid var(--line);border-radius:12px;background:white;pad
 <button class="tab" data-tab="zakat">Penyaluran Zakat</button>
 <button class="tab" data-tab="infaq">Penyaluran Infak</button>
 <button class="tab" data-tab="program">Program Zakat & Infak</button>
+<button class="tab" data-tab="asnaf_zakat">Asnaf Zakat</button>
+<button class="tab" data-tab="asnaf_infaq">Asnaf Infak</button>
 </div>
 <section class="panel"><div id="tableTitle"><h3>Pengumpulan dan penyaluran bulanan</h3><p class="sub">Angka kosong berarti belum tersedia pada file sumber, bukan bernilai nol.</p></div><div id="dataTable" class="table-wrap"></div></section>
 <footer class="footer"><span>© 2026 BAZNAS Kabupaten Sragen · Laporan Publik</span><span id="updated">Sumber: Google Sheets</span></footer>
 </div>
 <script>
-let DATA = {monthly:[],zakat_program_counts:[],infaq_program_counts:[],zakat_distribution:[],infaq_distribution:[]};
+let DATA = {monthly:[],zakat_program_counts:[],infaq_program_counts:[],zakat_distribution:[],infaq_distribution:[],asnaf_zakat:[],asnaf_infaq:[]};
 const API_URL = "https://script.google.com/macros/s/AKfycbw9l0vR66Wls2O_A3cdyadFVNmAGkLbGRWvt3E8pxAuu1_DtKkWb-fWh2bZGxxd41B4/exec";
 let months = [];
 const money = n => n==null || n==="" || n==="-" ? "—" : new Intl.NumberFormat('id-ID',{style:'currency',currency:'IDR',maximumFractionDigits:0}).format(Number(n));
@@ -101,7 +110,7 @@ function categoryIcon(c){const m=categoryMeta[c];return `<span class="category-i
 function categoryValue(c){return c==='Dakwah Advokasi'?'Dakwah':c}
 function setText(id,val){document.getElementById(id).textContent=val}
 function prepareData(){
-  const keys=['monthly','zakat_program_counts','infaq_program_counts','zakat_distribution','infaq_distribution'];
+  const keys=['monthly','zakat_program_counts','infaq_program_counts','zakat_distribution','infaq_distribution','asnaf_zakat','asnaf_infaq'];
   keys.forEach(k=>{if(!Array.isArray(DATA[k])) DATA[k]=[];});
   // Normalisasi nama kolom umum agar variasi header spreadsheet tidak memutus grafik.
   DATA.monthly=DATA.monthly.map(normalizeRow);
@@ -109,6 +118,8 @@ function prepareData(){
   DATA.infaq_program_counts=DATA.infaq_program_counts.map(normalizeRow);
   DATA.zakat_distribution=DATA.zakat_distribution.map(normalizeRow);
   DATA.infaq_distribution=DATA.infaq_distribution.map(normalizeRow);
+  DATA.asnaf_zakat=DATA.asnaf_zakat.map(normalizeRow);
+  DATA.asnaf_infaq=DATA.asnaf_infaq.map(normalizeRow);
   months=[...new Set(keys.flatMap(k=>DATA[k].map(r=>r.Bulan).filter(Boolean)))];
 }
 function normalizeRow(row){
@@ -116,7 +127,7 @@ function normalizeRow(row){
   Object.keys(row||{}).forEach(k=>{
     const clean=String(k).trim();
     const lower=clean.toLowerCase().replace(/[ _-]/g,'');
-    const aliases={bulan:'Bulan',periode:'Bulan',month:'Bulan',pengumpulan:'Pengumpulan',pengumpulanzakatinfak:'Pengumpulan',penyaluran:'Penyaluran',penyaluranzakatinfak:'Penyaluran',kesehataan:'Kesehatan','jumlahpenerima':'Jumlah Penerima'};
+    const aliases={bulan:'Bulan',periode:'Bulan',month:'Bulan',pengumpulan:'Pengumpulan',pengumpulanzakatinfak:'Pengumpulan',penyaluran:'Penyaluran',penyaluranzakatinfak:'Penyaluran',kesehataan:'Kesehatan','jumlahpenerima':'Jumlah Penerima',no:'No',fakir:'Fakir',miskin:'Miskin',muallaf:'Muallaf',riqab:'Riqab',gharimin:'Gharimin',sabilillah:'Sabilillah','ibnusabil':'Ibnu Sabil',amil:'Amil','jumlah perbulan':'Jumlah Per Bulan',jumlah:'Jumlah'};
     out[aliases[lower]||clean]=row[k];
   });
   if(!out.Bulan){
@@ -177,6 +188,29 @@ function renderCategoryPie(){
  });
  el.innerHTML=`<div class="donut-layout"><svg class="donut-svg" viewBox="0 0 200 200" role="img" aria-label="Diagram lingkaran penyaluran per bidang">${circles}<text x="100" y="94" text-anchor="middle" font-size="10" fill="#687970">TOTAL PENYALURAN</text><text x="100" y="113" text-anchor="middle" font-size="12" font-weight="800" fill="#172b23">${total>=1e9?(total/1e9).toLocaleString('id-ID',{maximumFractionDigits:1})+' M':total>=1e6?(total/1e6).toLocaleString('id-ID',{maximumFractionDigits:1})+' jt':integer(total)}</text></svg><div class="donut-legend">${cats.map(c=>`<div class="donut-row"><i class="dot" style="background:${categoryMeta[c].color};margin-top:4px"></i><div><strong>${categoryValue(c)}</strong><small>${money(totals[c])} · ${(totals[c]/total*100).toLocaleString('id-ID',{maximumFractionDigits:1})}%</small></div></div>`).join('')}</div></div>`;
 }
+
+const asnafKeys=['Fakir','Miskin','Muallaf','Riqab','Gharimin','Sabilillah','Ibnu Sabil','Amil'];
+const asnafColors=['#0d9657','#e9b949','#4778e8','#e45b63','#8b5cf6','#159b87','#d99417','#64748b'];
+function asnafTotals(){
+ const totals={};asnafKeys.forEach(k=>totals[k]=0);
+ [...DATA.asnaf_zakat,...DATA.asnaf_infaq].forEach(row=>asnafKeys.forEach(k=>totals[k]+=num(row[k])||0));
+ return totals;
+}
+function renderAsnaf(){
+ const totals=asnafTotals(), total=Object.values(totals).reduce((a,b)=>a+b,0);
+ const pie=document.getElementById('asnafPie'), bars=document.getElementById('asnafBars');
+ if(!total){pie.innerHTML='<p class="empty">Data penyaluran berdasarkan asnaf belum tersedia.</p>';bars.innerHTML='';return}
+ let offset=0,circles='';
+ asnafKeys.forEach((k,i)=>{
+  const pct=totals[k]/total*100,dash=pct*4.1469;
+  if(pct>0) circles+=`<circle cx="100" cy="100" r="66" fill="none" stroke="${asnafColors[i]}" stroke-width="25" stroke-dasharray="${dash} ${414.69-dash}" stroke-dashoffset="${-offset*4.1469}" transform="rotate(-90 100 100)"><title>${k}: ${money(totals[k])} (${pct.toLocaleString('id-ID',{maximumFractionDigits:1})}%)</title></circle>`;
+  offset+=pct;
+ });
+ pie.innerHTML=`<div class="donut-layout"><svg class="donut-svg" viewBox="0 0 200 200" role="img" aria-label="Diagram penyaluran berdasarkan asnaf">${circles}<text x="100" y="94" text-anchor="middle" font-size="10" fill="#687970">TOTAL ASNAF</text><text x="100" y="113" text-anchor="middle" font-size="12" font-weight="800" fill="#172b23">${total>=1e9?(total/1e9).toLocaleString('id-ID',{maximumFractionDigits:1})+' M':total>=1e6?(total/1e6).toLocaleString('id-ID',{maximumFractionDigits:1})+' jt':integer(total)}</text></svg><div class="donut-legend">${asnafKeys.filter(k=>totals[k]>0).map(k=>{const i=asnafKeys.indexOf(k);return `<div class="donut-row"><i class="dot" style="background:${asnafColors[i]};margin-top:4px"></i><div><strong>${k}</strong><small>${money(totals[k])} · ${(totals[k]/total*100).toLocaleString('id-ID',{maximumFractionDigits:1})}%</small></div></div>`}).join('')}</div></div>`;
+ const max=Math.max(1,...Object.values(totals));
+ bars.innerHTML=asnafKeys.map((k,i)=>{const v=totals[k],pct=v/total*100;return `<div class="category-item"><span class="category-icon" style="background:${asnafColors[i]}18;color:${asnafColors[i]}"><strong>${k.slice(0,1)}</strong></span><div><div class="category-name">${k}</div><div class="category-track"><div class="category-fill" style="width:${Math.max(v>0?2:0,v/max*100)}%;background:${asnafColors[i]}"></div></div><div class="category-meta">${pct.toLocaleString('id-ID',{maximumFractionDigits:1})}% dari total asnaf</div></div><div class="category-value">${money(v)}</div></div>`}).join('');
+}
+
 function renderMustahikByCategory(){
  const all=[...DATA.zakat_program_counts,...DATA.infaq_program_counts];
  const totals={};cats.forEach(c=>totals[c]=all.reduce((sum,row)=>sum+(num(row[c])||0),0));
