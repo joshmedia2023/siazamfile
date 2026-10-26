@@ -108,7 +108,9 @@ const categoryMeta={
 };
 function categoryIcon(c){const m=categoryMeta[c];return `<span class="category-icon" style="color:${m.color};background:${m.bg}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${m.icon}</svg></span>`}
 function categoryValue(c){return c==='Dakwah Advokasi'?'Dakwah':c}
-function setText(id,val){document.getElementById(id).textContent=val}
+function getEl(id){return document.getElementById(id)}
+function setText(id,val){const el=getEl(id);if(el) el.textContent=val}
+function setHTML(id,html){const el=getEl(id);if(el) el.innerHTML=html}
 function prepareData(){
   const keys=['monthly','zakat_program_counts','infaq_program_counts','zakat_distribution','infaq_distribution','asnaf_zakat','asnaf_infaq'];
   keys.forEach(k=>{if(!Array.isArray(DATA[k])) DATA[k]=[];});
@@ -170,8 +172,10 @@ function categoryTotals(){
  return totals;
 }
 function renderCategoryBars(){
+ const el=document.getElementById('categoryBars');
+ if(!el) return; // Panel rincian nilai per bidang memang sudah dihapus dari HTML.
  const totals=categoryTotals(), max=Math.max(1,...Object.values(totals)), total=Object.values(totals).reduce((a,b)=>a+b,0);
- document.getElementById('categoryBars').innerHTML=cats.map(c=>{
+ el.innerHTML=cats.map(c=>{
   const m=categoryMeta[c],v=totals[c],pct=total>0?v/total*100:0;
   return `<div class="category-item">${categoryIcon(c)}<div><div class="category-name">${categoryValue(c)}</div><div class="category-track"><div class="category-fill" style="width:${Math.max(v>0?2:0,v/max*100)}%;background:${m.color}"></div></div><div class="category-meta">${pct.toLocaleString('id-ID',{maximumFractionDigits:1})}% dari total bidang</div></div><div class="category-value">${money(v)}</div></div>`;
  }).join('');
@@ -234,6 +238,11 @@ function renderTable(tab){
  const isZ=tab==='zakat',rows=isZ?DATA.zakat_distribution:DATA.infaq_distribution,label=isZ?'Zakat':'Infak';
  title.innerHTML=`<h3>Rincian penyaluran ${label}</h3><p class="sub">Nilai per bidang dalam rupiah, sesuai pencatatan pada file sumber.</p>`;
  out.innerHTML=table(['Bulan',...cats,'Jumlah bidang'],rows.map(r=>{const vals=cats.map(c=>num(r[c])===null?'—':money(r[c]));const total=cats.reduce((s,c)=>s+(num(r[c])||0),0);return [r.Bulan,...vals,money(total)]}));
+ } else if(tab==='asnaf_zakat'||tab==='asnaf_infaq'){
+ const isZ=tab==='asnaf_zakat', rows=isZ?DATA.asnaf_zakat:DATA.asnaf_infaq, label=isZ?'Asnaf Zakat':'Asnaf Infak';
+ title.innerHTML=`<h3>Rincian ${label}</h3><p class="sub">Nominal penyaluran per golongan asnaf sesuai data bulanan pada lembar sumber.</p>`;
+ const asnafCols=[...asnafKeys];
+ out.innerHTML=table(['Bulan',...asnafCols,'Total asnaf'],rows.map(r=>{const vals=asnafCols.map(k=>num(r[k])===null?'—':money(r[k]));const total=asnafCols.reduce((sum,k)=>sum+(num(r[k])||0),0);return [r.Bulan,...vals,money(total)]}));
  } else {
  title.innerHTML='<h3>Rekap program zakat dan infak</h3><p class="sub">Angka kategori dan jumlah penerima disalin dari lembar program; satuannya mengikuti sumber.</p>';
  const rows=months.map(m=>{const z=DATA.zakat_program_counts.find(x=>x.Bulan===m)||{},i=DATA.infaq_program_counts.find(x=>x.Bulan===m)||{};return [m,...cats.map(c=>`${integer(z[c])} / ${integer(i[c])}`),integer(z.Jumlah),integer(i.Jumlah),integer(z['Jumlah Penerima']),integer(i['Jumlah Penerima'])]});
@@ -245,11 +254,14 @@ document.querySelectorAll('.tab').forEach(b=>b.addEventListener('click',()=>{doc
 document.getElementById('monthFilter').addEventListener('change',renderMetrics);
 
 function showLoadError(message){
-  document.getElementById('financeChart').innerHTML='<p style="color:#b45309;font-size:13px">'+message+'</p>';
-  document.getElementById('dataTable').innerHTML='<div style="padding:16px;font-size:13px;color:#b45309">Data belum berhasil dimuat. Periksa URL deployment Apps Script dan izin akses publik.</div>';
+  setHTML('financeChart','<p style="color:#b45309;font-size:13px">'+String(message)+'</p>');
+  setHTML('dataTable','<div style="padding:16px;font-size:13px;color:#b45309">Data belum berhasil dimuat. Periksa URL deployment Apps Script dan izin akses publik.</div>');
   setText('mCollect','—');setText('mDisburse','—');setText('mMustahik','—');setText('mRatio','—');setText('mPrograms','—');
 }
 function loadLiveData(){
+  const requiredIds=['monthFilter','financeChart','categoryPie','asnafPie','asnafBars','mustahikByCategory','tableTitle','dataTable','mCollect','mDisburse','mMustahik','mRatio','mPrograms'];
+  const missingIds=requiredIds.filter(id=>!getEl(id));
+  if(missingIds.length){console.error('Elemen HTML yang dibutuhkan tidak ditemukan:',missingIds);showLoadError('Struktur HTML belum lengkap. Elemen yang tidak ditemukan: '+missingIds.join(', '));return}
   if(!API_URL || !/^https:\/\/script\.google\.com\/macros\/s\//.test(API_URL)){
     showLoadError('Hubungkan Apps Script terlebih dahulu dengan menempelkan URL deployment pada variabel API_URL di chartbazsragen.html.');
     return;
@@ -265,11 +277,11 @@ function loadLiveData(){
       const select=document.getElementById('monthFilter');
       select.innerHTML='<option value="all">Akumulasi tersedia</option>';
       financeMonths().forEach(m=>{const o=document.createElement('option');o.value=m;o.textContent=m;select.appendChild(o)});
-      document.getElementById('financeChart').innerHTML=svgChart();
-      renderCategoryBars();renderCategoryPie();renderMustahikByCategory();renderMetrics();renderTable(currentTab);
+      setHTML('financeChart',svgChart());
+      renderCategoryBars();renderCategoryPie();renderAsnaf();renderMustahikByCategory();renderMetrics();renderTable(currentTab);
       setText('coverage', '');
       setText('updated','Sumber: Google Sheets · diperbarui '+(payload.updatedAt||''));
-    }catch(err){showLoadError('Gagal membaca data: '+err.message);}
+    }catch(err){console.error('Kesalahan saat memproses data laporan:',err);showLoadError('Gagal membaca data: '+(err && err.message ? err.message : String(err))+'. Periksa Console browser untuk detail teknis.');}
     finally{delete window[callbackName];script.remove();}
   };
   const script=document.createElement('script');
