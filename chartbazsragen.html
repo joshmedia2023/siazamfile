@@ -222,7 +222,7 @@ td:first-child{font-weight:650;color:#344a3d}
 
 <div class="section-head"><div><h2>Penyaluran berdasarkan asnaf</h2><p>Distribusi zakat dan infak kepada delapan golongan penerima, beserta persentase dari total penyaluran asnaf.</p></div></div>
 <div class="grid2">
-  <section class="panel asnaf-panel"><h3>Proporsi penyaluran per asnaf</h3><p class="sub">Diagram menunjukkan porsi nominal tiap asnaf dari total zakat dan infak yang tercatat.</p><div id="asnafPie"></div></section>
+  <section class="panel asnaf-panel"><div class="section-head" style="margin:0 0 8px"><div><h3>Proporsi penyaluran per asnaf</h3><p class="sub">Pilih bulan dan jenis dana untuk melihat nominal serta persentase penyaluran tiap asnaf.</p></div><div class="filter-group" style="display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end"><select id="asnafMonthFilter" aria-label="Filter bulan penyaluran asnaf"><option value="all">Akumulasi tersedia</option></select><select id="asnafTypeFilter" aria-label="Pilih jenis dana asnaf"><option value="all">Zakat + Infak</option><option value="zakat">Zakat</option><option value="infaq">Infak</option></select></div></div><div id="asnafPie"></div></section>
 </div>
 
 <div class="section-head"><div><h2>Rekapitulasi mustahik per bidang</h2><p>Jumlah penerima manfaat berdasarkan bidang program zakat dan infak.</p></div></div>
@@ -293,17 +293,20 @@ function normalizeRow(row){
 function activeFinanceRows(){const f=document.getElementById('monthFilter').value;return financeRows().filter(r=>f==='all'||r.Bulan===f)}
 function renderMetrics(){
  const rows=activeFinanceRows(), collection=sum(rows,'Pengumpulan'), disbursement=sum(rows,'Penyaluran');
+ const f=document.getElementById('monthFilter').value;
  setText('mCollect',money(collection));setText('mDisburse',money(disbursement));
- const z=DATA.zakat_distribution, i=DATA.infaq_distribution;let total=0;
+ const z=DATA.zakat_distribution.filter(r=>f==='all'||r.Bulan===f);
+ const i=DATA.infaq_distribution.filter(r=>f==='all'||r.Bulan===f);
+ let total=0;
  [...z,...i].forEach(r=>cats.forEach(c=>total+=num(r[c])||0));
- setText('mPrograms',money(total));setText('nPrograms','Total nilai bidang pada lembar penyaluran');
+ setText('mPrograms',money(total));
+ setText('nPrograms',f==='all'?'Akumulasi penyaluran seluruh program':'Penyaluran program · '+f);
  const programRows=[...DATA.zakat_program_counts,...DATA.infaq_program_counts];
  const mustahik=programRows.reduce((s,r)=>s+(num(r['Jumlah Penerima'])||0),0);
  setText('mMustahik',integer(mustahik));
  setText('nMustahik','Akumulasi angka penerima dari data program');
  setText('mRatio',collection>0?(disbursement/collection*100).toLocaleString('id-ID',{maximumFractionDigits:1})+'%':'—');
  setText('nRatio',collection>0?'Penyaluran ÷ pengumpulan':'Belum dapat dihitung tanpa data pengumpulan');
- const f=document.getElementById('monthFilter').value;
  setText('nCollect',f==='all'?'Akumulasi bulan yang tersedia':'Periode '+f);
  setText('nDisburse',f==='all'?'Akumulasi bulan yang tersedia':'Periode '+f);
 }
@@ -363,14 +366,20 @@ function asnafIcon(name){
 }
 function asnafTotals(){
  const totals={};asnafKeys.forEach(k=>totals[k]=0);
- [...DATA.asnaf_zakat,...DATA.asnaf_infaq].forEach(row=>asnafKeys.forEach(k=>totals[k]+=num(row[k])||0));
+ const monthSelect=getEl('asnafMonthFilter');
+ const typeSelect=getEl('asnafTypeFilter');
+ const month=monthSelect?monthSelect.value:'all';
+ const type=typeSelect?typeSelect.value:'all';
+ const rows=type==='zakat'?DATA.asnaf_zakat:type==='infaq'?DATA.asnaf_infaq:[...DATA.asnaf_zakat,...DATA.asnaf_infaq];
+ rows.filter(row=>month==='all'||row.Bulan===month)
+   .forEach(row=>asnafKeys.forEach(k=>totals[k]+=num(row[k])||0));
  return totals;
 }
 function renderAsnaf(){
   const totals=asnafTotals(), total=Object.values(totals).reduce((a,b)=>a+b,0);
   const pie=getEl('asnafPie');
   if(!pie){console.warn('Elemen #asnafPie tidak ditemukan; bagian diagram asnaf dilewati.');return}
-  if(!total){pie.innerHTML='<p class="empty">Data penyaluran berdasarkan asnaf belum tersedia.</p>';return}
+  if(!total){pie.innerHTML='<p class="empty">Data penyaluran untuk jenis dana dan bulan yang dipilih belum tersedia.</p>';return}
   let offset=0,circles='';
   asnafKeys.forEach((k,i)=>{
     const pct=totals[k]/total*100,dash=pct*4.1469;
@@ -423,6 +432,8 @@ function renderTable(tab){
 let currentTab='finance';
 document.querySelectorAll('.tab').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('.tab').forEach(x=>x.classList.toggle('active',x===b));currentTab=b.dataset.tab;renderTable(currentTab)}));
 document.getElementById('monthFilter').addEventListener('change',renderMetrics);
+document.getElementById('asnafMonthFilter')?.addEventListener('change',renderAsnaf);
+document.getElementById('asnafTypeFilter')?.addEventListener('change',renderAsnaf);
 
 function showLoadError(message){
   setHTML('financeChart','<p style="color:#b45309;font-size:13px">'+String(message)+'</p>');
@@ -430,7 +441,7 @@ function showLoadError(message){
   setText('mCollect','—');setText('mDisburse','—');setText('mMustahik','—');setText('mRatio','—');setText('mPrograms','—');
 }
 function loadLiveData(){
-  const requiredIds=['monthFilter','financeChart','categoryPie','asnafPie','mustahikByCategory','tableTitle','dataTable','mCollect','mDisburse','mMustahik','mRatio','mPrograms'];
+  const requiredIds=['monthFilter','asnafMonthFilter','financeChart','categoryPie','asnafPie','mustahikByCategory','tableTitle','dataTable','mCollect','mDisburse','mMustahik','mRatio','mPrograms'];
   const missingIds=requiredIds.filter(id=>!getEl(id));
   if(missingIds.length){console.error('Elemen HTML yang dibutuhkan tidak ditemukan:',missingIds);showLoadError('Struktur HTML belum lengkap. Elemen yang tidak ditemukan: '+missingIds.join(', '));return}
   if(!API_URL || !/^https:\/\/script\.google\.com\/macros\/s\//.test(API_URL)){
@@ -448,6 +459,10 @@ function loadLiveData(){
       const select=document.getElementById('monthFilter');
       select.innerHTML='<option value="all">Akumulasi tersedia</option>';
       financeMonths().forEach(m=>{const o=document.createElement('option');o.value=m;o.textContent=m;select.appendChild(o)});
+      const asnafSelect=getEl('asnafMonthFilter');
+      asnafSelect.innerHTML='<option value="all">Akumulasi tersedia</option>';
+      [...new Set([...DATA.asnaf_zakat,...DATA.asnaf_infaq].map(r=>r.Bulan).filter(Boolean))]
+        .forEach(m=>{const o=document.createElement('option');o.value=m;o.textContent=m;asnafSelect.appendChild(o)});
       setHTML('financeChart',svgChart());
       renderCategoryBars();renderCategoryPie();renderAsnaf();renderMustahikByCategory();renderMetrics();renderTable(currentTab);
       setText('coverage', '');
